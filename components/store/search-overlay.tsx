@@ -93,8 +93,12 @@ export function SearchOverlay() {
 
           {products.length > 0 && (
             <ul className="grid gap-2 md:grid-cols-2">
-              {products.map((product) => (
-                <li key={product.id}>
+              {products.map((product, index) => (
+                <li
+                  key={product.id}
+                  className="motion-safe:animate-fade-up"
+                  style={{ animationDelay: `${index * 40}ms` }}
+                >
                   <Link
                     href={`/products/${product.handle}`}
                     onClick={close}
@@ -114,7 +118,7 @@ export function SearchOverlay() {
             <Link
               href={`/search?q=${encodeURIComponent(term)}`}
               onClick={close}
-              className="font-label text-label-md text-secondary underline-offset-4 hover:underline"
+              className="link-underline self-start font-label text-label-md text-secondary"
             >
               See all results
             </Link>

@@ -22,7 +22,10 @@ export function ProductCard({ product, href }: { product: ProductSummary; href?:
   const badge = badgeFor(product);
 
   return (
-    <Link href={href ?? `/products/${product.handle}`} className="group flex flex-col gap-3">
+    <Link
+      href={href ?? `/products/${product.handle}`}
+      className="group flex flex-col gap-3 transition-transform duration-300 ease-emphasized motion-safe:hover:-translate-y-1"
+    >
       <div className="relative aspect-[4/5] overflow-hidden rounded-lg bg-surface-container">
         {image ? (
           <Image
@@ -31,7 +34,7 @@ export function ProductCard({ product, href }: { product: ProductSummary; href?:
             width={image.width ?? 800}
             height={image.height ?? 1000}
             sizes="(min-width: 1024px) 25vw, (min-width: 768px) 33vw, 50vw"
-            className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+            className="h-full w-full object-cover transition-transform duration-500 ease-emphasized motion-safe:group-hover:scale-105"
           />
         ) : (
           <div className="flex h-full w-full items-center justify-center text-outline">
@@ -41,7 +44,7 @@ export function ProductCard({ product, href }: { product: ProductSummary; href?:
         {badge && <Chip tone="primary" className="absolute right-3 top-3">{badge}</Chip>}
       </div>
       <div className="space-y-1">
-        <h3 className="font-headline text-body-lg font-bold text-on-surface group-hover:text-primary">
+        <h3 className="font-headline text-body-lg font-bold text-on-surface transition-colors duration-200 group-hover:text-primary">
           {product.title}
         </h3>
         <p className="font-body text-body-md text-on-surface-variant">

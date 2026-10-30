@@ -31,7 +31,10 @@ export function ProgressBar({
       aria-valuenow={percent}
       className={cx("h-2 w-full overflow-hidden rounded-full bg-surface-container-highest", className)}
     >
-      <div className={cx("h-full rounded-full", fills[tone])} style={{ width: `${percent}%` }} />
+      <div
+        className={cx("h-full rounded-full motion-safe:transition-[width] motion-safe:duration-500 motion-safe:ease-emphasized", fills[tone])}
+        style={{ width: `${percent}%` }}
+      />
     </div>
   );
 }

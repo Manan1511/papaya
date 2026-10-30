@@ -36,7 +36,7 @@ export function SiteHeader({ cart }: { cart: Cart | null }) {
             <Link
               key={link.href}
               href={link.href}
-              className="text-on-surface-variant transition-colors duration-200 hover:text-secondary"
+              className="link-underline text-on-surface-variant transition-colors duration-200 hover:text-secondary"
             >
               {link.label}
             </Link>

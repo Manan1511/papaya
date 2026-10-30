@@ -32,7 +32,7 @@ export default function AdminDiary() {
                   <StatusChip status="published" />
                 </td>
                 <td className="py-3 text-right">
-                  <Link href={`/admin/diary/${post.slug}`} className="font-label text-label-md text-secondary underline-offset-4 hover:underline">
+                  <Link href={`/admin/diary/${post.slug}`} className="link-underline font-label text-label-md text-secondary">
                     Edit
                   </Link>
                 </td>

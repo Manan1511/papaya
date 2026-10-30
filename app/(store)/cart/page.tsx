@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { CartContents } from "../../../components/store/cart-contents";
+import { CartContents, CartSummary } from "../../../components/store/cart-contents";
 import { Container } from "../../../components/ui/container";
 import { fetchCart } from "../../../lib/cart/cart";
 import { readCartId } from "../../../lib/cart/session";
@@ -15,10 +15,19 @@ export default async function CartPage() {
   return (
     <Container className="space-y-lg py-lg">
       <h1 className="font-headline text-headline-lg text-on-surface">Your bag</h1>
-      <div className="max-w-2xl">
+
+      {cart && cart.lines.nodes.length > 0 ? (
+        <div className="grid gap-10 md:grid-cols-[minmax(0,1fr)_20rem] md:items-start">
+          <CartContents cart={cart} />
+          <aside className="rounded-lg bg-surface-container-low p-6 md:sticky md:top-28">
+            <CartSummary cart={cart} />
+          </aside>
+        </div>
+      ) : (
         <CartContents cart={cart} />
-      </div>
-      <Link href="/shop" className="font-label text-label-md text-secondary underline-offset-4 hover:underline">
+      )}
+
+      <Link href="/shop" className="link-underline inline-block font-label text-label-md text-secondary">
         Continue shopping
       </Link>
     </Container>

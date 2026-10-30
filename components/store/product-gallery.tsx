@@ -14,7 +14,11 @@ export function ProductGallery({ images, title }: { images: GalleryImage[]; titl
 
   return (
     <div className="flex flex-col gap-4">
-      <div className="relative aspect-[4/5] overflow-hidden rounded-xl bg-surface-container">
+      {/* Keyed by image, so the main photo fades in whenever the shopper picks another one. */}
+      <div
+        key={current.url}
+        className="relative aspect-[4/5] overflow-hidden rounded-xl bg-surface-container motion-safe:animate-fade-in"
+      >
         <Image
           src={current.url}
           alt={current.altText ?? title}
@@ -36,7 +40,7 @@ export function ProductGallery({ images, title }: { images: GalleryImage[]; titl
               aria-pressed={position === index}
               onClick={() => setIndex(position)}
               className={cx(
-                "h-24 w-20 shrink-0 overflow-hidden rounded-lg border-2 transition-opacity",
+                "h-24 w-20 shrink-0 overflow-hidden rounded-lg border-2 transition-[opacity,border-color] duration-200 ease-emphasized",
                 position === index ? "border-primary" : "border-transparent opacity-70 hover:opacity-100",
               )}
             >

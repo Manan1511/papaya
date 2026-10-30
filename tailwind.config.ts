@@ -93,6 +93,29 @@ const config = {
       maxWidth: {
         "container-max": "1280px",
       },
+      transitionTimingFunction: {
+        emphasized: "cubic-bezier(0.2, 0.8, 0.2, 1)",
+      },
+      keyframes: {
+        "fade-up": {
+          "0%": { opacity: "0", transform: "translateY(12px)" },
+          "100%": { opacity: "1", transform: "none" },
+        },
+        "fade-in": {
+          "0%": { opacity: "0" },
+          "100%": { opacity: "1" },
+        },
+        pop: {
+          "0%": { transform: "scale(0.6)" },
+          "60%": { transform: "scale(1.15)" },
+          "100%": { transform: "scale(1)" },
+        },
+      },
+      animation: {
+        "fade-up": "fade-up 400ms cubic-bezier(0.2, 0.8, 0.2, 1) both",
+        "fade-in": "fade-in 300ms ease-out both",
+        pop: "pop 360ms cubic-bezier(0.2, 0.8, 0.2, 1)",
+      },
       boxShadow: {
         "ambient-primary": "0 10px 25px -5px rgba(255, 140, 0, 0.15), 0 8px 10px -6px rgba(255, 140, 0, 0.1)",
         "ambient-secondary": "0 10px 25px -5px rgba(0, 89, 187, 0.15), 0 8px 10px -6px rgba(0, 89, 187, 0.1)",

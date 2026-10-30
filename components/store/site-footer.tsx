@@ -52,9 +52,6 @@ export function SiteFooter({ socials = [] }: { socials?: SocialLink[] }) {
 
   return (
     <footer className="mt-section-gap overflow-hidden rounded-t-xl bg-surface-container">
-      {/* A bar, not a border: a border would curve around the rounded corners. */}
-      <div aria-hidden="true" className="h-1 bg-secondary-container" />
-
       <Container className="pt-12">
         <Card className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
           <div className="max-w-md">
@@ -90,7 +87,7 @@ export function SiteFooter({ socials = [] }: { socials?: SocialLink[] }) {
               <Link
                 key={link.href}
                 href={link.href}
-                className="font-body text-body-md text-on-surface-variant underline-offset-4 transition-colors hover:text-primary hover:underline"
+                className="link-underline self-start font-body text-body-md text-on-surface-variant transition-colors hover:text-primary"
               >
                 {link.label}
               </Link>
@@ -108,7 +105,7 @@ export function SiteFooter({ socials = [] }: { socials?: SocialLink[] }) {
               href={social.href}
               target="_blank"
               rel="noopener noreferrer"
-              className="font-body text-body-md text-on-surface-variant underline-offset-4 transition-colors hover:text-primary hover:underline"
+              className="link-underline self-start font-body text-body-md text-on-surface-variant transition-colors hover:text-primary"
             >
               {social.label}
             </a>

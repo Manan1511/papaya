@@ -47,7 +47,7 @@ export function AddToBagForm({ variants, optionName }: { variants: VariantOption
             min={1}
             max={10}
             defaultValue={1}
-            className="h-11 w-24 rounded border border-outline-variant bg-surface-container-lowest px-3 font-body text-body-md"
+            className="h-11 w-24 rounded border border-outline-variant bg-surface-container-lowest px-3 font-body text-body-md transition-[border-color,box-shadow] duration-200 ease-emphasized focus:border-2 focus:border-primary focus:outline-none focus:ring-4 focus:ring-tertiary-fixed/50"
           />
         </label>
         <Button type="submit" size="lg" disabled={soldOut || pending} className="flex-1">
@@ -56,12 +56,12 @@ export function AddToBagForm({ variants, optionName }: { variants: VariantOption
       </div>
 
       {state.error && (
-        <p role="alert" className="font-body text-body-md text-error">
+        <p role="alert" className="font-body text-body-md text-error motion-safe:animate-fade-in">
           {state.error}
         </p>
       )}
       {state.ok && (
-        <p role="status" className="font-body text-body-md text-on-surface-variant">
+        <p role="status" className="font-body text-body-md text-on-surface-variant motion-safe:animate-fade-in">
           Added to your bag.
         </p>
       )}

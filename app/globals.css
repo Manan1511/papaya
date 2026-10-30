@@ -11,9 +11,65 @@
   src: url("/fonts/material-symbols-outlined.woff2") format("woff2");
 }
 
-/* Scrim behind the mobile drawer: on-surface at 40%. */
+/* Native dialogs. Closed dialogs are display:none, so the transitions use allow-discrete to animate
+   them out. Centred dialogs rise into place, drawers slide in from their edge, and the scrim fades. */
+dialog {
+  opacity: 0;
+  transform: translateY(12px) scale(0.98);
+}
+
+dialog[open] {
+  opacity: 1;
+  transform: none;
+}
+
+dialog.drawer {
+  transform: translateX(100%);
+}
+
+dialog.drawer[open] {
+  transform: none;
+}
+
+/* Scrim behind open dialogs: on-surface at 40%. */
 dialog::backdrop {
+  background: rgb(26 28 30 / 0);
+}
+
+dialog[open]::backdrop {
   background: rgb(26 28 30 / 0.4);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  dialog {
+    transition:
+      opacity 220ms ease-out,
+      transform 320ms cubic-bezier(0.2, 0.8, 0.2, 1),
+      display 320ms allow-discrete,
+      overlay 320ms allow-discrete;
+  }
+
+  dialog::backdrop {
+    transition:
+      background-color 320ms ease-out,
+      display 320ms allow-discrete,
+      overlay 320ms allow-discrete;
+  }
+
+  @starting-style {
+    dialog[open] {
+      opacity: 0;
+      transform: translateY(12px) scale(0.98);
+    }
+
+    dialog.drawer[open] {
+      transform: translateX(100%);
+    }
+
+    dialog[open]::backdrop {
+      background: rgb(26 28 30 / 0);
+    }
+  }
 }
 
 /* Citrus band: the board's alternating tiles, in place of the retro checker. */
@@ -37,6 +93,28 @@ dialog::backdrop {
 }
 
 @layer components {
+  /* Text links draw a 2px underline from the left on hover and keyboard focus. */
+  .link-underline {
+    position: relative;
+  }
+
+  .link-underline::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -0.25rem;
+    height: 2px;
+    background: currentColor;
+    transform: scaleX(0);
+    transform-origin: left;
+  }
+
+  .link-underline:hover::after,
+  .link-underline:focus-visible::after {
+    transform: scaleX(1);
+  }
+
   .material-symbols-outlined {
     font-family: "Material Symbols Outlined";
     font-weight: normal;
@@ -52,5 +130,11 @@ dialog::backdrop {
     -webkit-font-smoothing: antialiased;
     font-feature-settings: "liga";
     font-variation-settings: "FILL" 0;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .link-underline::after {
+    transition: transform 240ms cubic-bezier(0.2, 0.8, 0.2, 1);
   }
 }

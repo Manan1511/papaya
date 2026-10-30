@@ -28,7 +28,7 @@ export default async function DiaryPostPage({ params }: { params: Promise<{ slug
     <>
       <Container className="py-lg">
         <article className="mx-auto max-w-3xl space-y-8">
-          <Link href="/diary" className="font-label text-label-md text-secondary underline-offset-4 hover:underline">
+          <Link href="/diary" className="link-underline font-label text-label-md text-secondary">
             Back to the diary
           </Link>
           <header className="space-y-4">

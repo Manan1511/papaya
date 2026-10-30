@@ -7,7 +7,7 @@ export type IconButtonTone = "ghost" | "primary" | "secondary" | "tertiary" | "e
 export type IconButtonShape = "circle" | "square";
 
 const base =
-  "inline-flex size-10 shrink-0 items-center justify-center transition-all duration-200 hover:scale-105 active:scale-95 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-secondary";
+  "inline-flex size-10 shrink-0 items-center justify-center transition-[transform,background-color,box-shadow] duration-200 ease-emphasized motion-safe:hover:scale-105 motion-safe:active:scale-95 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-secondary";
 
 const shapes: Record<IconButtonShape, string> = {
   circle: "rounded-full",

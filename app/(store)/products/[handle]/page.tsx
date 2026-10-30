@@ -116,7 +116,7 @@ export default async function ProductPage({ params }: { params: Promise<{ handle
             </p>
           )}
 
-          <Link href="/pages/size-guide" className="w-fit font-label text-label-md text-secondary underline-offset-4 hover:underline">
+          <Link href="/pages/size-guide" className="link-underline w-fit font-label text-label-md text-secondary">
             Size guide
           </Link>
 

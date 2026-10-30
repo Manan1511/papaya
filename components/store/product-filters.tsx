@@ -10,7 +10,7 @@ const sortLabels: Record<(typeof SORT_OPTIONS)[number], string> = {
 };
 
 const fieldClass =
-  "h-11 rounded border border-outline-variant bg-surface-container-lowest px-3 font-body text-body-md text-on-surface focus:border-2 focus:border-primary focus:outline-none focus:ring-4 focus:ring-tertiary-fixed/50";
+  "h-11 rounded border border-outline-variant bg-surface-container-lowest px-3 font-body text-body-md text-on-surface transition-[border-color,box-shadow] duration-200 ease-emphasized focus:border-2 focus:border-primary focus:outline-none focus:ring-4 focus:ring-tertiary-fixed/50";
 
 // A plain GET form, so filters work without JavaScript and every filtered view has its own URL.
 export function ProductFilters({ params, showType }: { params: ListingParams; showType: boolean }) {

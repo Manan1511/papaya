@@ -33,7 +33,7 @@ export default function AdminPages() {
                   <StatusChip status={status} />
                 </td>
                 <td className="py-3 text-right">
-                  <Link href={`/admin/pages/${page.slug}`} className="font-label text-label-md text-secondary underline-offset-4 hover:underline">
+                  <Link href={`/admin/pages/${page.slug}`} className="link-underline font-label text-label-md text-secondary">
                     Edit
                   </Link>
                 </td>

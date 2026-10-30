@@ -8,7 +8,7 @@ type Size = "md" | "lg";
 type Style = { variant?: Variant; size?: Size; className?: string };
 
 const base =
-  "inline-flex items-center justify-center gap-2 rounded font-label transition-all duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-secondary disabled:pointer-events-none disabled:opacity-50";
+  "inline-flex items-center justify-center gap-2 rounded font-label transition-[transform,background-color,box-shadow,opacity] duration-200 ease-emphasized motion-safe:hover:-translate-y-0.5 motion-safe:active:scale-[0.98] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-secondary disabled:pointer-events-none disabled:opacity-50";
 
 const variants: Record<Variant, string> = {
   primary: "bg-primary text-on-primary shadow-cta hover:bg-on-primary-fixed-variant",
