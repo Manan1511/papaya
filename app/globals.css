@@ -1,0 +1,56 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Self-hosted subset of Material Symbols Outlined. Regenerate with: npm run icons */
+@font-face {
+  font-family: "Material Symbols Outlined";
+  font-style: normal;
+  font-weight: 100 700;
+  font-display: block;
+  src: url("/fonts/material-symbols-outlined.woff2") format("woff2");
+}
+
+/* Scrim behind the mobile drawer: on-surface at 40%. */
+dialog::backdrop {
+  background: rgb(26 28 30 / 0.4);
+}
+
+/* Citrus band: the board's alternating tiles, in place of the retro checker. */
+.citrus-band {
+  height: 12px;
+  background-image: repeating-linear-gradient(
+    90deg,
+    theme('colors.primary-container') 0 24px,
+    theme('colors.tertiary-fixed') 24px 48px
+  );
+}
+
+@layer base {
+  body {
+    @apply bg-background font-body text-on-background antialiased;
+  }
+
+  ::selection {
+    @apply bg-primary-container text-on-primary-container;
+  }
+}
+
+@layer components {
+  .material-symbols-outlined {
+    font-family: "Material Symbols Outlined";
+    font-weight: normal;
+    font-style: normal;
+    font-size: 24px;
+    line-height: 1;
+    letter-spacing: normal;
+    text-transform: none;
+    display: inline-block;
+    white-space: nowrap;
+    word-wrap: normal;
+    direction: ltr;
+    -webkit-font-smoothing: antialiased;
+    font-feature-settings: "liga";
+    font-variation-settings: "FILL" 0;
+  }
+}

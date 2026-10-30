@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Papaya | Our Story</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@700;800&amp;family=Be+Vietnam+Pro:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface": "#f9f9fc",
+                        "primary-container": "#ff8c00",
+                        "tertiary-fixed": "#ffe16d",
+                        "secondary": "#0059bb",
+                        "on-tertiary-fixed-variant": "#544600",
+                        "on-primary-fixed-variant": "#6e3900",
+                        "surface-dim": "#dadadc",
+                        "on-primary-container": "#623200",
+                        "on-background": "#1a1c1e",
+                        "on-secondary": "#ffffff",
+                        "tertiary-container": "#c7a800",
+                        "outline-variant": "#ddc1ae",
+                        "surface-container": "#eeeef0",
+                        "surface-bright": "#f9f9fc",
+                        "secondary-fixed": "#d8e2ff",
+                        "on-error": "#ffffff",
+                        "inverse-surface": "#2f3133",
+                        "surface-tint": "#904d00",
+                        "secondary-fixed-dim": "#adc7ff",
+                        "surface-container-highest": "#e2e2e5",
+                        "on-surface": "#1a1c1e",
+                        "inverse-on-surface": "#f0f0f3",
+                        "on-surface-variant": "#564334",
+                        "tertiary": "#705d00",
+                        "error": "#ba1a1a",
+                        "surface-variant": "#e2e2e5",
+                        "on-error-container": "#93000a",
+                        "on-secondary-container": "#fefcff",
+                        "on-tertiary-fixed": "#221b00",
+                        "background": "#f9f9fc",
+                        "surface-container-low": "#f3f3f6",
+                        "on-primary-fixed": "#2f1500",
+                        "primary": "#904d00",
+                        "primary-fixed-dim": "#ffb77d",
+                        "on-tertiary-container": "#4b3e00",
+                        "inverse-primary": "#ffb77d",
+                        "on-primary": "#ffffff",
+                        "surface-container-lowest": "#ffffff",
+                        "on-secondary-fixed-variant": "#004493",
+                        "outline": "#897362",
+                        "on-secondary-fixed": "#001a41",
+                        "on-tertiary": "#ffffff",
+                        "error-container": "#ffdad6",
+                        "tertiary-fixed-dim": "#e9c400",
+                        "surface-container-high": "#e8e8ea",
+                        "secondary-container": "#0070ea",
+                        "primary-fixed": "#ffdcc3"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.5rem",
+                        "sm": "0.25rem",
+                        "md": "0.75rem",
+                        "lg": "1rem",
+                        "xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "unit": "4px",
+                        "xs": "4px",
+                        "sm": "8px",
+                        "md": "16px",
+                        "lg": "24px",
+                        "xl": "32px",
+                        "xxl": "48px",
+                        "container-max": "1280px",
+                        "gutter": "20px",
+                        "margin-mobile": "16px",
+                        "margin-desktop": "40px"
+                    },
+                    "fontFamily": {
+                        "headline": [
+                            "Plus Jakarta Sans", "sans-serif"
+                        ],
+                        "display": [
+                            "Plus Jakarta Sans", "sans-serif"
+                        ],
+                        "body": [
+                            "Be Vietnam Pro", "sans-serif"
+                        ],
+                        "label": [
+                            "Be Vietnam Pro", "sans-serif"
+                        ]
+                    },
+                    "fontSize": {
+                        "headline-xl": ["48px", { lineHeight: "56px", letterSpacing: "-0.02em", fontWeight: "800" }],
+                        "headline-lg": ["32px", { lineHeight: "40px", letterSpacing: "-0.01em", fontWeight: "700" }],
+                        "headline-lg-mobile": ["28px", { lineHeight: "36px", fontWeight: "700" }],
+                        "headline-md": ["24px", { lineHeight: "32px", fontWeight: "700" }],
+                        "body-lg": ["18px", { lineHeight: "28px", fontWeight: "400" }],
+                        "body-md": ["16px", { lineHeight: "24px", fontWeight: "400" }],
+                        "label-md": ["14px", { lineHeight: "20px", letterSpacing: "0.02em", fontWeight: "600" }],
+                        "label-sm": ["12px", { lineHeight: "16px", letterSpacing: "0.05em", fontWeight: "700" }]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            background-color: theme('colors.background');
+            color: theme('colors.on-background');
+            font-family: theme('fontFamily.body');
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+        }
+
+        .ambient-shadow-primary {
+            box-shadow: 0 10px 25px -5px rgba(255, 140, 0, 0.15), 0 8px 10px -6px rgba(255, 140, 0, 0.1);
+        }
+
+        .ambient-shadow-secondary {
+            box-shadow: 0 10px 25px -5px rgba(0, 89, 187, 0.15), 0 8px 10px -6px rgba(0, 89, 187, 0.1);
+        }
+
+        .timeline-line::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            background: linear-gradient(to bottom, theme('colors.primary'), theme('colors.secondary'), theme('colors.tertiary'));
+            z-index: 0;
+        }
+
+        @media (max-width: 768px) {
+            .timeline-line::before {
+                left: 24px;
+                transform: none;
+            }
+        }
+    </style>
+</head>
+<body class="antialiased min-h-screen flex flex-col">
+<!-- TopAppBar -->
+<header class="bg-surface/80 dark:bg-surface-dim/80 backdrop-blur-xl shadow-sm border-b border-outline-variant/30 fixed top-0 w-full z-50">
+<div class="flex justify-between items-center px-6 py-4 max-w-[1280px] mx-auto">
+<div class="flex items-center gap-4">
+<a class="font-headline font-extrabold text-2xl tracking-tighter text-primary dark:text-primary-fixed-dim hover:scale-105 active:scale-95 transition-transform block" href="#">
+<img alt="Papaya Logo" class="h-8 w-auto" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAM9kDVkYUXhelS0VVfnmX-K0via472rTx4THeCO_MU1k389_R6d6S2tiZk_kJDNEy0R7BabPwwvCdk2etmJ5O0H5uJwF84aVwSEf6q6IUOIrdIXwSMHMe-2KNFZ12L4oq_pboro_-OYzWuOMuyzzKYrx0qr5wBfei7ooLN7a8nKhaMmfRrIdTgDG1MGAtmH6fJwVgNTb4eC__yULDkUGhE5fko_v33XYQay52UnYKOWSmu4tZCKlxxe-Pwjqc_ewuYMdanLcRvGjZk"/>
+</a>
+</div>
+<nav class="hidden md:flex items-center gap-8 font-label text-label-md">
+<a class="text-on-surface-variant dark:text-surface-variant hover:text-secondary transition-colors duration-200" href="#">Shop All</a>
+<a class="text-secondary dark:text-secondary-fixed font-bold border-b-2 border-secondary hover:text-secondary transition-colors duration-200" href="#">Our Story</a>
+<a class="text-on-surface-variant dark:text-surface-variant hover:text-secondary transition-colors duration-200" href="#">Sustainability</a>
+</nav>
+<div class="flex items-center gap-4 text-primary dark:text-primary-fixed-dim">
+<button class="hover:scale-105 active:scale-95 transition-transform p-2 rounded-full hover:bg-surface-container-high/50">
+<span class="material-symbols-outlined">search</span>
+</button>
+<button class="hover:scale-105 active:scale-95 transition-transform p-2 rounded-full hover:bg-surface-container-high/50">
+<span class="material-symbols-outlined">shopping_bag</span>
+</button>
+</div>
+</div>
+</header>
+<main class="flex-grow pt-[100px] pb-xxl">
+<!-- Hero Section -->
+<section class="max-w-[1280px] mx-auto px-margin-mobile md:px-margin-desktop py-xl md:py-xxl relative overflow-hidden">
+<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter items-center">
+<div class="md:col-span-5 z-10 relative">
+<h1 class="font-headline text-headline-lg-mobile md:text-headline-xl text-primary mb-sm">The Endless Summer.</h1>
+<p class="font-body text-body-lg text-on-surface-variant mb-lg max-w-md">
+                        Born from sun-drenched afternoons and the vibrant energy of coastal living. Papaya isn't just jewellery; it's a feeling of warmth you can wear all year round.
+                    </p>
+<a class="inline-flex items-center gap-2 bg-secondary text-on-secondary font-label text-label-md px-6 py-3 rounded-lg hover:scale-105 transition-transform ambient-shadow-secondary shadow-sm" href="#timeline">
+                        Discover Our Journey
+                        <span class="material-symbols-outlined text-sm">arrow_downward</span>
+</a>
+</div>
+<div class="md:col-span-7 relative h-[400px] md:h-[600px] mt-lg md:mt-0 rounded-2xl overflow-hidden shadow-sm glass-card p-2 transform rotate-2 hover:rotate-0 transition-transform duration-500">
+<div class="w-full h-full bg-cover bg-center rounded-xl object-cover" data-alt="A vibrant, sun-drenched lifestyle photograph of a young woman laughing on a sunbed by a bright azure pool. She is wearing bold, citrus-orange acrylic jewellery that catches the bright, warm natural sunlight. The scene embodies a modern, energetic summer aesthetic with a high-vibrancy color palette of electric blue and citrus orange. The mood is joyful, youthful, and refreshing." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuA0OvsFz84z4bd1V6Tmc0BqCS27NgBlz0MD-BlpLrFb9rLiqVDSjIGUvsfzHegma5-AUUIQL-h-H4bF61FB4tyvBmKUiqwsuUJTw5nVfJZxrRDrAQSVm7pEVq01vjzdbCYAUM0EnyioLY4_RB9I_TlL2X3W-lFjBerJDjstpAomxOQoBLFqxi3QMq8ZgWdVJ3vXILPfu7waOleU2zbBZlxrDfdmPFXR8cwOYkf1GtkO23WiD4IGrFbirfzZmXWIB0ptF1bUHoIUJURP')"></div>
+<!-- Floating decorative element -->
+<div class="absolute -bottom-6 -left-6 bg-tertiary-fixed text-on-tertiary-fixed-variant p-4 rounded-full font-headline font-bold text-lg shadow-sm transform -rotate-12">
+                        Est. 2024
+                    </div>
+</div>
+</div>
+</section>
+<!-- The Timeline -->
+<section class="max-w-[1280px] mx-auto px-margin-mobile md:px-margin-desktop py-xxl bg-surface-container-lowest rounded-3xl my-xl shadow-sm border border-outline-variant/20" id="timeline">
+<div class="text-center mb-xl">
+<h2 class="font-headline text-headline-lg text-primary mb-xs">Milestones in the Sun</h2>
+<p class="font-body text-body-md text-on-surface-variant max-w-xl mx-auto">From a small studio to sunny shores everywhere.</p>
+</div>
+<div class="relative timeline-line py-xl">
+<!-- Milestone 1 -->
+<div class="relative z-10 flex flex-col md:flex-row items-center justify-between mb-xxl w-full group">
+<div class="md:w-5/12 mb-8 md:mb-0 order-2 md:order-1 text-right md:pr-12">
+<div class="glass-card p-6 rounded-xl inline-block text-left shadow-sm transform transition-transform group-hover:-translate-y-2 group-hover:ambient-shadow-primary w-full md:w-auto">
+<span class="inline-block bg-primary-container text-on-primary-container font-label text-label-sm px-3 py-1 rounded-full mb-3">January 2024</span>
+<h3 class="font-headline text-headline-md text-on-surface mb-2">The Spark</h3>
+<p class="font-body text-body-md text-on-surface-variant">Sketches drawn on napkins during a particularly dreary winter day. The vision for bright, chunky, joy-inducing pieces was born.</p>
+</div>
+</div>
+<div class="absolute left-6 md:left-1/2 transform -translate-x-1/2 w-12 h-12 rounded-full bg-surface-container-lowest border-4 border-primary flex items-center justify-center shadow-sm z-20 order-1 md:order-2 mb-6 md:mb-0">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">draw</span>
+</div>
+<div class="md:w-5/12 order-3 md:pl-12 w-full pl-20 md:pl-0">
+<img class="rounded-2xl shadow-sm object-cover w-full h-48 md:h-64 border border-outline-variant/30" data-alt="A close-up photograph of scattered, vibrant orange and yellow resin jewellery prototypes resting on scattered design sketches and color swatches. The lighting is warm and directional, suggesting late afternoon sun hitting a creative studio desk. The aesthetic is modern, messy but curated, emphasizing the bright, energetic citrus color palette against clean white paper." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA2U01bBqPHqHYa_xpz-hYtqH-LwddrZEsH4NTe_cQy84GNpS2KEC7RWIF8WbIYqcH9msYZJPbdYTSCpfFgO7pZY0y_8kBTqtqud_YGnws1AqHoXBaNCrA-R019jkPz-D2NGdHlSbH9F9e3AoPL_LqB5nGDdhV4UcgPsKyJHlWeCNF2f3ZZfT5x0zxEFFxzj3BuWtV_OMX6uD_eb3srS1ZoYxq3V06TFqPR-Vt8NcfSJVMB1DXFbXj4sKfJt4F7YSHZEimbM60WJVsU"/>
+</div>
+</div>
+<!-- Milestone 2 -->
+<div class="relative z-10 flex flex-col md:flex-row items-center justify-between mb-xxl w-full group">
+<div class="md:w-5/12 order-3 md:order-1 mb-8 md:mb-0 w-full pl-20 md:pl-0 md:pr-12 md:text-right">
+<img class="rounded-2xl shadow-sm object-cover w-full h-48 md:h-64 border border-outline-variant/30" data-alt="A bright, energetic lifestyle shot of three diverse young friends laughing and wearing bold, chunky blue and orange jewellery. They are set against a clear, vibrant azure sky, conveying a sense of freedom and endless summer. The lighting is high-key and sunny, capturing the translucent, glassmorphic qualities of the resin accessories. The mood is youthful and optimistic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDO7HcRbQHgMV7x6CxXTmiLVZ6FYIcUgR1vrtr0s_w_V6nyIh7FXVEM7OagEbJodUYoQ_agrPropEm1L9t57XImtHqfjSjzJQXiORGxBpXb1bM5QTo1YIdkhGNm4tW85BMVr1DNOrI2sKVu3QfzSXMrbSMp3bgbvz8fXtnDjzp9BvPpiHVaslilS_YqcbuusQtGsB2lpX2k2dTy95umsegM7dKwC9IIKuQUq6RMTP4EQ0v_8m1dGdvVcAoXeAwfZZ3zU-zzIOMt6uzh"/>
+</div>
+<div class="absolute left-6 md:left-1/2 transform -translate-x-1/2 w-12 h-12 rounded-full bg-surface-container-lowest border-4 border-secondary flex items-center justify-center shadow-sm z-20 order-1 md:order-2 mb-6 md:mb-0">
+<span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1;">storefront</span>
+</div>
+<div class="md:w-5/12 order-2 md:order-3 md:pl-12 mb-8 md:mb-0 pl-20 md:pl-0">
+<div class="glass-card p-6 rounded-xl inline-block text-left shadow-sm transform transition-transform group-hover:-translate-y-2 group-hover:ambient-shadow-secondary w-full md:w-auto">
+<span class="inline-block bg-secondary-fixed text-on-secondary-fixed-variant font-label text-label-sm px-3 py-1 rounded-full mb-3">May 2024</span>
+<h3 class="font-headline text-headline-md text-on-surface mb-2">First Collection Drops</h3>
+<p class="font-body text-body-md text-on-surface-variant">We launched 'Citrus &amp; Poolside', our debut collection. The vibrant acrylics and chunky silhouettes sold out in 48 hours.</p>
+</div>
+</div>
+</div>
+<!-- Milestone 3 -->
+<div class="relative z-10 flex flex-col md:flex-row items-center justify-between w-full group">
+<div class="md:w-5/12 mb-8 md:mb-0 order-2 md:order-1 text-right md:pr-12 pl-20 md:pl-0">
+<div class="glass-card p-6 rounded-xl inline-block text-left shadow-sm transform transition-transform group-hover:-translate-y-2 group-hover:ambient-shadow-primary w-full md:w-auto">
+<span class="inline-block bg-tertiary-fixed text-on-tertiary-fixed-variant font-label text-label-sm px-3 py-1 rounded-full mb-3">Present</span>
+<h3 class="font-headline text-headline-md text-on-surface mb-2">Chasing the Sun</h3>
+<p class="font-body text-body-md text-on-surface-variant">Now shipping worldwide. We're committed to sustainable practices, ensuring our endless summer doesn't cost the earth.</p>
+</div>
+</div>
+<div class="absolute left-6 md:left-1/2 transform -translate-x-1/2 w-12 h-12 rounded-full bg-surface-container-lowest border-4 border-tertiary flex items-center justify-center shadow-sm z-20 order-1 md:order-2">
+<span class="material-symbols-outlined text-tertiary" style="font-variation-settings: 'FILL' 1;">public</span>
+</div>
+<div class="md:w-5/12 order-3 md:pl-12 w-full pl-20 md:pl-0">
+<img class="rounded-2xl shadow-sm object-cover w-full h-48 md:h-64 border border-outline-variant/30" data-alt="A beautifully styled still life featuring vibrant, translucent resin jewellery in shades of orange, blue, and yellow resting on organic, smooth stones beside clear, rippling water. The aesthetic is clean, modern, and refreshing, highlighting the interplay of light and translucent materials. The overall mood is serene and premium, communicating a commitment to natural beauty and high-quality, sustainable design." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBTisvdcaOF0Hrkm86G_-Wx7IdTk6C37rxlAY0vKnzWk1NJ2SMoywXSca8p1FzmdDVFaSiqzrJU8vxcIa5bZdPxPdzPVd-b8AghVRkzliWGJldxwaPtGj7a0O6CWpjKplhtQ-HEF4-x4Ch_He2IQDWlyvkSSffHP1LpJ1XhnEacR4ftjP5AQOF--Tr1WW1yTcs7BXXdeUq7QQWLTwQKCvQ4LJjFZBocMr1ZUW6QtFmLTVipRjODklXWpW3HInwkPQ35zBvr8RzPbFKX"/>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container dark:bg-surface-container-highest w-full rounded-t-xl mt-xxl border-t-8 border-surface-container-low shadow-sm">
+<div class="flex flex-col md:flex-row justify-between items-start gap-8 px-8 py-12 max-w-[1280px] mx-auto">
+<div class="flex flex-col gap-4">
+<span class="font-headline font-bold text-xl text-primary">Papaya</span>
+<p class="font-body text-body-md text-on-surface-variant max-w-xs">
+                    Bringing the warmth and vibrancy of endless summer to your everyday wardrobe.
+                </p>
+<div class="text-on-surface-variant text-sm mt-4">
+                    © 2024 Papaya Jewellery. Stay Sunny.
+                </div>
+</div>
+<div class="grid grid-cols-2 gap-8 font-body text-body-md">
+<div class="flex flex-col gap-3">
+<a class="text-on-surface-variant hover:text-primary transition-all underline underline-offset-4 hover:opacity-80" href="#">Shop All</a>
+<a class="text-primary font-semibold hover:text-primary transition-all underline underline-offset-4 hover:opacity-80" href="#">Our Story</a>
+<a class="text-on-surface-variant hover:text-primary transition-all underline underline-offset-4 hover:opacity-80" href="#">Sustainability</a>
+</div>
+<div class="flex flex-col gap-3">
+<a class="text-on-surface-variant hover:text-primary transition-all underline underline-offset-4 hover:opacity-80" href="#">Care Guide</a>
+<a class="text-on-surface-variant hover:text-primary transition-all underline underline-offset-4 hover:opacity-80" href="#">Shipping</a>
+<a class="text-on-surface-variant hover:text-primary transition-all underline underline-offset-4 hover:opacity-80" href="#">Contact</a>
+</div>
+</div>
+</div>
+</footer>
+</body></html>

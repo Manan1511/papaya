@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Papaya Admin Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@700;800&amp;family=Be+Vietnam+Pro:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface": "#f9f9fc",
+                        "primary-container": "#ff8c00",
+                        "tertiary-fixed": "#ffe16d",
+                        "secondary": "#0059bb",
+                        "on-tertiary-fixed-variant": "#544600",
+                        "on-primary-fixed-variant": "#6e3900",
+                        "surface-dim": "#dadadc",
+                        "on-primary-container": "#623200",
+                        "on-background": "#1a1c1e",
+                        "on-secondary": "#ffffff",
+                        "tertiary-container": "#c7a800",
+                        "outline-variant": "#ddc1ae",
+                        "surface-container": "#eeeef0",
+                        "surface-bright": "#f9f9fc",
+                        "secondary-fixed": "#d8e2ff",
+                        "on-error": "#ffffff",
+                        "inverse-surface": "#2f3133",
+                        "surface-tint": "#904d00",
+                        "secondary-fixed-dim": "#adc7ff",
+                        "surface-container-highest": "#e2e2e5",
+                        "on-surface": "#1a1c1e",
+                        "inverse-on-surface": "#f0f0f3",
+                        "on-surface-variant": "#564334",
+                        "tertiary": "#705d00",
+                        "error": "#ba1a1a",
+                        "surface-variant": "#e2e2e5",
+                        "on-error-container": "#93000a",
+                        "on-secondary-container": "#fefcff",
+                        "on-tertiary-fixed": "#221b00",
+                        "background": "#f9f9fc",
+                        "surface-container-low": "#f3f3f6",
+                        "on-primary-fixed": "#2f1500",
+                        "primary": "#904d00",
+                        "primary-fixed-dim": "#ffb77d",
+                        "on-tertiary-container": "#4b3e00",
+                        "inverse-primary": "#ffb77d",
+                        "on-primary": "#ffffff",
+                        "surface-container-lowest": "#ffffff",
+                        "on-secondary-fixed-variant": "#004493",
+                        "outline": "#897362",
+                        "on-secondary-fixed": "#001a41",
+                        "on-tertiary": "#ffffff",
+                        "error-container": "#ffdad6",
+                        "tertiary-fixed-dim": "#e9c400",
+                        "surface-container-high": "#e8e8ea",
+                        "secondary-container": "#0070ea",
+                        "primary-fixed": "#ffdcc3"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Plus Jakarta Sans"],
+                        "display": ["Plus Jakarta Sans"],
+                        "body": ["Be Vietnam Pro"],
+                        "label": ["Be Vietnam Pro"]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { font-family: 'Be Vietnam Pro', sans-serif; }
+        h1, h2, h3, h4, h5, h6, .font-headline { font-family: 'Plus Jakarta Sans', sans-serif; }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+        }
+
+        .glass-header {
+            background: rgba(249, 249, 252, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(221, 193, 174, 0.3);
+        }
+
+        /* Toggle Switch Styles */
+        .toggle-checkbox:checked {
+            right: 0;
+            border-color: #0059bb; /* secondary */
+        }
+        .toggle-checkbox:checked + .toggle-label {
+            background-color: #0059bb; /* secondary */
+        }
+        .toggle-checkbox:checked + .toggle-label:after {
+            transform: translateX(100%);
+            border-color: white;
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface flex h-screen overflow-hidden antialiased">
+<!-- Sidebar Navigation -->
+<aside class="w-64 bg-surface-container-lowest border-r border-surface-container-highest flex-shrink-0 flex flex-col hidden md:flex z-20 shadow-[4px_0_24px_rgba(0,0,0,0.02)]">
+<div class="p-6 border-b border-surface-container flex items-center h-20">
+<img alt="Papaya Logo" class="h-8 object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAM9kDVkYUXhelS0VVfnmX-K0via472rTx4THeCO_MU1k389_R6d6S2tiZk_kJDNEy0R7BabPwwvCdk2etmJ5O0H5uJwF84aVwSEf6q6IUOIrdIXwSMHMe-2KNFZ12L4oq_pboro_-OYzWuOMuyzzKYrx0qr5wBfei7ooLN7a8nKhaMmfRrIdTgDG1MGAtmH6fJwVgNTb4eC__yULDkUGhE5fko_v33XYQay52UnYKOWSmu4tZCKlxxe-Pwjqc_ewuYMdanLcRvGjZk"/>
+</div>
+<nav class="flex-1 overflow-y-auto py-6 px-4 space-y-2">
+<div class="mb-4 px-3">
+<p class="text-xs font-bold text-on-surface-variant tracking-widest uppercase opacity-70">Main Menu</p>
+</div>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg bg-secondary/10 text-secondary font-bold transition-colors" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">dashboard</span>
+                Dashboard
+            </a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined">inventory_2</span>
+                Products
+            </a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined">shopping_cart</span>
+                Orders
+            </a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined">campaign</span>
+                Marketing
+            </a>
+<div class="mt-8 mb-4 px-3 pt-4 border-t border-surface-container">
+<p class="text-xs font-bold text-on-surface-variant tracking-widest uppercase opacity-70">Settings</p>
+</div>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined">settings</span>
+                Preferences
+            </a>
+</nav>
+<div class="p-4 border-t border-surface-container">
+<div class="flex items-center gap-3 p-2 rounded-lg hover:bg-surface-container transition-colors cursor-pointer">
+<div class="w-10 h-10 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center font-bold text-sm">
+                    AD
+                </div>
+<div>
+<p class="text-sm font-bold text-on-surface">Admin User</p>
+<p class="text-xs text-on-surface-variant">Store Manager</p>
+</div>
+</div>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 flex flex-col h-screen overflow-hidden relative">
+<!-- Mobile Header (Hidden on Desktop) -->
+<header class="md:hidden glass-header flex items-center justify-between px-4 py-3 z-30 shadow-sm sticky top-0">
+<button class="text-on-surface p-2 rounded-lg hover:bg-surface-container">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<img alt="Papaya Logo" class="h-6 object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAM9kDVkYUXhelS0VVfnmX-K0via472rTx4THeCO_MU1k389_R6d6S2tiZk_kJDNEy0R7BabPwwvCdk2etmJ5O0H5uJwF84aVwSEf6q6IUOIrdIXwSMHMe-2KNFZ12L4oq_pboro_-OYzWuOMuyzzKYrx0qr5wBfei7ooLN7a8nKhaMmfRrIdTgDG1MGAtmH6fJwVgNTb4eC__yULDkUGhE5fko_v33XYQay52UnYKOWSmu4tZCKlxxe-Pwjqc_ewuYMdanLcRvGjZk"/>
+<div class="w-10"></div> <!-- Spacer -->
+</header>
+<!-- Top Header Area -->
+<header class="hidden md:flex items-center justify-between px-8 py-5 glass-header z-10 sticky top-0">
+<div>
+<h1 class="font-headline text-headline-md text-on-surface m-0">Overview</h1>
+<p class="text-sm text-on-surface-variant mt-1">Here's what's happening with your store today.</p>
+</div>
+<div class="flex items-center gap-4">
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-lg">search</span>
+<input class="pl-10 pr-4 py-2 bg-surface-container-lowest border border-outline-variant rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-secondary/50 focus:border-secondary transition-all w-64 shadow-sm" placeholder="Search..." type="text"/>
+</div>
+<button class="w-10 h-10 rounded-full bg-surface-container-lowest border border-outline-variant flex items-center justify-center text-on-surface-variant hover:text-primary hover:border-primary transition-all shadow-sm relative">
+<span class="material-symbols-outlined text-xl">notifications</span>
+<span class="absolute top-2 right-2.5 w-2 h-2 bg-error rounded-full border-2 border-surface-container-lowest"></span>
+</button>
+</div>
+</header>
+<!-- Scrollable Content Canvas -->
+<div class="flex-1 overflow-y-auto p-4 md:p-8 space-y-6 md:space-y-8 pb-24 md:pb-8 relative">
+<!-- Abstract decorative background element -->
+<div class="absolute top-0 right-0 w-96 h-96 bg-secondary/5 rounded-full blur-3xl -z-10 pointer-events-none transform translate-x-1/3 -translate-y-1/3"></div>
+<div class="absolute bottom-0 left-0 w-80 h-80 bg-primary/5 rounded-full blur-3xl -z-10 pointer-events-none transform -translate-x-1/3 translate-y-1/3"></div>
+<!-- Insights & Analytics Bento Grid -->
+<section>
+<h2 class="font-headline text-lg font-bold text-on-surface mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-xl">insights</span>
+                    Insights &amp; Analytics
+                </h2>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
+<!-- Total Revenue Card -->
+<div class="glass-card rounded-[1rem] p-6 shadow-[0_4px_24px_rgba(0,0,0,0.03)] hover:-translate-y-1 transition-transform duration-300">
+<div class="flex justify-between items-start mb-4">
+<div>
+<p class="text-sm font-semibold text-on-surface-variant mb-1">Total Revenue</p>
+<h3 class="font-headline text-3xl font-extrabold text-primary">$24,590</h3>
+</div>
+<div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary">account_balance_wallet</span>
+</div>
+</div>
+<div class="flex items-center text-sm">
+<span class="text-[#008a00] font-bold flex items-center bg-[#008a00]/10 px-2 py-0.5 rounded-full text-xs mr-2">
+<span class="material-symbols-outlined text-[14px] mr-0.5">trending_up</span>
+                                +12.5%
+                            </span>
+<span class="text-on-surface-variant text-xs">vs last week</span>
+</div>
+</div>
+<!-- Active Sessions Card -->
+<div class="glass-card rounded-[1rem] p-6 shadow-[0_4px_24px_rgba(0,0,0,0.03)] hover:-translate-y-1 transition-transform duration-300">
+<div class="flex justify-between items-start mb-4">
+<div>
+<p class="text-sm font-semibold text-on-surface-variant mb-1">Active Sessions</p>
+<h3 class="font-headline text-3xl font-extrabold text-secondary">1,240</h3>
+</div>
+<div class="w-10 h-10 rounded-full bg-secondary/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-secondary">group</span>
+</div>
+</div>
+<!-- Simple CSS Bar Chart -->
+<div class="mt-4 flex items-end gap-1.5 h-8">
+<div class="w-full bg-secondary/20 rounded-t-sm h-[40%] hover:bg-secondary transition-colors"></div>
+<div class="w-full bg-secondary/20 rounded-t-sm h-[60%] hover:bg-secondary transition-colors"></div>
+<div class="w-full bg-secondary/20 rounded-t-sm h-[30%] hover:bg-secondary transition-colors"></div>
+<div class="w-full bg-secondary/20 rounded-t-sm h-[80%] hover:bg-secondary transition-colors"></div>
+<div class="w-full bg-secondary rounded-t-sm h-[100%] shadow-[0_0_8px_rgba(0,89,187,0.4)]"></div>
+<div class="w-full bg-secondary/20 rounded-t-sm h-[50%] hover:bg-secondary transition-colors"></div>
+<div class="w-full bg-secondary/20 rounded-t-sm h-[70%] hover:bg-secondary transition-colors"></div>
+</div>
+</div>
+<!-- Conversion Rate Card -->
+<div class="glass-card rounded-[1rem] p-6 shadow-[0_4px_24px_rgba(0,0,0,0.03)] hover:-translate-y-1 transition-transform duration-300">
+<div class="flex justify-between items-start mb-4">
+<div>
+<p class="text-sm font-semibold text-on-surface-variant mb-1">Conversion Rate</p>
+<h3 class="font-headline text-3xl font-extrabold text-on-surface">3.8%</h3>
+</div>
+<div class="w-10 h-10 rounded-full bg-tertiary-container/30 flex items-center justify-center">
+<span class="material-symbols-outlined text-tertiary">shopping_bag</span>
+</div>
+</div>
+<div class="flex items-center text-sm">
+<span class="text-error font-bold flex items-center bg-error/10 px-2 py-0.5 rounded-full text-xs mr-2">
+<span class="material-symbols-outlined text-[14px] mr-0.5">trending_down</span>
+                                -1.2%
+                            </span>
+<span class="text-on-surface-variant text-xs">vs last week</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Main Interactive Section: Split Layout -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8">
+<!-- New Products Table (Takes up 2/3) -->
+<div class="lg:col-span-2 glass-card rounded-[1rem] shadow-[0_4px_24px_rgba(0,0,0,0.03)] overflow-hidden flex flex-col">
+<div class="p-6 border-b border-outline-variant/30 flex justify-between items-center bg-surface-container-lowest/50">
+<div>
+<h2 class="font-headline text-lg font-bold text-on-surface m-0">New Products</h2>
+<p class="text-xs text-on-surface-variant mt-1">Manage recent arrivals and assign tags.</p>
+</div>
+<button class="bg-primary hover:bg-primary-container text-on-primary font-semibold py-2 px-4 rounded-lg shadow-[0_4px_12px_rgba(144,77,0,0.2)] transition-all flex items-center gap-2 text-sm">
+<span class="material-symbols-outlined text-sm">add</span>
+                            Add Product
+                        </button>
+</div>
+<div class="overflow-x-auto flex-1">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-low/50 border-b border-outline-variant/30 text-xs text-on-surface-variant uppercase tracking-wider font-bold">
+<th class="p-4 font-bold">Product</th>
+<th class="p-4 font-bold">Price</th>
+<th class="p-4 font-bold">Inventory</th>
+<th class="p-4 font-bold">Tags</th>
+<th class="p-4 font-bold text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant/20 text-sm">
+<!-- Row 1 -->
+<tr class="hover:bg-surface-container-lowest/80 transition-colors group">
+<td class="p-4 flex items-center gap-3">
+<div class="w-12 h-12 rounded bg-surface-container-high overflow-hidden shadow-sm border border-outline-variant/20">
+<div class="w-full h-full bg-cover bg-center" data-alt="A macro photography shot of an elegant, minimalist gold pendant necklace featuring a small, bright citrus-orange stone. The necklace rests on a smooth, frosted glass surface. The lighting is soft and high-key, creating a clean, airy, light-mode aesthetic with vibrant warm accents. The mood is premium, sunny, and delicate." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCaGmmdwSMBCwXKYIaKyluA_m6_XyE8g3uNf9MyW6R4Kba-_dEqBfin2MnQ2oSkMw1kcQezrQkKA18DiT2KwNYlbwmJuzsgEUkkCye8w1og1QSsBsTSU0UzCxdUllW09yaOxdZoscSgQ374pK3DsFfKu0ziWyUmaadMUNl45bvejT4YMo4cQ402_vVantPxHgaPgecVpWt6yARLhMGHEq2QJfgWsOo_clzeHoaef5PndZ2yJJjm5pwyEsQusmlHPmzsQJe1Ta7toWPS')"></div>
+</div>
+<div>
+<p class="font-bold text-on-surface">Citrus Pendant</p>
+<p class="text-xs text-on-surface-variant">Necklaces</p>
+</div>
+</td>
+<td class="p-4 font-semibold text-on-surface">$125.00</td>
+<td class="p-4">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-[#008a00]/10 text-[#008a00] text-xs font-bold border border-[#008a00]/20">
+<span class="w-1.5 h-1.5 rounded-full bg-[#008a00]"></span>
+                                            42 in stock
+                                        </span>
+</td>
+<td class="p-4">
+<div class="flex flex-wrap gap-2">
+<span class="px-2.5 py-1 rounded-full bg-primary/10 text-primary text-xs font-bold border border-primary/20">New</span>
+<span class="px-2.5 py-1 rounded-full bg-secondary/10 text-secondary text-xs font-bold border border-secondary/20">Best Seller</span>
+</div>
+</td>
+<td class="p-4 text-right">
+<button class="text-on-surface-variant hover:text-secondary p-1.5 rounded-md hover:bg-secondary/10 transition-colors">
+<span class="material-symbols-outlined text-[20px]">edit</span>
+</button>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-surface-container-lowest/80 transition-colors group">
+<td class="p-4 flex items-center gap-3">
+<div class="w-12 h-12 rounded bg-surface-container-high overflow-hidden shadow-sm border border-outline-variant/20">
+<div class="w-full h-full bg-cover bg-center" data-alt="A close-up studio shot of a pair of thick, chunky hoop earrings rendered in brushed gold. They are placed on a pristine white ceramic plinth against a pale azure blue backdrop. The lighting is crisp and bright, casting soft shadows. The aesthetic is modern minimalism meets high-vibrancy summer style." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDF56ddEjd9SO9CF-wpqUJFvgA8GEB5xP28EOLn3EQvN_cua1D69LRYy7xt_zYiqiv6iEuQ9dx2TkTAYXpaS9qrpFagkpTftK78vQDG9B4P8qEG-VXA3tytDBmlOBBVFUIbanJlCudn5lw6UczRcdxxvgAcyh1GDwjQJ-IhHx8ZSHIbFufs6q9XHiG1X04VVT-yFNi6bLyCbItrWoKiLCItX9WseHw6gO0xFYR_ox94TWAyW83bc62q-VRRtqCU0Q0y5SvVAvOi4kdr')"></div>
+</div>
+<div>
+<p class="font-bold text-on-surface">Azure Hoops</p>
+<p class="text-xs text-on-surface-variant">Earrings</p>
+</div>
+</td>
+<td class="p-4 font-semibold text-on-surface">$85.00</td>
+<td class="p-4">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-tertiary-container/30 text-tertiary text-xs font-bold border border-tertiary/20">
+<span class="w-1.5 h-1.5 rounded-full bg-tertiary"></span>
+                                            12 low stock
+                                        </span>
+</td>
+<td class="p-4">
+<div class="flex flex-wrap gap-2">
+<span class="px-2.5 py-1 rounded-full bg-primary/10 text-primary text-xs font-bold border border-primary/20">New</span>
+<button class="px-2.5 py-1 rounded-full border border-dashed border-outline-variant text-on-surface-variant text-xs hover:border-secondary hover:text-secondary transition-colors flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">add</span> Tag
+                                            </button>
+</div>
+</td>
+<td class="p-4 text-right">
+<button class="text-on-surface-variant hover:text-secondary p-1.5 rounded-md hover:bg-secondary/10 transition-colors">
+<span class="material-symbols-outlined text-[20px]">edit</span>
+</button>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-surface-container-lowest/80 transition-colors group">
+<td class="p-4 flex items-center gap-3">
+<div class="w-12 h-12 rounded bg-surface-container-high overflow-hidden shadow-sm border border-outline-variant/20">
+<div class="w-full h-full bg-cover bg-center" data-alt="A stylized product photo of a delicate silver chain bracelet featuring small, abstract geometric charms in electric blue and sunny yellow enamel. The bracelet is draped casually over a smooth, pale pebble. The overall scene is bright, clean, and energetic, perfectly fitting a light-mode vibrant brand identity." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuA_GWq0V6HI-f4aDySkdZwHJwGJ09nDApBWSrGHsoHAcMJ2zeAZaHCwSWEUoXbOXpgvs6jmWilgr6S1fbrXnHUX1q3VheazA6p5fm41HRvsGMyf9A-5sFaoA61xjXBn8rANg1nsFnYiiEotVrev-a4wlm7zq8LjQGgxtFWrQ0AGyqAx6Bfol04bL3oDLPKIWalsk3NxRHDV8Rf9LB4rbI2x6GZ56zsWTgOD6meDPSTckSBL3oQ4nZsh1WfI1ANHldl5ckghCLah0LQV')"></div>
+</div>
+<div>
+<p class="font-bold text-on-surface">Summer Charm</p>
+<p class="text-xs text-on-surface-variant">Bracelets</p>
+</div>
+</td>
+<td class="p-4 font-semibold text-on-surface">$110.00</td>
+<td class="p-4">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-error/10 text-error text-xs font-bold border border-error/20">
+<span class="w-1.5 h-1.5 rounded-full bg-error"></span>
+                                            Out of stock
+                                        </span>
+</td>
+<td class="p-4">
+<div class="flex flex-wrap gap-2">
+<span class="px-2.5 py-1 rounded-full bg-surface-variant text-on-surface-variant text-xs font-bold border border-outline-variant/30">Limited</span>
+</div>
+</td>
+<td class="p-4 text-right">
+<button class="text-on-surface-variant hover:text-secondary p-1.5 rounded-md hover:bg-secondary/10 transition-colors">
+<span class="material-symbols-outlined text-[20px]">edit</span>
+</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="p-4 border-t border-outline-variant/30 flex justify-center bg-surface-container-lowest/50">
+<button class="text-sm font-bold text-secondary hover:text-secondary-container transition-colors">View All Products</button>
+</div>
+</div>
+<!-- Sales & Discounts Creator (Takes up 1/3) -->
+<div class="glass-card rounded-[1rem] shadow-[0_4px_24px_rgba(0,0,0,0.03)] flex flex-col h-full bg-gradient-to-b from-white/80 to-surface-container-low/50">
+<div class="p-6 border-b border-outline-variant/30 flex justify-between items-start">
+<div>
+<h2 class="font-headline text-lg font-bold text-on-surface m-0 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-xl">loyalty</span>
+                                Campaigns
+                            </h2>
+<p class="text-xs text-on-surface-variant mt-1">Manage sales and discounts.</p>
+</div>
+</div>
+<div class="p-6 flex-1 space-y-6">
+<!-- Active Campaign Card -->
+<div class="bg-surface-container-lowest border border-secondary/20 rounded-xl p-4 shadow-sm relative overflow-hidden">
+<!-- Decorative accent -->
+<div class="absolute top-0 right-0 w-16 h-16 bg-secondary/10 rounded-bl-full -z-0"></div>
+<div class="flex justify-between items-start mb-3 relative z-10">
+<div>
+<span class="inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-secondary/10 text-secondary uppercase tracking-wider mb-1">Active</span>
+<h3 class="font-bold text-on-surface text-sm">Summer Solstice Sale</h3>
+</div>
+<!-- Custom Toggle -->
+<div class="relative inline-block w-10 mr-2 align-middle select-none transition duration-200 ease-in">
+<input checked="" class="toggle-checkbox absolute block w-5 h-5 rounded-full bg-white border-4 appearance-none cursor-pointer z-10 transition-transform duration-200" id="toggle1" name="toggle" type="checkbox"/>
+<label class="toggle-label block overflow-hidden h-5 rounded-full bg-surface-container cursor-pointer transition-colors duration-200 border border-outline-variant/30" for="toggle1"></label>
+</div>
+</div>
+<p class="text-xs text-on-surface-variant mb-3 relative z-10">20% off all Citrus Collection items.</p>
+<div class="flex items-center justify-between text-xs font-semibold text-secondary relative z-10">
+<span>Code: SUNNY20</span>
+<span>Ends in 2d</span>
+</div>
+</div>
+<!-- Draft Campaign Card -->
+<div class="bg-surface-container-lowest/50 border border-outline-variant/30 rounded-xl p-4 opacity-80 hover:opacity-100 transition-opacity">
+<div class="flex justify-between items-start mb-3">
+<div>
+<span class="inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-surface-variant text-on-surface-variant uppercase tracking-wider mb-1">Draft</span>
+<h3 class="font-bold text-on-surface text-sm">Flash Friday</h3>
+</div>
+<!-- Custom Toggle -->
+<div class="relative inline-block w-10 mr-2 align-middle select-none transition duration-200 ease-in">
+<input class="toggle-checkbox absolute block w-5 h-5 rounded-full bg-white border-4 appearance-none cursor-pointer z-10 transition-transform duration-200" id="toggle2" name="toggle" type="checkbox"/>
+<label class="toggle-label block overflow-hidden h-5 rounded-full bg-surface-container cursor-pointer transition-colors duration-200 border border-outline-variant/30" for="toggle2"></label>
+</div>
+</div>
+<p class="text-xs text-on-surface-variant mb-3">Free shipping on orders over $150.</p>
+<button class="text-xs font-bold text-on-surface-variant hover:text-primary transition-colors">Edit Details</button>
+</div>
+</div>
+<div class="p-6 pt-0">
+<button class="w-full border-2 border-dashed border-outline-variant rounded-xl py-3 text-sm font-bold text-on-surface-variant hover:text-primary hover:border-primary/50 hover:bg-primary/5 transition-all flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[18px]">add_circle</span>
+                            Create New Discount
+                        </button>
+</div>
+</div>
+</div>
+</div>
+</main>
+</body></html>

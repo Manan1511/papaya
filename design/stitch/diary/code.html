@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>The Beach Club Diary - Papaya</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@700;800&amp;family=Be+Vietnam+Pro:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface": "#f9f9fc",
+                        "primary-container": "#ff8c00",
+                        "tertiary-fixed": "#ffe16d",
+                        "secondary": "#0059bb",
+                        "on-tertiary-fixed-variant": "#544600",
+                        "on-primary-fixed-variant": "#6e3900",
+                        "surface-dim": "#dadadc",
+                        "on-primary-container": "#623200",
+                        "on-background": "#1a1c1e",
+                        "on-secondary": "#ffffff",
+                        "tertiary-container": "#c7a800",
+                        "outline-variant": "#ddc1ae",
+                        "surface-container": "#eeeef0",
+                        "surface-bright": "#f9f9fc",
+                        "secondary-fixed": "#d8e2ff",
+                        "on-error": "#ffffff",
+                        "inverse-surface": "#2f3133",
+                        "surface-tint": "#904d00",
+                        "secondary-fixed-dim": "#adc7ff",
+                        "surface-container-highest": "#e2e2e5",
+                        "on-surface": "#1a1c1e",
+                        "inverse-on-surface": "#f0f0f3",
+                        "on-surface-variant": "#564334",
+                        "tertiary": "#705d00",
+                        "error": "#ba1a1a",
+                        "surface-variant": "#e2e2e5",
+                        "on-error-container": "#93000a",
+                        "on-secondary-container": "#fefcff",
+                        "on-tertiary-fixed": "#221b00",
+                        "background": "#f9f9fc",
+                        "surface-container-low": "#f3f3f6",
+                        "on-primary-fixed": "#2f1500",
+                        "primary": "#904d00",
+                        "primary-fixed-dim": "#ffb77d",
+                        "on-tertiary-container": "#4b3e00",
+                        "inverse-primary": "#ffb77d",
+                        "on-primary": "#ffffff",
+                        "surface-container-lowest": "#ffffff",
+                        "on-secondary-fixed-variant": "#004493",
+                        "outline": "#897362",
+                        "on-secondary-fixed": "#001a41",
+                        "on-tertiary": "#ffffff",
+                        "error-container": "#ffdad6",
+                        "tertiary-fixed-dim": "#e9c400",
+                        "surface-container-high": "#e8e8ea",
+                        "secondary-container": "#0070ea",
+                        "primary-fixed": "#ffdcc3"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Plus Jakarta Sans"],
+                        "display": ["Plus Jakarta Sans"],
+                        "body": ["Be Vietnam Pro"],
+                        "label": ["Be Vietnam Pro"]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+        }
+        .text-shadow-glow {
+            text-shadow: 0 2px 10px rgba(144, 77, 0, 0.2);
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body antialiased selection:bg-primary-container selection:text-on-primary-container">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-surface/80 dark:bg-surface-dim/80 backdrop-blur-xl border-b border-outline-variant/30 shadow-sm transition-all duration-300">
+<div class="flex justify-between items-center px-6 py-4 max-w-[1280px] mx-auto">
+<div class="flex items-center gap-4">
+<a class="font-headline font-extrabold text-2xl tracking-tighter text-primary dark:text-primary-fixed-dim hover:scale-105 active:scale-95 transition-transform" href="#">
+<img alt="Papaya" class="h-8 w-auto" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAM9kDVkYUXhelS0VVfnmX-K0via472rTx4THeCO_MU1k389_R6d6S2tiZk_kJDNEy0R7BabPwwvCdk2etmJ5O0H5uJwF84aVwSEf6q6IUOIrdIXwSMHMe-2KNFZ12L4oq_pboro_-OYzWuOMuyzzKYrx0qr5wBfei7ooLN7a8nKhaMmfRrIdTgDG1MGAtmH6fJwVgNTb4eC__yULDkUGhE5fko_v33XYQay52UnYKOWSmu4tZCKlxxe-Pwjqc_ewuYMdanLcRvGjZk"/>
+</a>
+</div>
+<!-- Desktop Nav (Hidden on Mobile) -->
+<nav class="hidden md:flex items-center gap-8 font-label text-[14px]">
+<a class="text-on-surface-variant dark:text-surface-variant hover:text-secondary transition-colors duration-200" href="#">Shop</a>
+<a class="text-secondary dark:text-secondary-fixed font-bold border-b-2 border-secondary hover:text-secondary transition-colors duration-200" href="#">Diary</a>
+<a class="text-on-surface-variant dark:text-surface-variant hover:text-secondary transition-colors duration-200" href="#">About</a>
+</nav>
+<div class="flex items-center gap-4 text-primary dark:text-primary-fixed-dim font-headline text-[24px]">
+<button class="hover:scale-105 active:scale-95 transition-transform hover:text-secondary duration-200">
+<span class="material-symbols-outlined" data-icon="search">search</span>
+</button>
+<button class="hover:scale-105 active:scale-95 transition-transform hover:text-secondary duration-200">
+<span class="material-symbols-outlined" data-icon="shopping_bag">shopping_bag</span>
+</button>
+<!-- Mobile Menu Toggle -->
+<button class="md:hidden hover:scale-105 active:scale-95 transition-transform hover:text-secondary duration-200">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</div>
+</div>
+</header>
+<!-- Main Content -->
+<main class="pt-[100px] pb-24 px-4 sm:px-8 max-w-[1280px] mx-auto">
+<!-- Hero Header -->
+<section class="text-center py-16 md:py-24 space-y-6">
+<h1 class="font-headline font-[800] text-[48px] leading-[56px] tracking-[-0.02em] text-primary text-shadow-glow">
+                The Beach Club Diary
+            </h1>
+<p class="font-body text-[18px] text-on-surface-variant max-w-2xl mx-auto">
+                Sun-drenched styling tips, travel guides, and the vibrant life.
+            </p>
+</section>
+<!-- Bento Grid Articles -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-8">
+<!-- Featured Large Post -->
+<article class="md:col-span-8 rounded-[1rem] overflow-hidden group relative min-h-[400px] md:min-h-[500px] cursor-pointer">
+<div class="absolute inset-0 bg-cover bg-center w-full h-full transition-transform duration-700 group-hover:scale-105" data-alt="A sun-drenched, high-vibrant coastal scene in Amalfi, Italy. Crystal clear turquoise water, bright orange umbrellas, and a sense of warm summer optimism. High saturation, modern aesthetic." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDXwNr2Kb4LfmEfvFPLmwxvA8w8HpvS7Ksx8C2BKPft7Sxr8o8WZ83dNge4pmIk0foVYgrorePFYnqETZvBIHP5-IdQCQNE6jOz5Clw9ixMC-pU537KcoreGEyJBhPyWFR5c_Ol7qQlS3HO7BY-DWRalq8FRCYMXs65GdFXgXTOAtLEhrp-hqMgtptdO8I3HRMvgxTDCxzAn0C7BlqJWm_UV0YNnzxWHgcwnuq9WvbNTe7nXoUJ9bSCBWO21T_rS2kIBzOIOB06iMdq')"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
+<div class="absolute bottom-0 left-0 p-8 w-full">
+<span class="inline-block bg-primary-container text-on-primary-container font-label text-[12px] px-3 py-1 rounded-full mb-4 shadow-sm">Travel</span>
+<h2 class="font-headline font-[700] text-[32px] leading-[40px] tracking-[-0.01em] text-white mb-2 group-hover:text-tertiary-fixed transition-colors">
+                        The Best Beach Clubs in Amalfi
+                    </h2>
+<p class="font-body text-[16px] text-white/90 line-clamp-2">
+                        Discover the hidden gems and vibrant scenes along the coast where the spritzes are cold and the style is warm.
+                    </p>
+</div>
+</article>
+<!-- Vertical Secondary Post -->
+<article class="md:col-span-4 rounded-[1rem] overflow-hidden group relative min-h-[400px] md:min-h-[500px] cursor-pointer glass-card bg-surface-container-low/50">
+<div class="p-6 h-full flex flex-col justify-between">
+<div class="h-[200px] rounded-lg overflow-hidden mb-6 relative">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="Close up photography of vibrant gold Riviera chain jewelry styled on sun-kissed skin. The lighting is warm and bright, evoking a modern, energetic summer mood with soft citrus accents." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDQt53WrGcRTiLglYODq9haZEaeOdXpYZJxoqwHFqYPpo_qHxUbVQRVFaLvqPDIQMsDPaiXsw78TsdUDnjjbIMgmsbSd6WcvCwqp3OdT0cwl2SJpBmXjV9LN1jmr_C3p-7gUPybZw5JJ-ie7TzjHU8OKSoF0q7KFzsMOC2VAqROsrkP-pXuuzlJ86exOn2P0ItZDDeP1Nod2xBVEjb-3nbUssxapioGZ-v4VRbdGCBuOzHaDHTNtKIRRUm5PuGXpb2h67EZiIgEsDXh"/>
+</div>
+<div>
+<span class="inline-block bg-secondary-fixed text-on-secondary-fixed font-label text-[12px] px-3 py-1 rounded-full mb-3">Style</span>
+<h3 class="font-headline font-[700] text-[24px] leading-[32px] text-primary mb-2 group-hover:text-secondary transition-colors">
+                            5 Ways to Style Your Riviera Chain
+                        </h3>
+<p class="font-body text-[14px] text-on-surface-variant line-clamp-3">
+                            From layering with delicate pendants to wearing it solo over a linen shirt, elevate your golden hour glow.
+                        </p>
+</div>
+</div>
+</article>
+<!-- Grid Items -->
+<article class="md:col-span-4 rounded-[1rem] overflow-hidden group glass-card bg-surface-container-low/50 cursor-pointer hover:-translate-y-1 transition-transform duration-300">
+<div class="h-[240px] overflow-hidden relative">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="A vibrant, refreshing iced citrus drink sitting on a white table next to a sparkling blue pool. Bright sunshine, optimistic modern lifestyle aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA39yI47NeVlDGOjl-2URqqf1SroQCRBgeM4ueHHQeji2QnmHuLND_OuzTCX1o4-UbShDDGjPFzpt_BarmovGpMp_bV6PKgTKAXabj3Jia-iLQ98NLZ34JiXZ5TBsdzieIUBqiNlhOieD_1-DvpH97I6yjpNCpzjAlxxuu4eHIi12MJ2jgOk-ofSt4lTGw24YnTVIDua8bBeGwZKEC113UvEB_B7e5TxixatouGHIXhmbkyB7MjM_OInubc1BUF4lgRbBxjYy7mcMob"/>
+</div>
+<div class="p-6">
+<span class="inline-block bg-tertiary-fixed text-on-tertiary-fixed font-label text-[12px] px-3 py-1 rounded-full mb-3">Lifestyle</span>
+<h3 class="font-headline font-[700] text-[20px] leading-[28px] text-on-surface mb-2 group-hover:text-primary transition-colors">
+                        The Perfect Summer Spritz Recipe
+                    </h3>
+</div>
+</article>
+<article class="md:col-span-4 rounded-[1rem] overflow-hidden group glass-card bg-surface-container-low/50 cursor-pointer hover:-translate-y-1 transition-transform duration-300">
+<div class="h-[240px] overflow-hidden relative">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="A minimalist arrangement of vibrant colorful rings and bracelets on a pristine white marble surface, illuminated by harsh, sunny light casting sharp shadows." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCI-73DBct7ZFcKWcktJZrNQWmHZWjScbCbmFdIrdGSSugvl_-fb19XdTlGZnyUzaOYOQLJUlL37UAuCI5lRgs3y_fcTsIWjHWQvZqjLm3nNzWYF0IflgDdOs3AtV0nUJa11EG-3aYiIrBz5yeTYkxVF24620ZM0KIp7FNa9-KDyrcuCPwr-VLMcBzeqYPfG4EV8XV5W5x2wV_f0k-azR7rEp5y6XtCYBsdZYyvm1TdruyVEQz8GiWwn9X13FKMOC_6ePTh1jzmcKhi"/>
+</div>
+<div class="p-6">
+<span class="inline-block bg-secondary-fixed text-on-secondary-fixed font-label text-[12px] px-3 py-1 rounded-full mb-3">Style</span>
+<h3 class="font-headline font-[700] text-[20px] leading-[28px] text-on-surface mb-2 group-hover:text-primary transition-colors">
+                        Color Theory: Azure &amp; Citrus
+                    </h3>
+</div>
+</article>
+<article class="md:col-span-4 rounded-[1rem] overflow-hidden group glass-card bg-surface-container-low/50 cursor-pointer hover:-translate-y-1 transition-transform duration-300">
+<div class="h-[240px] overflow-hidden relative">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="A serene, sunlit resort balcony overlooking the ocean. Minimalist glassmorphism furniture, bright white curtains blowing in the breeze. High key, warm lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAIehHqR29KupG7givnzGpwg3NXUrWuJy5cOlCUuYp9wQf_ZpD04yZPGTOyMyRMs8IiWlvOaxIoFNp0dzNmnNDGstwrgkKT6y16RB3Vv9Yz_z4rnbDfgDzyqOh0PEqU6LbMl6krZiTqmtGsFQ6x_BeHf94pIeaE-SXmU5DjkEWx6hDZyyvZZNFag58AK_RzdBVuR4soXFV5_N91kFalQLEEl6Ch55VdY1e1LvFXzTGYbEtv0s4GPbBxKPA7PQ60_Onf03u79ldWsGuy"/>
+</div>
+<div class="p-6">
+<span class="inline-block bg-primary-container text-on-primary-container font-label text-[12px] px-3 py-1 rounded-full mb-3">Travel</span>
+<h3 class="font-headline font-[700] text-[20px] leading-[28px] text-on-surface mb-2 group-hover:text-primary transition-colors">
+                        Packing Light for the Weekend
+                    </h3>
+</div>
+</article>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container dark:bg-surface-container-highest w-full rounded-t-xl mt-[48px] border-t-0 bg-surface-container-low shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.05)]">
+<div class="flex flex-col md:flex-row justify-between items-start gap-8 px-8 py-12 max-w-[1280px] mx-auto">
+<div class="flex flex-col gap-4">
+<span class="font-headline font-bold text-xl text-primary">Papaya</span>
+<p class="font-body text-[16px] text-secondary dark:text-secondary-fixed">
+                    © 2024 Papaya Jewellery. Stay Sunny.
+                </p>
+</div>
+<nav class="flex flex-wrap gap-6 font-body text-[16px]">
+<a class="text-on-surface-variant hover:text-primary transition-all underline underline-offset-4 duration-300 hover:opacity-80" href="#">Shop All</a>
+<a class="text-on-surface-variant hover:text-primary transition-all underline underline-offset-4 duration-300 hover:opacity-80" href="#">Our Story</a>
+<a class="text-on-surface-variant hover:text-primary transition-all underline underline-offset-4 duration-300 hover:opacity-80" href="#">Sustainability</a>
+<a class="text-on-surface-variant hover:text-primary transition-all underline underline-offset-4 duration-300 hover:opacity-80" href="#">Care Guide</a>
+<a class="text-on-surface-variant hover:text-primary transition-all underline underline-offset-4 duration-300 hover:opacity-80" href="#">Shipping</a>
+<a class="text-on-surface-variant hover:text-primary transition-all underline underline-offset-4 duration-300 hover:opacity-80" href="#">Contact</a>
+</nav>
+</div>
+</footer>
+</body></html>

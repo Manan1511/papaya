@@ -1,0 +1,236 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Papaya Jewellery House</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700&amp;family=Inter:wght@400;500;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">tailwind.config = {darkMode: "class", theme: {extend: {colors: {"surface-container-lowest": "#ffffff", secondary: "#745c00", "surface-tint": "#a63b00", "secondary-fixed": "#ffe089", "on-secondary": "#ffffff", "on-error": "#ffffff", "inverse-surface": "#2e3132", "primary-container": "#ff5f00", primary: "#a63b00", "surface-container-high": "#e7e8e9", "on-tertiary": "#ffffff", "on-tertiary-fixed-variant": "#474746", "on-primary-fixed": "#370e00", "tertiary-fixed-dim": "#c8c6c5", surface: "#f8f9fa", error: "#ba1a1a", "tertiary-fixed": "#e5e2e1", "on-tertiary-container": "#2c2c2c", "on-tertiary-fixed": "#1c1b1b", "on-surface": "#191c1d", "on-secondary-fixed": "#241a00", "surface-bright": "#f8f9fa", "surface-dim": "#d9dadb", "on-primary": "#ffffff", outline: "#8f7065", "tertiary-container": "#959393", "on-background": "#191c1d", "surface-container-highest": "#e1e3e4", "on-primary-container": "#531a00", "outline-variant": "#e4bfb1", "secondary-fixed-dim": "#edc22e", "inverse-primary": "#ffb599", "surface-container": "#edeeef", "on-error-container": "#93000a", "primary-fixed-dim": "#ffb599", "inverse-on-surface": "#f0f1f2", "surface-variant": "#e1e3e4", "on-primary-fixed-variant": "#7f2b00", "primary-fixed": "#ffdbce", "on-secondary-fixed-variant": "#574500", "on-secondary-container": "#705900", "secondary-container": "#fcd03d", tertiary: "#5f5e5e", background: "#f8f9fa", "on-surface-variant": "#5b4137", "surface-container-low": "#f3f4f5", "error-container": "#ffdad6", marine: "#376477", piscine: "#a0cde3", melon: "#fe9b4b", chili: "#934b00", sunny: "#fcd664", cream: "#fff8f5"}, borderRadius: {DEFAULT: "0.25rem", lg: "0.5rem", xl: "0.75rem", full: "9999px"}, spacing: {base: "8px", "mobile-margin": "20px", "section-gap": "80px", "grid-gutter": "24px", "container-margin": "40px", gutter: "24px", lg: "48px", sm: "12px", md: "24px", "margin-desktop": "64px", "margin-mobile": "16px", xl: "80px", xs: "4px"}, fontFamily: {"display-lg": ["Bricolage Grotesque", "sans-serif"], "body-lg": ["Inter"], "headline-lg-mobile": ["Plus Jakarta Sans"], "headline-md": ["Plus Jakarta Sans"], "body-md": ["Inter"], "label-bold": ["Plus Jakarta Sans", "sans-serif"], "headline-lg": ["Plus Jakarta Sans"], "headline-xl": ["Plus Jakarta Sans"], "label-md": ["Inter"], "label-sm": ["Inter"]}, fontSize: {"display-lg": ["72px", {lineHeight: "80px", letterSpacing: "-0.02em", fontWeight: "800"}], "body-lg": ["18px", {lineHeight: "28px", fontWeight: "400"}], "headline-lg-mobile": ["28px", {lineHeight: "36px", fontWeight: "700"}], "headline-md": ["24px", {lineHeight: "32px", fontWeight: "700"}], "body-md": ["16px", {lineHeight: "24px", fontWeight: "400"}], "label-bold": ["14px", {lineHeight: "20px", fontWeight: "700"}], "headline-lg": ["32px", {lineHeight: "40px", letterSpacing: "-0.01em", fontWeight: "700"}], "headline-xl": ["48px", {lineHeight: "56px", letterSpacing: "-0.02em", fontWeight: "800"}], "label-md": ["14px", {lineHeight: "20px", letterSpacing: "0.01em", fontWeight: "600"}], "label-sm": ["12px", {lineHeight: "16px", letterSpacing: "0.02em", fontWeight: "600"}]}, backgroundImage: {"checker-pattern": "repeating-conic-gradient(var(--tw-colors-melon) 0% 25%, transparent 0% 50%)", "polka-dots": "radial-gradient(var(--tw-colors-chili) 15%, transparent 16%), radial-gradient(var(--tw-colors-piscine) 15%, transparent 16%)"}, boxShadow: {"hard-shadow": "4px 4px 0px 0px var(--tw-colors-sunny)"}}}};</script>
+<style>
+        .checker-bg {
+            background-image: repeating-conic-gradient(#fe9b4b 0% 25%, transparent 0% 50%);
+            background-size: 40px 40px;
+            background-color: #fff8f5;
+        }
+        .polka-dot-bg {
+            background-color: #fff8f5;
+            background-image: radial-gradient(#934b00 10%, transparent 11%), radial-gradient(#a0cde3 10%, transparent 11%);
+            background-size: 60px 60px;
+            background-position: 0 0, 30px 30px;
+        }
+        .text-stroke {
+            -webkit-text-stroke: 1.5px var(--tw-colors-marine);
+            color: transparent;
+        }
+    </style>
+</head>
+<body class="bg-surface-bright text-on-surface font-body-md antialiased overflow-x-hidden">
+<!-- TopNavBar -->
+<header class="bg-surface/90 dark:bg-surface-dim/90 full-width top-0 sticky border-b-2 border-outline-variant dark:border-outline z-50 backdrop-blur-sm">
+<nav class="flex justify-between items-center w-full px-container-margin py-4 max-w-[1440px] mx-auto">
+<div class="flex items-center gap-4">
+<!-- Using placeholder as requested, though prompt says use https://lh3.googleusercontent.com/aida-public/AB6AXuB4VZLGrrEMk1aO5KO3Y4c1BNaD4DhYjV542yj_R0EY7rixDc4rhR3rp6A3gonVCfOjQLW0jHxw398OZb3JD2NoJh6ou0g7oC5q8GiyBfDuq6_KK4qupYs126zIKiHNtW46lgaf51pM2XOWNSOHg7n4v7WyvDflDbYy2VFhpdll9qidaQSp-5ZnoJS4eRgI2SHs7ELLt8xqlaAvpwJTjgLeJDSqjbE4KbebS0ghv7l244M46krDTSZKLk-zUMfdaVFnbb-UvnIEpD4J, standard placeholder rules apply for general images unless specific -->
+<img alt="Papaya Logo" class="h-10 object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB4VZLGrrEMk1aO5KO3Y4c1BNaD4DhYjV542yj_R0EY7rixDc4rhR3rp6A3gonVCfOjQLW0jHxw398OZb3JD2NoJh6ou0g7oC5q8GiyBfDuq6_KK4qupYs126zIKiHNtW46lgaf51pM2XOWNSOHg7n4v7WyvDflDbYy2VFhpdll9qidaQSp-5ZnoJS4eRgI2SHs7ELLt8xqlaAvpwJTjgLeJDSqjbE4KbebS0ghv7l244M46krDTSZKLk-zUMfdaVFnbb-UvnIEpD4J">
+
+</div>
+<div class="hidden md:flex gap-8">
+<a class="text-primary font-label-bold border-b-2 border-primary pb-1" href="#">Collections</a>
+<a class="text-on-surface-variant font-label-bold hover:text-primary transition-colors hover:text-primary-container dark:hover:text-primary-fixed duration-300" href="#">New Arrivals</a>
+<a class="text-on-surface-variant font-label-bold hover:text-primary transition-colors hover:text-primary-container dark:hover:text-primary-fixed duration-300" href="#">Sustainability</a>
+<a class="text-on-surface-variant font-label-bold hover:text-primary transition-colors hover:text-primary-container dark:hover:text-primary-fixed duration-300" href="#">Beach Club</a>
+</div>
+<div class="flex gap-4">
+<button class="hover:text-primary-container transition-colors duration-300">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">search</span>
+</button>
+<button class="hover:text-primary-container transition-colors duration-300">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">shopping_bag</span>
+</button>
+<button class="md:hidden hover:text-primary-container transition-colors duration-300">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">menu</span>
+</button>
+</div>
+</nav>
+</header>
+<!-- Hero Section -->
+<section class="relative w-full min-h-[819px] flex items-center justify-center overflow-hidden bg-surface-container">
+<div class="absolute inset-0 z-0">
+<img class="w-full h-full object-cover opacity-80" data-alt="Warm, nostalgic 1970s Italian riviera lifestyle photography of a stylish model wearing gold Papaya jewelry, lounging by a sun-drenched pool. The lighting is golden hour, with high saturation oranges and warm yellows. Film grain texture. The composition is cinematic and editorial, conveying a premium yet casual summer club vibe." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD7mlrR1TwW3635d09YFRAKyNc4u47mrws82xO9DxaFOgV6KjEygwlTWND6O6Q13WkXOlygn-IpDujA2lB9t3isIeB7s_7q_KyMfkx-Jo1zJrrKHag2gOADAfl2H4fq0FGJcpV36Xuho-xexfUALimvphNOUWINd-pupjj08hWNoe_rODdkA1imTgQb_gnQZuzwx1_jaoRl6sH0MQ364jPFULzGaliggudsCApYwXuqTeGj4GyHsSQu1PDwlxjzlzD89yKwSReKISBm">
+<div class="absolute inset-0 bg-gradient-to-t from-surface-bright/60 to-transparent"></div>
+</div>
+<div class="relative z-10 text-center px-mobile-margin md:px-container-margin max-w-4xl mx-auto flex flex-col items-center gap-6 pt-20">
+<h1 class="font-display-lg text-headline-lg-mobile md:text-display-lg text-primary-container drop-shadow-md">
+                Endless Summer State of Mind
+            </h1>
+<p class="font-body-lg text-body-lg text-on-surface max-w-2xl font-semibold bg-surface-bright/70 py-2 px-4 rounded-full backdrop-blur-sm border border-outline-variant">
+                Curated essentials for the sun-seekers. Crafted for golden hours.
+            </p>
+<a class="inline-flex items-center justify-center px-8 py-4 bg-tertiary text-on-tertiary font-label-bold text-label-bold rounded-full hover:shadow-hard-shadow transition-all duration-300 border-2 border-transparent hover:border-tertiary" href="#">
+                Shop the Collection
+            </a>
+</div>
+</section>
+<!-- Checker Band -->
+<div class="w-full h-12 checker-bg border-y-2 border-tertiary"></div>
+<!-- Collection Grid -->
+<section class="py-section-gap px-mobile-margin md:px-container-margin max-w-[1440px] mx-auto bg-surface-bright">
+<div class="text-center mb-12">
+<h2 class="font-display-lg text-headline-md text-primary mb-4">Latest Additions</h2>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-md mx-auto">Fresh from the studio, designed to catch the coastal light.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-grid-gutter">
+<!-- Product Card 1 -->
+<div class="group border-[1.5px] border-tertiary rounded-card overflow-hidden bg-surface-container-lowest transition-transform hover:-translate-y-1 duration-300">
+<div class="h-64 bg-tertiary-fixed-dim/20 relative overflow-hidden">
+<img class="w-full h-full object-cover mix-blend-multiply group-hover:scale-105 transition-transform duration-500" data-alt="Close up product photography of a chunky gold chain necklace with a sunburst pendant. Clean, bright lighting with a soft pale blue background. High-end e-commerce style, crisp details, slight vintage styling." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAA4pgvjaau_QQ8puGG5o5e0q2DEwv4JhG-vsfFkCU5IkJFF2OsYzZ92zaYkqi5hC443chJ2QbX65oQ99ynAyd5Efcf5UNVEGDkQ1xcE8VnqdnVmLB6mzhWrsDljMf4M3I3bbDVPn_H0k3iMWjQKdUxO6nvsnkXUBZK0SFu88zC0RHhE3wUqetocTtanpEkij9zQ9kMmcMfBytudK99dNb2ZjJNsO2mQul8Y1e1y-gAbzOZnTyCiGTTv4HH1iJHuYHyy6CCKRQdGHV0">
+<span class="absolute top-4 right-4 bg-primary text-on-primary font-label-bold text-[10px] px-3 py-1 rounded-full uppercase tracking-wider">New</span>
+</div>
+<div class="p-4 border-t-[1.5px] border-tertiary flex flex-col gap-2">
+<h3 class="font-headline-md text-body-lg text-on-surface">Riviera Chain</h3>
+<div class="flex justify-between items-center">
+<span class="font-body-md text-body-md text-on-surface-variant">$145</span>
+<button class="w-8 h-8 rounded-full border-[1.5px] border-tertiary flex items-center justify-center text-tertiary hover:bg-secondary-container transition-colors">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 0;">add</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Product Card 2 -->
+<div class="group border-[1.5px] border-tertiary rounded-card overflow-hidden bg-surface-container-lowest transition-transform hover:-translate-y-1 duration-300">
+<div class="h-64 bg-secondary-fixed/20 relative overflow-hidden">
+<img class="w-full h-full object-cover mix-blend-multiply group-hover:scale-105 transition-transform duration-500" data-alt="Close up product photography of elegant gold hoop earrings with small pearl drops. Clean, bright lighting with a soft pale yellow background. High-end e-commerce style, crisp details, slight vintage styling." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCA6o6QounQsB5yIOb7nJQWGncVlQ-Gi_d2zxjB93uWOYbUd6VgOY5_S5it71tKjJxOKxybIOiwRrv7W8Pd63qsqKqRA2QczoNFuz2qHOiqZygecz0zm6D7d861DwfRrYbazq855k0Rq5wMze0gNSOdxl_Oc8gGhiF7sUeTVGoNgxtbpUwrJIeLUvRBVfNTMEVhrCkNC5ZelzaiH6mFL7huYCUmoTyMhiEL9FqopFFPBAY2nvi_iCtGMvO1u-b84l8xiXa2APT4R7am">
+</div>
+<div class="p-4 border-t-[1.5px] border-tertiary flex flex-col gap-2">
+<h3 class="font-headline-md text-body-lg text-on-surface">Capri Hoops</h3>
+<div class="flex justify-between items-center">
+<span class="font-body-md text-body-md text-on-surface-variant">$95</span>
+<button class="w-8 h-8 rounded-full border-[1.5px] border-tertiary flex items-center justify-center text-tertiary hover:bg-secondary-container transition-colors">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 0;">add</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Product Card 3 -->
+<div class="group border-[1.5px] border-tertiary rounded-card overflow-hidden bg-surface-container-lowest transition-transform hover:-translate-y-1 duration-300">
+<div class="h-64 bg-tertiary-fixed-dim/20 relative overflow-hidden">
+<img class="w-full h-full object-cover mix-blend-multiply group-hover:scale-105 transition-transform duration-500" data-alt="Close up product photography of a delicate gold ring featuring an orange citrine stone. Clean, bright lighting with a soft pale blue background. High-end e-commerce style, crisp details, slight vintage styling." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDg7kZ2ZToba6-GqUbVgECkfF7deN9jBOOiqq8a-ZT_ksrQy6YTF8h38QMzVcgBpLejqRk6WlSfZe9uZNgEVdNuyPsI3hK1SxXSAFRsSeonv1sNPeeVvY3wQpZv2H3IfTZ6P3WWl25-JakfaOb5fHI1IbxBBWn1EKlKSf8iva2gBKPcAAKYzCcqsgOSLoAbOUkQCqZTXgX0p-q1lUdvQA6xd53E2fooz9bC3Zx0FsmlSlHYd4Nl_biJ_qnRkTTCkOui3KHCKnsWC41g">
+<span class="absolute top-4 right-4 bg-primary-container text-on-primary-container font-label-bold text-[10px] px-3 py-1 rounded-full uppercase tracking-wider border border-primary-container">Limited</span>
+</div>
+<div class="p-4 border-t-[1.5px] border-tertiary flex flex-col gap-2">
+<h3 class="font-headline-md text-body-lg text-on-surface">Citrine Solitaire</h3>
+<div class="flex justify-between items-center">
+<span class="font-body-md text-body-md text-on-surface-variant">$210</span>
+<button class="w-8 h-8 rounded-full border-[1.5px] border-tertiary flex items-center justify-center text-tertiary hover:bg-secondary-container transition-colors">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 0;">add</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Product Card 4 -->
+<div class="group border-[1.5px] border-tertiary rounded-card overflow-hidden bg-surface-container-lowest transition-transform hover:-translate-y-1 duration-300 hidden lg:block">
+<div class="h-64 bg-secondary-fixed/20 relative overflow-hidden">
+<img class="w-full h-full object-cover mix-blend-multiply group-hover:scale-105 transition-transform duration-500" data-alt="Close up product photography of a chunky gold bracelet with textured links. Clean, bright lighting with a soft pale yellow background. High-end e-commerce style, crisp details, slight vintage styling." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA2jFSnbAfrxN8RK-aHgduWTVxlOZ8EPPjENeo4NzrWb9J1ynwPINuYyG5NX2AajEUKebAFKrjrQEKtf7Gk7wgw1237lgMk39vEOUwWkcBiKLXGEGxTXqmiXLoviocTqENpJEjyBcL0QyKr9p53F_Bcq3KLGfK2BUPTuOjr66bdgbGMEvXyr6VQMLqPbmwSM_9695GuDeM9w-yKXgYlZu-ZU67dmjKsMDUkOr7CUzuNt4S-tJ_2Qwmp96hxPOkKICaYBCLWjVyfckR9">
+</div>
+<div class="p-4 border-t-[1.5px] border-tertiary flex flex-col gap-2">
+<h3 class="font-headline-md text-body-lg text-on-surface">Positano Bracelet</h3>
+<div class="flex justify-between items-center">
+<span class="font-body-md text-body-md text-on-surface-variant">$180</span>
+<button class="w-8 h-8 rounded-full border-[1.5px] border-tertiary flex items-center justify-center text-tertiary hover:bg-secondary-container transition-colors">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 0;">add</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Featured Essentials (Bento Style) -->
+<section class="py-section-gap px-mobile-margin md:px-container-margin max-w-[1440px] mx-auto">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-grid-gutter md:grid-rows-2 h-auto md:h-[600px]">
+<div class="md:col-span-2 md:row-span-2 rounded-card border-[1.5px] border-tertiary overflow-hidden relative group">
+<img class="absolute inset-0 w-full h-full object-cover" data-alt="Editorial lifestyle shot. A woman wearing an oversized white linen shirt and layered gold Papaya necklaces, laughing while holding a slice of melon. Shot on 35mm film with grain, warm golden hour light. The mood is joyful, premium retro beach club aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD2h2zkYpWTk3Z5VDV_05PZSvklu1IsBkheSLVTeHEGL7n7KJt77HT9v4daJTqzim1kePD0w5u-h6Qbt0uYDo6SjjhTCzuo8dvRnYKtp26NNhmUJpw9R3SvItrOvhcwTW7kh0U8KrS4GolCTqU_G3hdLLmMurqSzrwWksMobssIaOsZhiUqw4L7U7puk2_31GVeyjFylMkTfGui8I3Ai2Q4uSKf4eFJ6Idp30il7d9I8vtBt6p4EgiUnVY5p3xpZK_3MCpGejj4sHCy">
+<div class="absolute inset-0 bg-gradient-to-t from-surface-variant/90 to-transparent flex flex-col justify-end p-8">
+<h3 class="font-display-lg text-headline-lg-mobile md:text-headline-lg text-primary-fixed mb-2">The Amalfi Edit</h3>
+<p class="font-body-md text-body-md text-on-surface max-w-md mb-6">Bold pieces designed for long lunches and late nights on the coast.</p>
+<a class="inline-flex w-fit items-center justify-center px-6 py-2 border-[1.5px] border-tertiary text-tertiary bg-surface-container-lowest font-label-bold text-label-bold rounded-full hover:bg-secondary-container hover:shadow-hard-shadow transition-all" href="#">
+                        Explore Collection
+                    </a>
+</div>
+</div>
+<div class="rounded-card border-[1.5px] border-tertiary bg-primary-container p-6 flex flex-col justify-between relative overflow-hidden group">
+<div class="absolute -right-10 -top-10 w-32 h-32 bg-primary rounded-full opacity-20 blur-2xl"></div>
+<div>
+<span class="font-label-bold text-label-bold text-on-primary-container uppercase tracking-wider mb-2 block">Best Seller</span>
+<h4 class="font-headline-md text-headline-md text-on-surface">Sorrento Sun Ring</h4>
+</div>
+<div class="mt-8 flex justify-center">
+<img class="w-32 h-32 object-contain drop-shadow-xl group-hover:scale-110 transition-transform duration-300" data-alt="Close up of a bold, sun-shaped gold ring resting on a textured cream surface. Sharp focus, warm directional lighting highlighting the metallic reflections." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA9FUSbt19XvI8dVuI-8ZofzD_foJcE1KMvRv0STOYg2vCs_T1rzIaPLuyvmfGTxqPUEPn2yMJ8jDjd7cyemVLZQKTKLZyBBFU_XyJ7gCEMKuUr34ZjFnTX5Cu3ws_BG2kF3s8CmGq7ivSkDoJxcrSGFwTo0JmYDOKLDW29K4s9sqNJXZBQTuvRacAanpegpuseGMathV8A285czVFgoVzaezzk0eplBs_YOZNU_dIqEgo38x20U9pycMND6nza6fO3aWGPqvBQgelj">
+</div>
+</div>
+<div class="rounded-card border-[1.5px] border-tertiary bg-tertiary-fixed-dim p-6 flex flex-col justify-between items-center text-center group">
+<div class="w-16 h-16 rounded-full bg-surface-container-lowest flex items-center justify-center mb-4 border-[1.5px] border-tertiary">
+<span class="material-symbols-outlined text-tertiary" style="font-variation-settings: 'FILL' 1; font-size: 32px;">diamond</span>
+</div>
+<h4 class="font-headline-md text-body-lg text-on-surface mb-2">Ethically Sourced</h4>
+<p class="font-body-md text-label-bold text-on-surface-variant text-sm">Recycled metals &amp; conflict-free stones.</p>
+</div>
+</div>
+</section>
+<!-- Polka Dot Hit & Newsletter -->
+<section class="polka-dot-bg border-y-2 border-tertiary relative overflow-hidden">
+<div class="max-w-3xl mx-auto px-mobile-margin md:px-container-margin py-section-gap text-center relative z-10">
+<div class="bg-surface-container-lowest/90 backdrop-blur-md p-8 md:p-12 rounded-card border-[1.5px] border-tertiary shadow-[8px_8px_0px_0px_var(--tw-colors-marine)]">
+<span class="material-symbols-outlined text-primary-container text-4xl mb-4 block" style="font-variation-settings: 'FILL' 1;">wb_sunny</span>
+<h2 class="font-display-lg text-headline-lg-mobile md:text-headline-md text-on-surface mb-4">Join the Beach Club</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mb-8 max-w-md mx-auto">Subscribe for early access to new collections, exclusive events, and a touch of sunshine in your inbox.</p>
+<form class="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
+<input class="flex-1 bg-surface-bright border-[1.5px] border-tertiary rounded-lg px-4 py-3 font-body-md text-on-surface focus:outline-none focus:ring-2 focus:ring-primary-container focus:border-transparent placeholder:text-outline" placeholder="Email address" type="email">
+<button class="px-6 py-3 bg-tertiary text-on-tertiary font-label-bold rounded-lg hover:shadow-hard-shadow transition-all duration-300 border-2 border-transparent hover:border-tertiary whitespace-nowrap" type="submit">
+                        Sign Up
+                    </button>
+</form>
+</div>
+</div>
+</section>
+<!-- Footer -->
+<footer class="bg-surface-dim dark:bg-inverse-surface full-width rounded-t-xl border-t-4 border-secondary-container dark:border-secondary">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-grid-gutter px-container-margin py-section-gap w-full max-w-[1440px] mx-auto">
+<div class="col-span-1 md:col-span-1 flex flex-col gap-6">
+<!-- Re-using placeholder for consistency based on strict rules -->
+<img alt="Papaya Line Art" class="h-16 w-auto object-contain self-start mix-blend-multiply opacity-80 filter grayscale" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB4VZLGrrEMk1aO5KO3Y4c1BNaD4DhYjV542yj_R0EY7rixDc4rhR3rp6A3gonVCfOjQLW0jHxw398OZb3JD2NoJh6ou0g7oC5q8GiyBfDuq6_KK4qupYs126zIKiHNtW46lgaf51pM2XOWNSOHg7n4v7WyvDflDbYy2VFhpdll9qidaQSp-5ZnoJS4eRgI2SHs7ELLt8xqlaAvpwJTjgLeJDSqjbE4KbebS0ghv7l244M46krDTSZKLk-zUMfdaVFnbb-UvnIEpD4J">
+<p class="font-body-md text-body-md text-on-surface-variant max-w-xs">
+                    Crafting sunshine state of mind, one piece at a time. Designed for the perpetual summer.
+                </p>
+</div>
+<div class="col-span-1 flex flex-col gap-4">
+<h4 class="font-headline-md text-body-lg text-on-surface">Shop</h4>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-secondary dark:hover:text-secondary-fixed transition-colors" href="#">All Collections</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-secondary dark:hover:text-secondary-fixed transition-colors" href="#">Necklaces</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-secondary dark:hover:text-secondary-fixed transition-colors" href="#">Earrings</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-secondary dark:hover:text-secondary-fixed transition-colors" href="#">Rings</a>
+</div>
+<div class="col-span-1 flex flex-col gap-4">
+<h4 class="font-headline-md text-body-lg text-on-surface">Support</h4>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-secondary dark:hover:text-secondary-fixed transition-colors" href="#">Privacy Policy</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-secondary dark:hover:text-secondary-fixed transition-colors" href="#">Terms of Service</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-secondary dark:hover:text-secondary-fixed transition-colors" href="#">Shipping &amp; Returns</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-secondary dark:hover:text-secondary-fixed transition-colors" href="#">Contact Us</a>
+</div>
+<div class="col-span-1 flex flex-col gap-4">
+<h4 class="font-headline-md text-body-lg text-on-surface">Social</h4>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-secondary dark:hover:text-secondary-fixed transition-colors" href="#">Instagram</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-secondary dark:hover:text-secondary-fixed transition-colors" href="#">Pinterest</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-secondary dark:hover:text-secondary-fixed transition-colors" href="#">TikTok</a>
+</div>
+</div>
+<div class="border-t border-outline-variant px-container-margin py-6 w-full max-w-[1440px] mx-auto flex justify-between items-center flex-wrap gap-4">
+<span class="font-body-md text-body-md text-on-surface-variant">© 2024 Papaya Jewellery House. All rights reserved.</span>
+<div class="flex gap-2">
+<span class="material-symbols-outlined text-outline" style="font-variation-settings: 'FILL' 0;">credit_card</span>
+<span class="material-symbols-outlined text-outline" style="font-variation-settings: 'FILL' 0;">payments</span>
+</div>
+</div>
+</footer>
+
+
+</body></html>

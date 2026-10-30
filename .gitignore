@@ -1,0 +1,21 @@
+# dependencies
+node_modules/
+
+# next.js build output
+.next/
+out/
+
+# real env values stay local; .env.example is committed
+.env*.local
+
+# local tool settings
+.claude/settings.local.json
+
+# test and tooling output
+coverage/
+test-results/
+playwright-report/
+*.tsbuildinfo
+
+# netlify
+.netlify/
