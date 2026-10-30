@@ -18,16 +18,18 @@ export default function Home() {
           <h1 className="max-w-2xl font-headline text-headline-xl text-on-primary-container">
             {landingCopy.heroTitle}
           </h1>
-          <p className="max-w-xl font-body text-body-lg text-on-primary-container">{landingCopy.heroBody}</p>
+          <p className="w-fit max-w-xl text-balance rounded-3xl border border-outline-variant bg-surface-bright/70 px-5 py-3 font-body text-body-lg font-semibold text-on-surface backdrop-blur-sm">
+            {landingCopy.heroBody}
+          </p>
           <div>
-            <ButtonLink href="/shop" size="lg">
+            <ButtonLink href="/shop" size="lg" className="hover:shadow-hard-tertiary">
               Shop the collection
             </ButtonLink>
           </div>
         </Container>
       </section>
 
-      <div aria-hidden="true" className="citrus-band" />
+      <div aria-hidden="true" className="checker-band h-12 border-y-2 border-tertiary bg-surface-container-lowest" />
 
       <Container className="space-y-10 py-section-gap">
         <header className="space-y-3 text-center">
@@ -36,7 +38,7 @@ export default function Home() {
         </header>
         <Grid>
           {latest.map((product) => (
-            <div key={product.id} className="col-span-2 md:col-span-2 lg:col-span-3">
+            <div key={product.id} className="col-span-2 md:col-span-4 lg:col-span-3">
               <ProductCard product={product} href="/shop" />
             </div>
           ))}
@@ -45,28 +47,30 @@ export default function Home() {
 
       <Container className="pb-section-gap">
         <Grid>
-          <div className="col-span-4 flex flex-col justify-between gap-6 rounded-lg bg-secondary-fixed p-8 md:col-span-8 lg:col-span-6">
+          <div className="col-span-4 flex flex-col justify-between gap-6 rounded-lg border-[1.5px] border-tertiary bg-secondary-fixed p-8 md:col-span-8 lg:col-span-6">
             <div className="space-y-3">
               <h2 className="font-headline text-headline-lg text-on-secondary-fixed">{landingCopy.amalfiTitle}</h2>
               <p className="font-body text-body-lg text-on-secondary-fixed">{landingCopy.amalfiBody}</p>
             </div>
             <div>
-              <ButtonLink href="/collections/the-amalfi-edit" variant="outlined">
+              <ButtonLink href="/collections/the-amalfi-edit" variant="outlined" className="hover:shadow-hard-tertiary">
                 Explore the edit
               </ButtonLink>
             </div>
           </div>
 
-          <div className="col-span-4 flex flex-col gap-4 rounded-lg bg-tertiary-fixed p-6 md:col-span-4 lg:col-span-3">
-            <span className="font-label text-label-md text-on-tertiary-fixed-variant">Best seller</span>
+          <div className="col-span-4 flex flex-col gap-4 rounded-lg border-[1.5px] border-tertiary bg-primary-container p-6 md:col-span-4 lg:col-span-3">
+            <span className="font-label text-label-md uppercase tracking-wider text-on-primary-container">Best seller</span>
             <ProductCard product={bestSeller} href="/shop" />
           </div>
 
-          <div className="col-span-4 flex flex-col justify-between gap-6 rounded-lg bg-surface-container-high p-6 md:col-span-4 lg:col-span-3">
-            <Icon name="diamond" className="text-[40px] text-tertiary" />
+          <div className="col-span-4 flex flex-col justify-between gap-6 rounded-lg border-[1.5px] border-tertiary bg-tertiary-fixed-dim p-6 md:col-span-4 lg:col-span-3">
+            <span className="flex size-16 items-center justify-center rounded-full border-[1.5px] border-tertiary bg-surface-container-lowest">
+              <Icon name="diamond" className="text-[32px] text-tertiary" />
+            </span>
             <div className="space-y-2">
               <h2 className="font-headline text-headline-md text-on-surface">{landingCopy.makingTitle}</h2>
-              <p className="font-body text-body-md text-on-surface-variant">{landingCopy.makingBody}</p>
+              <p className="font-body text-body-md text-on-surface">{landingCopy.makingBody}</p>
             </div>
             <div>
               <ButtonLink href="/pages/sustainability" variant="outlined">
@@ -77,12 +81,17 @@ export default function Home() {
         </Grid>
       </Container>
 
-      <section className="bg-primary-fixed/40 py-section-gap">
-        <Container className="mx-auto max-w-3xl space-y-6 text-center">
-          <h2 className="font-headline text-headline-lg text-on-surface">{landingCopy.newsletterTitle}</h2>
-          <p className="font-body text-body-lg text-on-surface-variant">{landingCopy.newsletterBody}</p>
-          <div className="mx-auto max-w-md">
-            <NewsletterForm />
+      <section className="polka-dots border-y-2 border-tertiary bg-primary-fixed/25 py-section-gap">
+        <Container>
+          <div className="mx-auto max-w-3xl rounded-lg border-[1.5px] border-tertiary bg-surface-container-lowest/90 p-8 text-center shadow-hard-secondary backdrop-blur-md md:p-12">
+            <Icon name="wb_sunny" filled className="mb-4 text-[40px] text-primary-container" />
+            <h2 className="font-headline text-headline-md text-on-surface">{landingCopy.newsletterTitle}</h2>
+            <p className="mx-auto mb-8 mt-3 max-w-md font-body text-body-md text-on-surface-variant">
+              {landingCopy.newsletterBody}
+            </p>
+            <div className="mx-auto max-w-md">
+              <NewsletterForm />
+            </div>
           </div>
         </Container>
       </section>

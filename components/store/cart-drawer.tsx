@@ -71,7 +71,7 @@ export function CartDrawer({ cart }: { cart: Cart | null }) {
           </div>
 
           {cart && count > 0 && (
-            <div className="flex shrink-0 flex-col gap-4 border-t border-outline-variant/40 bg-surface-container-low p-margin-mobile">
+            <div className="flex max-h-[55dvh] shrink-0 flex-col gap-4 overflow-y-auto border-t border-outline-variant/40 bg-surface-container-low p-margin-mobile">
               <CartSummary cart={cart} />
               <Link href="/cart" onClick={close} className="link-underline self-center font-label text-label-md text-secondary">
                 View full bag

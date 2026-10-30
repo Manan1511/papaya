@@ -69,7 +69,7 @@ export function SiteFooter({ socials = [] }: { socials?: SocialLink[] }) {
       <Container className="grid gap-10 py-12 md:grid-cols-5">
         <div className="col-span-2 flex flex-col gap-4 md:col-span-1">
           <Image
-            src="/brand/papaya-logo.jpg"
+            src="/brand/papaya-logo.png"
             alt="Papaya"
             width={865}
             height={263}

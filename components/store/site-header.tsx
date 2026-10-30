@@ -19,24 +19,24 @@ const navLinks = [
 export function SiteHeader({ cart }: { cart: Cart | null }) {
   return (
     <header className="sticky top-0 z-50 border-b border-outline-variant/30 bg-surface/80 backdrop-blur-xl">
-      <Container className="flex h-16 items-center justify-between gap-4 md:h-20">
+      <Container className="flex h-16 items-center justify-between gap-2 min-[360px]:gap-4 md:h-20">
         <Link href="/" aria-label="Papaya home" className="shrink-0">
           <Image
-            src="/brand/papaya-logo.jpg"
+            src="/brand/papaya-logo.png"
             alt=""
             width={865}
             height={263}
             priority
-            className="h-8 w-auto mix-blend-multiply md:h-10"
+            className="h-7 w-auto mix-blend-multiply min-[360px]:h-8 md:h-10"
           />
         </Link>
 
-        <nav aria-label="Main" className="hidden items-center gap-8 font-label text-label-md md:flex">
+        <nav aria-label="Main" className="hidden items-center gap-8 font-label text-label-md lg:flex">
           {navLinks.map((link) => (
             <Link
               key={link.href}
               href={link.href}
-              className="link-underline text-on-surface-variant transition-colors duration-200 hover:text-secondary"
+              className="link-underline whitespace-nowrap text-on-surface-variant transition-colors duration-200 hover:text-secondary"
             >
               {link.label}
             </Link>

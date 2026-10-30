@@ -56,7 +56,7 @@ export default async function CollectionPage({
       ) : (
         <Grid>
           {nodes.map((product) => (
-            <div key={product.id} className="col-span-2 md:col-span-2 lg:col-span-3">
+            <div key={product.id} className="col-span-2 md:col-span-4 lg:col-span-3">
               <ProductCard product={product} />
             </div>
           ))}

@@ -20,7 +20,7 @@ export function MobileNav({ links }: { links: NavLink[] }) {
         aria-label="Menu"
         aria-haspopup="dialog"
         onClick={() => dialogRef.current?.showModal()}
-        className={cx(iconButtonClass(), "md:hidden")}
+        className={cx(iconButtonClass(), "lg:hidden")}
       >
         <Icon name="menu" />
       </button>

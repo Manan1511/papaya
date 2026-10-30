@@ -17,17 +17,29 @@ export default function StoryPage() {
             <div>
               <ButtonLink href="#timeline" variant="secondary">
                 {storyCopy.cta}
+                <Icon name="arrow_downward" className="text-[18px]" />
               </ButtonLink>
             </div>
           </div>
-          <div className="flex items-center justify-center rounded-lg bg-gradient-to-br from-primary-container via-tertiary-fixed to-secondary-fixed p-10">
-            <Image
-              src="/brand/papaya-logo.jpg"
-              alt="Papaya"
-              width={865}
-              height={263}
-              className="h-auto w-full max-w-sm mix-blend-multiply"
-            />
+          <div className="relative mt-lg md:mt-0">
+            <div className="rotate-2 rounded-lg border border-white/40 bg-white/70 p-2 shadow-sm backdrop-blur-lg transition-transform duration-500 hover:rotate-0">
+              <div className="flex items-center justify-center rounded-md bg-gradient-to-br from-primary-container via-tertiary-fixed to-secondary-fixed p-10">
+                <Image
+                  src="/brand/papaya-logo.png"
+                  alt="Papaya"
+                  width={865}
+                  height={263}
+                  className="h-auto w-full max-w-sm mix-blend-multiply"
+                />
+              </div>
+            </div>
+            {/* A sun sticker rather than the Stitch "Est." text: the story copy doesn't publish unchecked dates. */}
+            <span
+              aria-hidden="true"
+              className="absolute -bottom-6 -left-6 flex size-16 -rotate-12 items-center justify-center rounded-full bg-tertiary-fixed text-on-tertiary-fixed-variant shadow-sm"
+            >
+              <Icon name="wb_sunny" filled className="text-[32px]" />
+            </span>
           </div>
         </Container>
       </section>

@@ -120,6 +120,8 @@ const config = {
         "ambient-primary": "0 10px 25px -5px rgba(255, 140, 0, 0.15), 0 8px 10px -6px rgba(255, 140, 0, 0.1)",
         "ambient-secondary": "0 10px 25px -5px rgba(0, 89, 187, 0.15), 0 8px 10px -6px rgba(0, 89, 187, 0.1)",
         cta: "0 8px 20px -4px rgba(144, 77, 0, 0.4)",
+        "hard-secondary": "8px 8px 0px 0px #0059bb",
+        "hard-tertiary": "4px 4px 0px 0px #ffe16d",
       },
     },
   },

@@ -34,7 +34,7 @@ export default async function SearchPage({
       {results && results.nodes.length > 0 && (
         <Grid>
           {results.nodes.map((product) => (
-            <div key={product.id} className="col-span-2 md:col-span-2 lg:col-span-3">
+            <div key={product.id} className="col-span-2 md:col-span-4 lg:col-span-3">
               <ProductCard product={product} />
             </div>
           ))}

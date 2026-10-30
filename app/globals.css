@@ -72,14 +72,19 @@ dialog[open]::backdrop {
   }
 }
 
-/* Citrus band: the board's alternating tiles, in place of the retro checker. */
-.citrus-band {
-  height: 12px;
-  background-image: repeating-linear-gradient(
-    90deg,
-    theme('colors.primary-container') 0 24px,
-    theme('colors.tertiary-fixed') 24px 48px
-  );
+/* Checker band from the landing page: melon squares on white, drawn as a conic gradient. */
+.checker-band {
+  background-image: repeating-conic-gradient(theme('colors.primary-container') 0% 25%, transparent 0% 50%);
+  background-size: 40px 40px;
+}
+
+/* Polka dots from the landing newsletter: chili and piscine dots, offset by half a tile. */
+.polka-dots {
+  background-image:
+    radial-gradient(theme('colors.primary') 10%, transparent 11%),
+    radial-gradient(theme('colors.secondary-fixed-dim') 10%, transparent 11%);
+  background-size: 60px 60px;
+  background-position: 0 0, 30px 30px;
 }
 
 @layer base {
