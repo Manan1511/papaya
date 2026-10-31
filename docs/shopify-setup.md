@@ -46,7 +46,7 @@ Expected output: `{"data":{"shop":{"name":"..."}}}`
 ### 3. Admin API app (proposed: Dev Dashboard)
 
 1. In the Partner dashboard, in the same organization as the development store, create a Dev Dashboard app.
-2. Request these access scopes: `read_products`, `read_orders`, `read_customers`, `write_customers`, `read_metaobjects`, `write_metaobjects`, `read_metaobject_definitions`, `write_metaobject_definitions`, `read_files`, `write_files`. If a call later fails and the error names another scope, add it then.
+2. Request these access scopes: `read_products`, `write_products`, `read_publications`, `write_publications`, `read_orders`, `read_customers`, `write_customers`, `read_metaobjects`, `write_metaobjects`, `read_metaobject_definitions`, `write_metaobject_definitions`, `read_files`, `write_files`. `write_products` and `write_publications` are for collections and Headless publishing. If a call later fails and the error names another scope, add it then.
 3. Install the app on the development store.
 4. Copy the client ID to `SHOPIFY_CLIENT_ID` and the client secret to `SHOPIFY_CLIENT_SECRET`. The secret stays on the server.
 
@@ -59,15 +59,15 @@ Fallback, only if the Dev Dashboard path is blocked: create a legacy custom app 
 
 ### 5. Collections
 
-Create these manual collections. Each title gives the handle, lowercased and hyphenated:
+`scripts/setup-catalog.mjs` creates these manual collections and publishes them to Headless. Each title gives the handle, lowercased and hyphenated:
 
 Necklaces, Earrings, Rings, Bracelets, Anklets, New Arrivals, Best Sellers, The Amalfi Edit
 
-Also create an automated collection titled All products that includes every product. Its handle must be `all`, because the shop page reads it.
+It also creates an automated collection titled All products, with handle `all` because the shop page reads it. Its rule is price above zero, so every priced product joins it.
 
 ### 6. Product metafields
 
-Create these under Settings, then Custom data, then Products. Labels may differ.
+`scripts/setup-catalog.mjs` creates the two metafields below, readable by the storefront.
 
 - `papaya.care_tips`: Multi-line text. The storefront shows it as written.
 - `papaya.complete_the_look`: Product, list.
@@ -75,7 +75,7 @@ Create these under Settings, then Custom data, then Products. Labels may differ.
 
 ### 7. Metaobject definitions
 
-Not manual. `scripts/setup-metaobjects.mjs` creates them once Step 3 is done. The script is idempotent, and storefront access is set to none.
+Not manual. `scripts/setup-metaobjects.mjs` creates them once Step 3 is done. The script is idempotent, and storefront access is set to none. Types use the app's `$app:` namespace, because Shopify rejects plain names such as `cms_page` as reserved.
 
 ### 8. Placeholder products
 
