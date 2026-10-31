@@ -73,10 +73,13 @@ const CREATE_METAFIELD_DEFINITION = `mutation ($definition: MetafieldDefinitionI
 const { admin } = await connectAdmin();
 
 const { publications } = await admin(PUBLICATIONS);
-const headless = publications.nodes.find((publication) => publication.name === "Headless");
-if (!headless) {
-  throw new Error(`No Headless publication. Found: ${publications.nodes.map((p) => p.name).join(", ")}`);
+// The channel is named after the store, e.g. "Papaya Headless".
+const headlessMatches = publications.nodes.filter((publication) => /headless/i.test(publication.name));
+if (headlessMatches.length !== 1) {
+  const names = publications.nodes.map((publication) => publication.name).join(", ");
+  throw new Error(`Expected one Headless publication, found ${headlessMatches.length}. Publications: ${names}`);
 }
+const [headless] = headlessMatches;
 
 const { collections } = await admin(COLLECTIONS, { publication: headless.id });
 const byHandle = new Map(collections.nodes.map((collection) => [collection.handle, collection]));
