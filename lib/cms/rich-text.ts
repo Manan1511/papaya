@@ -17,19 +17,19 @@ export function isSafeHref(href: string): boolean {
   }
 }
 
-type Mark = { type: "bold" } | { type: "italic" } | { type: "link"; attrs: { href: string; target?: "_blank" | null } };
+export type Mark = { type: "bold" } | { type: "italic" } | { type: "link"; attrs: { href: string; target?: "_blank" | null } };
 
-type Inline = { type: "text"; text: string; marks?: Mark[] } | { type: "hardBreak" };
+export type Inline = { type: "text"; text: string; marks?: Mark[] } | { type: "hardBreak" };
 
-type ListItem = { type: "listItem"; content: Block[] };
+export type ListItem = { type: "listItem"; content: Block[] };
 
-type TableCell = {
+export type TableCell = {
   type: "tableCell" | "tableHeader";
   attrs?: { colspan?: number; rowspan?: number };
   content: Block[];
 };
 
-type TableRow = { type: "tableRow"; content: TableCell[] };
+export type TableRow = { type: "tableRow"; content: TableCell[] };
 
 export type Block =
   | { type: "paragraph"; content?: Inline[] }
