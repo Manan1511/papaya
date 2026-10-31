@@ -1,39 +1,32 @@
-import { requireAdmin } from "../../../../lib/auth/session";
 import { notFound } from "next/navigation";
 import { AdminShell } from "../../../../components/admin/shell";
-import { Field, Panel, fieldClass } from "../../../../components/admin/ui";
-import { Button } from "../../../../components/ui/button";
-import { Input } from "../../../../components/ui/input";
-import { infoPages, policies } from "../../../../lib/content/pages";
+import { requireAdmin } from "../../../../lib/auth/session";
+import { entryIdFromUrl, getEntry, hasUnpublishedChanges, NotFoundError } from "../../../../lib/cms/entries";
+import { pageKind } from "../../../../lib/cms/model";
+import { PageForm } from "../page-form";
 
 export default async function AdminPageEditor({ params }: { params: Promise<{ id: string }> }) {
   await requireAdmin();
-  const { id } = await params;
-  const page = [...infoPages, ...policies].find((item) => item.slug === id);
-  if (!page) notFound();
+  const entryId = entryIdFromUrl((await params).id);
+  if (!entryId) notFound();
+
+  const entry = await getEntry(pageKind, entryId).catch((error: unknown) => {
+    if (error instanceof NotFoundError) notFound();
+    throw error;
+  });
+
+  const changed = entry.published !== null && hasUnpublishedChanges(entry);
+  const status = entry.published
+    ? `Live at /pages/${entry.slug}.${changed ? " Changes since the last publish are not live yet." : ""}`
+    : "Not public yet. Publish to show it on the site.";
 
   return (
-    <AdminShell title={`Edit ${page.title}`}>
-      <Panel title="Page text">
-        <Field label="Title">
-          <Input defaultValue={page.title} disabled />
-        </Field>
-        <Field label="Introduction">
-          <textarea rows={3} defaultValue={page.intro} disabled className={fieldClass} />
-        </Field>
-        {page.sections.map((section) => (
-          <Field key={section.heading} label={section.heading}>
-            <textarea rows={4} defaultValue={section.paragraphs.join("\n\n")} disabled className={fieldClass} />
-          </Field>
-        ))}
-      </Panel>
-
-      <div className="flex flex-wrap gap-3">
-        <Button variant="secondary" disabled>
-          Save draft
-        </Button>
-        <Button disabled>Publish</Button>
-      </div>
+    <AdminShell title={entry.draft.title}>
+      <p className="font-body text-body-md text-on-surface-variant">{status}</p>
+      <PageForm
+        entry={{ id: entry.id, updatedAt: entry.updatedAt, live: entry.published !== null }}
+        initial={{ slug: entry.slug, ...entry.draft }}
+      />
     </AdminShell>
   );
 }

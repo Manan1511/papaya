@@ -1,47 +1,18 @@
-import { requireAdmin } from "../../../lib/auth/session";
 import { AdminShell } from "../../../components/admin/shell";
-import { Field, Panel, fieldClass } from "../../../components/admin/ui";
-import { Button } from "../../../components/ui/button";
-import { Input } from "../../../components/ui/input";
-import { adminContentSections } from "../../../lib/content/admin";
-import { landingCopy } from "../../../lib/content/landing";
+import { Panel } from "../../../components/admin/ui";
+import { requireAdmin } from "../../../lib/auth/session";
 
 export default async function AdminContent() {
   await requireAdmin();
+
   return (
     <AdminShell title="Content">
-      <Panel title="Homepage sections">
-        <ul className="divide-y divide-outline-variant/40">
-          {adminContentSections.map((section) => (
-            <li key={section.id} className="flex items-center justify-between gap-4 py-3">
-              <span className="font-body text-body-md text-on-surface">{section.title}</span>
-              <label className="flex items-center gap-2 font-label text-label-md text-on-surface-variant">
-                <input type="checkbox" defaultChecked={section.visible} disabled className="size-4 accent-primary" />
-                Visible
-              </label>
-            </li>
-          ))}
-        </ul>
+      <Panel title="Homepage">
+        <p className="font-body text-body-md text-on-surface-variant">
+          The homepage copy and sections are still set in the code. They move into this editor with the homepage work.
+          Pages and diary posts are already editable under Pages and Diary.
+        </p>
       </Panel>
-
-      <Panel title="Hero">
-        <Field label="Heading">
-          <Input defaultValue={landingCopy.heroTitle} disabled />
-        </Field>
-        <Field label="Supporting text">
-          <textarea rows={3} defaultValue={landingCopy.heroBody} disabled className={fieldClass} />
-        </Field>
-      </Panel>
-
-      <div className="flex flex-wrap gap-3">
-        <Button variant="secondary" disabled>
-          Save draft
-        </Button>
-        <Button disabled>Publish</Button>
-        <Button variant="outlined" disabled>
-          Discard changes
-        </Button>
-      </div>
     </AdminShell>
   );
 }

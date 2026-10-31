@@ -16,3 +16,14 @@ export function formatPrice({ amount, currencyCode }: Money): string {
   }
   return formatter.format(Number(amount));
 }
+
+const dateTime = new Intl.DateTimeFormat("en-IN", {
+  dateStyle: "medium",
+  timeStyle: "short",
+  timeZone: "Asia/Kolkata",
+});
+
+// Shown in Indian time whatever timezone the server runs in.
+export function formatDateTime(iso: string): string {
+  return dateTime.format(new Date(iso));
+}

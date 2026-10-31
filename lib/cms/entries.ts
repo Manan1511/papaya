@@ -345,3 +345,21 @@ export async function getPublished<T>(kind: Kind<T>, slug: string): Promise<Publ
   const content = parsePublished(node.handle, node.published?.value ?? null, kind);
   return content === undefined ? undefined : { slug: node.handle, content };
 }
+
+// True when the live copy is missing or differs from the draft, so the editor can show the
+// difference before anyone publishes.
+export function hasUnpublishedChanges<T>(entry: StoredEntry<T>): boolean {
+  return entry.published === null || JSON.stringify(entry.draft) !== JSON.stringify(entry.published);
+}
+
+const METAOBJECT_ID = /^gid:\/\/shopify\/Metaobject\/(\d+)$/;
+
+// Admin URLs carry only the numeric part of the Shopify ID, so they have no slashes or colons.
+export function entryUrlId(id: string): string {
+  return METAOBJECT_ID.exec(id)?.[1] ?? id;
+}
+
+// The reverse of entryUrlId. Anything that isn't a plain number is not an entry.
+export function entryIdFromUrl(urlId: string): string | undefined {
+  return /^\d+$/.test(urlId) ? `gid://shopify/Metaobject/${urlId}` : undefined;
+}
