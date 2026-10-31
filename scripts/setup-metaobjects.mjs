@@ -3,14 +3,7 @@
 //
 // Run: node --env-file=.env.local scripts/setup-metaobjects.mjs
 
-const STORE = process.env.SHOPIFY_STORE_DOMAIN;
-const CLIENT_ID = process.env.SHOPIFY_CLIENT_ID;
-const CLIENT_SECRET = process.env.SHOPIFY_CLIENT_SECRET;
-const API_VERSION = process.env.SHOPIFY_API_VERSION ?? "2026-04";
-
-if (!STORE || !CLIENT_ID || !CLIENT_SECRET) {
-  throw new Error("Set SHOPIFY_STORE_DOMAIN, SHOPIFY_CLIENT_ID and SHOPIFY_CLIENT_SECRET in .env.local");
-}
+import { connectAdmin } from "./shopify-admin.mjs";
 
 const field = (key, name, type, required = false) => ({ key, name, type, required });
 
@@ -23,11 +16,11 @@ const draftable = [
 ];
 
 const DEFINITIONS = [
-  { type: "cms_page", name: "CMS page", fields: draftable },
+  { type: "$app:cms_page", name: "CMS page", fields: draftable },
   // Title, category, cover, excerpt, body, featured and published_at live inside draft/published.
-  { type: "diary_post", name: "Diary post", fields: draftable },
+  { type: "$app:diary_post", name: "Diary post", fields: draftable },
   {
-    type: "review",
+    type: "$app:review",
     name: "Review",
     fields: [
       field("product", "Product", "product_reference", true),
@@ -43,7 +36,7 @@ const DEFINITIONS = [
     ],
   },
   {
-    type: "contact_message",
+    type: "$app:contact_message",
     name: "Contact message",
     fields: [
       field("name", "Name", "single_line_text_field", true),
@@ -67,42 +60,16 @@ const CREATE = `mutation ($definition: MetaobjectDefinitionCreateInput!) {
   }
 }`;
 
-async function accessToken() {
-  const res = await fetch(`https://${STORE}/admin/oauth/access_token`, {
-    method: "POST",
-    headers: { "Content-Type": "application/x-www-form-urlencoded" },
-    body: new URLSearchParams({
-      client_id: CLIENT_ID,
-      client_secret: CLIENT_SECRET,
-      grant_type: "client_credentials",
-    }),
-  });
-  if (!res.ok) throw new Error(`Token request failed (${res.status}): ${await res.text()}`);
-  return (await res.json()).access_token;
-}
-
-async function admin(token, query, variables) {
-  const res = await fetch(`https://${STORE}/admin/api/${API_VERSION}/graphql.json`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json", "X-Shopify-Access-Token": token },
-    body: JSON.stringify({ query, variables }),
-  });
-  if (!res.ok) throw new Error(`Admin API ${res.status}: ${await res.text()}`);
-  const { data, errors } = await res.json();
-  if (errors) throw new Error(`GraphQL: ${JSON.stringify(errors)}`);
-  return data;
-}
-
-const token = await accessToken();
+const { admin } = await connectAdmin();
 
 for (const def of DEFINITIONS) {
-  const { metaobjectDefinitionByType } = await admin(token, EXISTING, { type: def.type });
+  const { metaobjectDefinitionByType } = await admin(EXISTING, { type: def.type });
   if (metaobjectDefinitionByType) {
     console.log(`skip  ${def.type} (exists)`);
     continue;
   }
 
-  const { metaobjectDefinitionCreate } = await admin(token, CREATE, {
+  const { metaobjectDefinitionCreate } = await admin(CREATE, {
     definition: {
       type: def.type,
       name: def.name,
