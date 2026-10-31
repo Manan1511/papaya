@@ -12,6 +12,22 @@ describe("parseEnv", () => {
     });
   });
 
+  it("treats a blank optional variable as unset", () => {
+    expect(
+      parseEnv({ SHOPIFY_STORE_DOMAIN: "papaya-dev.myshopify.com", SHOPIFY_WEBHOOK_SECRET: "", ...token }),
+    ).toEqual({
+      SHOPIFY_STORE_DOMAIN: "papaya-dev.myshopify.com",
+      SHOPIFY_API_VERSION: "2026-04",
+      SHOPIFY_STOREFRONT_PRIVATE_TOKEN: "test-token",
+    });
+  });
+
+  it("still names a blank required variable", () => {
+    expect(() =>
+      parseEnv({ SHOPIFY_STORE_DOMAIN: "papaya-dev.myshopify.com", SHOPIFY_STOREFRONT_PRIVATE_TOKEN: "" }),
+    ).toThrow("Invalid environment: SHOPIFY_STOREFRONT_PRIVATE_TOKEN");
+  });
+
   it("names the missing variables", () => {
     expect(() => parseEnv({})).toThrow(
       "Invalid environment: SHOPIFY_STORE_DOMAIN, SHOPIFY_STOREFRONT_PRIVATE_TOKEN",
