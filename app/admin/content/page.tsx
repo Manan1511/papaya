@@ -1,4 +1,4 @@
-import { requireDevPreview } from "../../../lib/content/dev";
+import { requireAdmin } from "../../../lib/auth/session";
 import { AdminShell } from "../../../components/admin/shell";
 import { Field, Panel, fieldClass } from "../../../components/admin/ui";
 import { Button } from "../../../components/ui/button";
@@ -6,8 +6,8 @@ import { Input } from "../../../components/ui/input";
 import { adminContentSections } from "../../../lib/content/admin";
 import { landingCopy } from "../../../lib/content/landing";
 
-export default function AdminContent() {
-  requireDevPreview();
+export default async function AdminContent() {
+  await requireAdmin();
   return (
     <AdminShell title="Content">
       <Panel title="Homepage sections">

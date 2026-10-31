@@ -1,11 +1,11 @@
-import { requireDevPreview } from "../../../lib/content/dev";
+import { requireAdmin } from "../../../lib/auth/session";
 import { AdminShell } from "../../../components/admin/shell";
 import { Panel, type Status, StatusChip } from "../../../components/admin/ui";
 import { Button } from "../../../components/ui/button";
 import { adminReviews } from "../../../lib/content/admin";
 
-export default function AdminReviews() {
-  requireDevPreview();
+export default async function AdminReviews() {
+  await requireAdmin();
   return (
     <AdminShell title="Reviews">
       <Panel title="Moderation queue">

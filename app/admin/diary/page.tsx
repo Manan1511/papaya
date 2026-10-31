@@ -1,12 +1,12 @@
-import { requireDevPreview } from "../../../lib/content/dev";
+import { requireAdmin } from "../../../lib/auth/session";
 import Link from "next/link";
 import { AdminShell } from "../../../components/admin/shell";
 import { Panel, StatusChip } from "../../../components/admin/ui";
 import { Button } from "../../../components/ui/button";
 import { diaryPosts } from "../../../lib/content/diary";
 
-export default function AdminDiary() {
-  requireDevPreview();
+export default async function AdminDiary() {
+  await requireAdmin();
   return (
     <AdminShell title="Diary">
       <div className="flex justify-end">

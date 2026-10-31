@@ -1,4 +1,4 @@
-import { requireDevPreview } from "../../../lib/content/dev";
+import { requireAdmin } from "../../../lib/auth/session";
 import Link from "next/link";
 import { AdminShell } from "../../../components/admin/shell";
 import { Panel, StatusChip } from "../../../components/admin/ui";
@@ -10,8 +10,8 @@ const rows = [
   ...policies.map((page) => ({ page, status: "draft" as const })),
 ];
 
-export default function AdminPages() {
-  requireDevPreview();
+export default async function AdminPages() {
+  await requireAdmin();
   return (
     <AdminShell title="Pages">
       <Panel title="Information and legal pages">

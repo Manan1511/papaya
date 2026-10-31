@@ -6,8 +6,8 @@ export const metadata: Metadata = {
   robots: { index: false, follow: false },
 };
 
-// Each admin page calls requireDevPreview() itself. A notFound() in this layout doesn't stop the
-// page's output from reaching a prerendered 404, so the gate sits where the content is rendered.
+// Each admin page checks the session itself. Layouts don't re-run on every navigation, so the check
+// sits next to the content it protects.
 export default function AdminLayout({ children }: { children: ReactNode }) {
   return children;
 }

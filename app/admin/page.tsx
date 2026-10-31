@@ -1,11 +1,11 @@
-import { requireDevPreview } from "../../lib/content/dev";
+import { requireAdmin } from "../../lib/auth/session";
 import { AdminShell } from "../../components/admin/shell";
 import { Panel, StatCard } from "../../components/admin/ui";
 import { Grid } from "../../components/ui/grid";
 import { adminActivity, adminStats } from "../../lib/content/admin";
 
-export default function AdminDashboard() {
-  requireDevPreview();
+export default async function AdminDashboard() {
+  await requireAdmin();
   return (
     <AdminShell title="Dashboard">
       <Grid>

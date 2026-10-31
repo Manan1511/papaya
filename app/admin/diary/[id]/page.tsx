@@ -1,4 +1,4 @@
-import { requireDevPreview } from "../../../../lib/content/dev";
+import { requireAdmin } from "../../../../lib/auth/session";
 import { notFound } from "next/navigation";
 import { AdminShell } from "../../../../components/admin/shell";
 import { Field, Panel, fieldClass } from "../../../../components/admin/ui";
@@ -7,7 +7,7 @@ import { Input } from "../../../../components/ui/input";
 import { diaryCategories, getDiaryPost } from "../../../../lib/content/diary";
 
 export default async function AdminDiaryEditor({ params }: { params: Promise<{ id: string }> }) {
-  requireDevPreview();
+  await requireAdmin();
   const { id } = await params;
   const post = getDiaryPost(id);
   if (!post) notFound();

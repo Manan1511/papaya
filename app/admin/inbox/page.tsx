@@ -1,11 +1,11 @@
-import { requireDevPreview } from "../../../lib/content/dev";
+import { requireAdmin } from "../../../lib/auth/session";
 import { AdminShell } from "../../../components/admin/shell";
 import { Panel, StatusChip } from "../../../components/admin/ui";
 import { Button } from "../../../components/ui/button";
 import { adminMessages } from "../../../lib/content/admin";
 
-export default function AdminInbox() {
-  requireDevPreview();
+export default async function AdminInbox() {
+  await requireAdmin();
   return (
     <AdminShell title="Inbox">
       {adminMessages.map((message) => (
