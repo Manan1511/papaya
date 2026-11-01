@@ -183,8 +183,9 @@ dialog[open]::backdrop {
   }
 
   .rich-text-editor .ProseMirror blockquote {
-    border-left: 4px solid theme("colors.tertiary");
-    padding-left: 1.5rem;
+    border-radius: 0.5rem;
+    background: theme("colors.surface-container-low");
+    padding: 1rem 1.5rem;
     font-style: italic;
     color: theme("colors.on-surface-variant");
   }

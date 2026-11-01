@@ -54,7 +54,7 @@ function renderBlock(block: Block, index: number): ReactNode {
       return (
         <blockquote
           key={index}
-          className="space-y-4 border-l-4 border-tertiary pl-6 font-body text-body-lg italic text-on-surface-variant"
+          className="space-y-4 rounded-lg bg-surface-container-low px-6 py-4 font-body text-body-lg italic text-on-surface-variant"
         >
           {block.content.map(renderBlock)}
         </blockquote>
