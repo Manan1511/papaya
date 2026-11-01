@@ -48,7 +48,7 @@ export default function Home() {
 
       <Container className="pb-section-gap">
         <Grid>
-          <div className="col-span-4 flex flex-col justify-between gap-6 rounded-lg border-[1.5px] border-tertiary bg-secondary-fixed p-8 md:col-span-8 lg:col-span-6">
+          <div className="col-span-4 flex flex-col justify-between gap-6 rounded-lg border-[1.5px] border-tertiary bg-secondary-fixed p-8 shadow-hard-secondary md:col-span-8 lg:col-span-6">
             <div className="space-y-3">
               <h2 className="font-headline text-headline-lg text-on-secondary-fixed">{landingCopy.amalfiTitle}</h2>
               <p className="font-body text-body-lg text-on-secondary-fixed">{landingCopy.amalfiBody}</p>
@@ -60,12 +60,12 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="col-span-4 flex flex-col gap-4 rounded-lg border-[1.5px] border-tertiary bg-primary-container p-6 md:col-span-4 lg:col-span-3">
-            <span className="font-label text-label-md uppercase tracking-wider text-on-primary-container">Best seller</span>
+          <div className="col-span-4 flex flex-col gap-4 md:col-span-4 lg:col-span-3">
+            <h2 className="font-headline text-headline-md text-on-surface">Best seller</h2>
             <ProductCard product={bestSeller} href="/shop" />
           </div>
 
-          <div className="col-span-4 flex flex-col justify-between gap-6 rounded-lg border-[1.5px] border-tertiary bg-tertiary-fixed-dim p-6 md:col-span-4 lg:col-span-3">
+          <div className="col-span-4 flex flex-col justify-between gap-6 rounded-lg border-[1.5px] border-tertiary bg-tertiary-fixed-dim p-6 shadow-hard-secondary md:col-span-4 lg:col-span-3">
             <span className="flex size-16 items-center justify-center rounded-full border-[1.5px] border-tertiary bg-surface-container-lowest">
               <Icon name="diamond" className="text-[32px] text-tertiary" />
             </span>

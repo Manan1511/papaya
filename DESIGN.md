@@ -163,7 +163,7 @@ A committed palette: cream carries most of the page, maroon carries actions, sky
 ### Primary
 - **Chili Maroon** (#7a111d): primary buttons, section headings, active outlines. The only colour for primary action.
 - **Deep Maroon** (#5a0b15): the hover state of primary buttons.
-- **Sun Orange** (#f08a1a): badges and the best-seller tile. Dark brown text sits on it (#3d1f00).
+- **Sun Orange** (#f08a1a): badges only, such as New and Limited. Never a large block. Dark brown text sits on it (#3d1f00).
 
 ### Secondary
 - **Marine Navy** (#04204a): body and headline text, borders, the navy stripe band, and the card's hard edge.
@@ -205,14 +205,15 @@ Mobile uses a 4-column grid with 16px margins. Tablet uses 8 columns with 32px m
 
 ## Elevation & Depth
 
-Surfaces are flat. Depth comes from tonal change between cream, card white, and sand. The primary button carries one soft maroon shadow; nothing else casts a shadow at rest.
+Surfaces are flat. Depth comes from tonal change between cream, card white, and sand. The primary button carries one soft maroon shadow. Feature tiles carry the navy hard offset, as the reference card does; product cards stay flat.
 
 ### Shadow Vocabulary
 - **CTA** (`box-shadow: 0 8px 20px -4px rgba(122, 17, 29, 0.35)`): the primary button only.
+- **Hard Secondary** (`box-shadow: 6px 6px 0px 0px #04204a`): the navy offset on feature tiles, as in the reference card.
 - **Hard Tertiary** (`box-shadow: 4px 4px 0px 0px #7a111d`): hover on outlined actions. Use sparingly.
 
 ### Named Rules
-**The Flat-By-Default Rule.** Surfaces are flat at rest. A shadow appears only as a response to a primary action or hover.
+**The Flat-By-Default Rule.** Surfaces are flat at rest. A shadow appears as a response to a primary action or hover, or as the navy offset on feature tiles.
 
 ## Shapes
 
@@ -228,9 +229,9 @@ Buttons and inputs use an 8px radius. Cards and panels use 16px. Pills are fully
 
 ### Cards / Containers
 - **Corner Style:** 16px radius for tiles and panels.
-- **Background:** card white on cream; sky tint or sun orange for editorial tiles.
-- **Shadow Strategy:** flat. See Elevation & Depth.
-- **Border:** 1.5px navy on editorial tiles.
+- **Background:** card white on cream; sky tint or sand for feature tiles.
+- **Shadow Strategy:** feature tiles carry the navy hard offset; product cards are flat. See Elevation & Depth.
+- **Border:** 1.5px navy on feature tiles and product cards.
 - **Internal Padding:** 24px.
 
 ### Inputs / Fields
@@ -259,3 +260,4 @@ Buttons and inputs use an 8px radius. Cards and panels use 16px. Pills are fully
 - **Don't** use the Citrus orange gradient hero or the checker band; both are retired.
 - **Don't** use blur or glass as decoration.
 - **Don't** introduce cool grey surfaces; the ground is cream.
+- **Don't** fill a large area with sun orange; it is for badges.

@@ -139,6 +139,11 @@
         "purpose": "Primary button only."
       },
       {
+        "name": "hard-secondary",
+        "value": "6px 6px 0px 0px #04204a",
+        "purpose": "The navy offset on feature tiles, as in the reference card."
+      },
+      {
         "name": "hard-tertiary",
         "value": "4px 4px 0px 0px #7a111d",
         "purpose": "Hover on outlined actions. Use sparingly."
@@ -192,9 +197,9 @@
       "name": "Editorial Card",
       "kind": "card",
       "refersTo": "card",
-      "description": "A tile on a sky or sun field, with navy edges and a headline.",
+      "description": "A feature tile on a sky field, with navy edges, the navy offset, and a headline.",
       "html": "<div class=\"ds-card\"><h3 class=\"ds-card-title\">The Amalfi Edit</h3><p class=\"ds-card-body\">Bold pieces designed for long lunches and late nights on the coast.</p></div>",
-      "css": ".ds-card{background:#d6e9f7;border:1.5px solid #04204a;border-radius:1rem;padding:24px;color:#04204a;font-family:\"Be Vietnam Pro\",sans-serif}.ds-card-title{margin:0 0 8px;font-family:\"Plus Jakarta Sans\",sans-serif;font-size:24px;font-weight:700;line-height:32px}.ds-card-body{margin:0;font-size:18px;line-height:28px}"
+      "css": ".ds-card{background:#d6e9f7;border:1.5px solid #04204a;border-radius:1rem;padding:24px;box-shadow:6px 6px 0 0 #04204a;color:#04204a;font-family:\"Be Vietnam Pro\",sans-serif}.ds-card-title{margin:0 0 8px;font-family:\"Plus Jakarta Sans\",sans-serif;font-size:24px;font-weight:700;line-height:32px}.ds-card-body{margin:0;font-size:18px;line-height:28px}"
     },
     {
       "name": "Header Pill",
@@ -241,7 +246,7 @@
       },
       {
         "name": "The Flat-By-Default Rule",
-        "body": "Surfaces are flat at rest. A shadow appears only as a response to a primary action or hover.",
+        "body": "Surfaces are flat at rest. A shadow appears as a response to a primary action or hover, or as the navy offset on feature tiles.",
         "section": "elevation"
       }
     ],
@@ -254,7 +259,8 @@
       "Don't put stripes, dots, or checkers behind body text or form fields.",
       "Don't use the Citrus orange gradient hero or the checker band; both are retired.",
       "Don't use blur or glass as decoration.",
-      "Don't introduce cool grey surfaces; the ground is cream."
+      "Don't introduce cool grey surfaces; the ground is cream.",
+      "Don't fill a large area with sun orange; it is for badges."
     ]
   }
 }
