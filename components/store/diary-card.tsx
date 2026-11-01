@@ -1,9 +1,28 @@
 import Link from "next/link";
-import type { DiaryPost } from "../../lib/content/diary";
+import { type PostContent, readingMinutes } from "../../lib/cms/model";
 import { Chip } from "../ui/chip";
 import { Icon } from "../ui/icon";
 
-export function DiaryCard({ post, large = false }: { post: DiaryPost; large?: boolean }) {
+export type DiaryCardPost = {
+  slug: string;
+  title: string;
+  category: PostContent["category"];
+  excerpt: string;
+  readMinutes: number;
+};
+
+// A card needs only the parts of a post that show in a grid.
+export function diaryCardPost(slug: string, content: PostContent): DiaryCardPost {
+  return {
+    slug,
+    title: content.title,
+    category: content.category,
+    excerpt: content.excerpt,
+    readMinutes: readingMinutes(content.body),
+  };
+}
+
+export function DiaryCard({ post, large = false }: { post: DiaryCardPost; large?: boolean }) {
   return (
     <Link
       href={`/diary/${post.slug}`}

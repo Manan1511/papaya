@@ -1,0 +1,157 @@
+[
+  {
+    "slug": "best-beach-clubs-amalfi",
+    "title": "The Best Beach Clubs in Amalfi",
+    "category": "Travel",
+    "excerpt": "Placeholder excerpt for the featured travel story.",
+    "featured": true,
+    "publishedOn": "2026-10-28",
+    "body": {
+      "type": "doc",
+      "content": [
+        {
+          "type": "paragraph",
+          "content": [
+            {
+              "type": "text",
+              "text": "Placeholder article: the Amalfi beach clubs story."
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "content": [
+            {
+              "type": "text",
+              "text": "Placeholder paragraph. Replace with the finished text."
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "slug": "style-your-riviera-chain",
+    "title": "5 Ways to Style Your Riviera Chain",
+    "category": "Style",
+    "excerpt": "Placeholder excerpt for the styling guide.",
+    "featured": false,
+    "publishedOn": "2026-10-21",
+    "body": {
+      "type": "doc",
+      "content": [
+        {
+          "type": "paragraph",
+          "content": [
+            {
+              "type": "text",
+              "text": "Placeholder article: five ways to wear the Riviera Chain."
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "content": [
+            {
+              "type": "text",
+              "text": "Placeholder paragraph. Replace with the finished text."
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "slug": "perfect-summer-spritz",
+    "title": "The Perfect Summer Spritz Recipe",
+    "category": "Lifestyle",
+    "excerpt": "Placeholder excerpt for the recipe post.",
+    "featured": false,
+    "publishedOn": "2026-10-14",
+    "body": {
+      "type": "doc",
+      "content": [
+        {
+          "type": "paragraph",
+          "content": [
+            {
+              "type": "text",
+              "text": "Placeholder article: a summer spritz recipe."
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "content": [
+            {
+              "type": "text",
+              "text": "Placeholder paragraph. Replace with the finished text."
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "slug": "color-theory-azure-citrus",
+    "title": "Color Theory: Azure & Citrus",
+    "category": "Style",
+    "excerpt": "Placeholder excerpt for the colour post.",
+    "featured": false,
+    "publishedOn": "2026-10-07",
+    "body": {
+      "type": "doc",
+      "content": [
+        {
+          "type": "paragraph",
+          "content": [
+            {
+              "type": "text",
+              "text": "Placeholder article: how the azure and citrus palette works together."
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "content": [
+            {
+              "type": "text",
+              "text": "Placeholder paragraph. Replace with the finished text."
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "slug": "packing-light-weekend",
+    "title": "Packing Light for the Weekend",
+    "category": "Travel",
+    "excerpt": "Placeholder excerpt for the packing guide.",
+    "featured": false,
+    "publishedOn": "2026-09-30",
+    "body": {
+      "type": "doc",
+      "content": [
+        {
+          "type": "paragraph",
+          "content": [
+            {
+              "type": "text",
+              "text": "Placeholder article: packing light for a short trip."
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "content": [
+            {
+              "type": "text",
+              "text": "Placeholder paragraph. Replace with the finished text."
+            }
+          ]
+        }
+      ]
+    }
+  }
+]

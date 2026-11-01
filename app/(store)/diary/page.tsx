@@ -1,8 +1,9 @@
 import Link from "next/link";
-import { DiaryCard } from "../../../components/store/diary-card";
+import { DiaryCard, diaryCardPost } from "../../../components/store/diary-card";
 import { Container } from "../../../components/ui/container";
 import { Grid } from "../../../components/ui/grid";
-import { diaryCategories, diaryPosts } from "../../../lib/content/diary";
+import { listPublished } from "../../../lib/cms/entries";
+import { diaryCategories, postKind } from "../../../lib/cms/model";
 import { firstParam } from "../../../lib/params";
 
 export const metadata = { title: "Diary" };
@@ -31,7 +32,16 @@ export default async function DiaryPage({
 }) {
   const requested = firstParam((await searchParams).category);
   const active = diaryCategories.find((category) => category === requested);
-  const posts = active ? diaryPosts.filter((post) => post.category === active) : diaryPosts;
+
+  // Featured posts lead, then the newest.
+  const posts = (await listPublished(postKind))
+    .filter((post) => !active || post.content.category === active)
+    .sort(
+      (a, b) =>
+        Number(b.content.featured) - Number(a.content.featured) ||
+        b.content.publishedOn.localeCompare(a.content.publishedOn),
+    )
+    .map((post) => diaryCardPost(post.slug, post.content));
   const [featured, ...rest] = posts;
 
   return (
@@ -45,9 +55,7 @@ export default async function DiaryPage({
 
       <nav aria-label="Diary categories" className="flex flex-wrap justify-center gap-2">
         {filterLink("All", "/diary", !active)}
-        {diaryCategories.map((category) =>
-          filterLink(category, `/diary?category=${category}`, active === category),
-        )}
+        {diaryCategories.map((category) => filterLink(category, `/diary?category=${category}`, active === category))}
       </nav>
 
       {posts.length === 0 ? (

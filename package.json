@@ -12,10 +12,10 @@
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
     "icons": "node scripts/fetch-material-symbols.mjs",
-    "admin:hash-password": "tsx scripts/hash-admin-password.ts"
+    "admin:hash-password": "tsx scripts/hash-admin-password.ts",
+    "seed:cms": "tsx --conditions=react-server --env-file=.env.local scripts/seed-cms.ts"
   },
   "dependencies": {
-    "@tiptap/extension-link": "^3.32.2",
     "@tiptap/extension-table": "^3.32.2",
     "@tiptap/pm": "^3.32.2",
     "@tiptap/react": "^3.32.2",
