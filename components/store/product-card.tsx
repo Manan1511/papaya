@@ -15,7 +15,7 @@ function badgeFor(product: ProductSummary): string | null {
 
 // Products without a photo show a plain placeholder, so the grid keeps its shape.
 // The framed card and the tinted photo well follow the landing page's product cards.
-export function ProductCard({ product, href }: { product: ProductSummary; href?: string }) {
+export function ProductCard({ product }: { product: ProductSummary }) {
   const price = product.priceRange.minVariantPrice;
   const compareAt = product.compareAtPriceRange.minVariantPrice;
   const showCompare = Number(compareAt.amount) > Number(price.amount);
@@ -24,7 +24,7 @@ export function ProductCard({ product, href }: { product: ProductSummary; href?:
 
   return (
     <Link
-      href={href ?? `/products/${product.handle}`}
+      href={`/products/${product.handle}`}
       className="group flex h-full flex-col overflow-hidden rounded-lg border-[1.5px] border-tertiary bg-surface-container-lowest transition-transform duration-300 ease-emphasized motion-safe:hover:-translate-y-1"
     >
       <div className="relative aspect-[4/5] overflow-hidden bg-tertiary-fixed-dim/20 md:aspect-auto md:h-64">

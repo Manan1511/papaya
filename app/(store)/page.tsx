@@ -40,7 +40,7 @@ export default function Home() {
         <Grid>
           {latest.map((product) => (
             <div key={product.id} className="col-span-2 md:col-span-4 lg:col-span-3">
-              <ProductCard product={product} href="/shop" />
+              <ProductCard product={product} />
             </div>
           ))}
         </Grid>
@@ -62,7 +62,7 @@ export default function Home() {
 
           <div className="col-span-4 flex flex-col gap-4 md:col-span-4 lg:col-span-3">
             <h2 className="font-headline text-headline-md text-on-surface">Best seller</h2>
-            <ProductCard product={bestSeller} href="/shop" />
+            <ProductCard product={bestSeller} />
           </div>
 
           <div className="col-span-4 flex flex-col justify-between gap-6 rounded-lg border-[1.5px] border-tertiary bg-tertiary-fixed-dim p-6 shadow-hard-secondary md:col-span-4 lg:col-span-3">
