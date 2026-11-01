@@ -308,3 +308,23 @@ export const CART_DISCOUNT_CODES_MUTATION = /* GraphQL */ `
   }
   ${CART_FIELDS}
 `;
+
+// Each policy is null until it is written in Shopify (Settings > Policies).
+export const SHOP_POLICIES_QUERY = /* GraphQL */ `
+  query ShopPolicies {
+    shop {
+      privacyPolicy {
+        title
+        body
+      }
+      refundPolicy {
+        title
+        body
+      }
+      termsOfService {
+        title
+        body
+      }
+    }
+  }
+`;

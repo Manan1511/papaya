@@ -93,6 +93,12 @@ curl -s "https://YOUR-STORE.myshopify.com/api/2026-04/graphql.json" -H "Content-
 
 Expected: 12 titles.
 
+### 9. Legal policies
+
+1. In the store admin, go to Settings, then Policies.
+2. Paste the Terms of service, Privacy policy and Refund policy text into their fields, and save each one.
+3. The site's Legal links and Shopify checkout both read these fields. A policy that isn't written yet shows "Page not found" on the site.
+
 ## Webhooks (catalog updates)
 
 Shopify tells the site when products or collections change, so cached pages refresh straight away.
@@ -114,3 +120,4 @@ Shopify tells the site when products or collections change, so cached pages refr
 - [ ] Dev Dashboard app (or fallback token) installed on the development store
 - [ ] Collections, including the `all` collection, and product metafield definitions exist
 - [ ] Search & Discovery filters set
+- [ ] Terms of service, privacy policy and refund policy written in Settings, then Policies

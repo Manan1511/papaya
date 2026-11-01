@@ -352,5 +352,246 @@
         }
       ]
     }
+  },
+  {
+    "slug": "faq",
+    "title": "Frequently asked questions",
+    "intro": "",
+    "body": {
+      "type": "doc",
+      "content": [
+        {
+          "type": "heading",
+          "attrs": {
+            "level": 3
+          },
+          "content": [
+            {
+              "type": "text",
+              "text": "What is Papaya?"
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "content": [
+            {
+              "type": "text",
+              "text": "Papaya is a contemporary jewellery brand that celebrates individuality and personal style. Our collections bring together playful handcrafted beaded jewellery, semi-precious stones, and modern stainless steel jewellery in gold and silver finishes."
+            }
+          ]
+        },
+        {
+          "type": "heading",
+          "attrs": {
+            "level": 3
+          },
+          "content": [
+            {
+              "type": "text",
+              "text": "What materials are used in Papaya jewellery?"
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "content": [
+            {
+              "type": "text",
+              "text": "Papaya jewellery features a thoughtfully curated mix of materials, including brass with micro gold plating, colourful beads, semi-precious stones, and 316L stainless steel jewellery in gold and silver finishes. Each design has its own unique materials and finish, so we recommend checking the individual product description for specific details."
+            }
+          ]
+        },
+        {
+          "type": "heading",
+          "attrs": {
+            "level": 3
+          },
+          "content": [
+            {
+              "type": "text",
+              "text": "Is your stainless steel jewellery made from 316L stainless steel?"
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "content": [
+            {
+              "type": "text",
+              "text": "Yes, our designated stainless steel collection features 316L stainless steel jewellery, available in gold and silver finishes. Please check individual product descriptions for details about the finish and materials."
+            }
+          ]
+        },
+        {
+          "type": "heading",
+          "attrs": {
+            "level": 3
+          },
+          "content": [
+            {
+              "type": "text",
+              "text": "Is Papaya jewellery waterproof or tarnish-resistant?"
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "content": [
+            {
+              "type": "text",
+              "text": "The durability of each piece depends on its material, finish and care. Please refer to the individual product description for specific information. We recommend avoiding prolonged contact with water, perfumes, lotions and harsh chemicals to help maintain your jewellery."
+            }
+          ]
+        },
+        {
+          "type": "heading",
+          "attrs": {
+            "level": 3
+          },
+          "content": [
+            {
+              "type": "text",
+              "text": "How do I take care of my Papaya jewellery?"
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "content": [
+            {
+              "type": "text",
+              "text": "Store your jewellery in a dry place, preferably in its pouch or a jewellery box. Avoid direct contact with perfumes, lotions, moisture and harsh chemicals. After wearing, gently wipe your pieces with a soft, dry cloth."
+            }
+          ]
+        },
+        {
+          "type": "heading",
+          "attrs": {
+            "level": 3
+          },
+          "content": [
+            {
+              "type": "text",
+              "text": "How long does shipping take?"
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "content": [
+            {
+              "type": "text",
+              "text": "Orders are generally dispatched within 5–7 business days. Delivery time after dispatch depends on your location and the courier partner. Tracking details will be shared once your order has been shipped."
+            }
+          ]
+        },
+        {
+          "type": "heading",
+          "attrs": {
+            "level": 3
+          },
+          "content": [
+            {
+              "type": "text",
+              "text": "Do you charge for shipping?"
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "content": [
+            {
+              "type": "text",
+              "text": "Yes, shipping charges apply to all orders. The applicable shipping fee will be displayed at checkout before you complete your purchase."
+            }
+          ]
+        },
+        {
+          "type": "heading",
+          "attrs": {
+            "level": 3
+          },
+          "content": [
+            {
+              "type": "text",
+              "text": "Do you offer Cash on Delivery (COD)?"
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "content": [
+            {
+              "type": "text",
+              "text": "Currently, we accept prepaid orders only. Cash on Delivery is not available."
+            }
+          ]
+        },
+        {
+          "type": "heading",
+          "attrs": {
+            "level": 3
+          },
+          "content": [
+            {
+              "type": "text",
+              "text": "Can I return or exchange my order?"
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "content": [
+            {
+              "type": "text",
+              "text": "We currently offer exchanges only, subject to our exchange policy and eligibility conditions. Please review our Exchange Policy on the website before placing your order or contact us if you need assistance."
+            }
+          ]
+        },
+        {
+          "type": "heading",
+          "attrs": {
+            "level": 3
+          },
+          "content": [
+            {
+              "type": "text",
+              "text": "Do you ship internationally?"
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "content": [
+            {
+              "type": "text",
+              "text": "Currently, we ship within India only. International shipping is not available at this time."
+            }
+          ]
+        },
+        {
+          "type": "heading",
+          "attrs": {
+            "level": 2
+          },
+          "content": [
+            {
+              "type": "text",
+              "text": "Need more help?"
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "content": [
+            {
+              "type": "text",
+              "text": "If you have any questions about our jewellery, materials, sizing, or your order, please get in touch with us through our Contact Us page. We’re happy to help you find your perfect Papaya piece."
+            }
+          ]
+        }
+      ]
+    }
   }
 ]

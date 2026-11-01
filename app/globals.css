@@ -207,6 +207,46 @@ dialog[open]::backdrop {
     color: theme("colors.primary");
     text-decoration: underline;
   }
+
+  /* Shopify policy text is HTML from the policy editor. These rules match the article text. */
+  .policy-body {
+    font-family: var(--font-body), sans-serif;
+    font-size: 18px;
+    line-height: 28px;
+    color: theme("colors.on-surface-variant");
+  }
+
+  .policy-body > * + * {
+    margin-top: 1rem;
+  }
+
+  .policy-body h2,
+  .policy-body h3 {
+    margin-top: 2rem;
+    color: theme("colors.on-surface");
+    font-weight: 700;
+  }
+
+  .policy-body h2 {
+    font-family: var(--font-headline), sans-serif;
+    font-size: 24px;
+    line-height: 32px;
+  }
+
+  .policy-body ul {
+    list-style: disc;
+    padding-left: 1.5rem;
+  }
+
+  .policy-body ol {
+    list-style: decimal;
+    padding-left: 1.5rem;
+  }
+
+  .policy-body a {
+    color: theme("colors.primary");
+    text-decoration: underline;
+  }
 }
 
 @media (prefers-reduced-motion: no-preference) {

@@ -123,3 +123,14 @@ export const cartLinesAddResponse = z.object({ cartLinesAdd: cartPayload });
 export const cartLinesUpdateResponse = z.object({ cartLinesUpdate: cartPayload });
 export const cartLinesRemoveResponse = z.object({ cartLinesRemove: cartPayload });
 export const cartDiscountCodesResponse = z.object({ cartDiscountCodesUpdate: cartPayload });
+
+const shopPolicy = z.object({ title: z.string(), body: z.string() });
+export type ShopPolicy = z.infer<typeof shopPolicy>;
+
+export const shopPoliciesResponse = z.object({
+  shop: z.object({
+    privacyPolicy: shopPolicy.nullable(),
+    refundPolicy: shopPolicy.nullable(),
+    termsOfService: shopPolicy.nullable(),
+  }),
+});
