@@ -33,11 +33,11 @@ dialog.drawer[open] {
 
 /* Scrim behind open dialogs: on-surface at 40%. */
 dialog::backdrop {
-  background: rgb(26 28 30 / 0);
+  background: rgb(4 32 74 / 0);
 }
 
 dialog[open]::backdrop {
-  background: rgb(26 28 30 / 0.4);
+  background: rgb(4 32 74 / 0.4);
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -67,7 +67,7 @@ dialog[open]::backdrop {
     }
 
     dialog[open]::backdrop {
-      background: rgb(26 28 30 / 0);
+      background: rgb(4 32 74 / 0);
     }
   }
 }
