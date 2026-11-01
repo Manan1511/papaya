@@ -88,6 +88,11 @@ typography:
     fontWeight: 700
     lineHeight: 16px
     letterSpacing: 0.05em
+  icon:
+    fontFamily: "Material Symbols Outlined"
+    fontSize: 24px
+    fontWeight: 400
+    lineHeight: 1
 rounded:
   sm: 0.25rem
   DEFAULT: 0.5rem
@@ -180,6 +185,7 @@ A committed palette: cream carries most of the page, maroon carries actions, sky
 
 **Display Font:** Plus Jakarta Sans (with sans-serif fallback)
 **Body Font:** Be Vietnam Pro (with sans-serif fallback)
+**Icon Font:** Material Symbols Outlined, a self-hosted subset built by `npm run icons`. It draws icons only and never sets text. Icons are outlined by default; pass `filled` to `Icon` for emphasis.
 
 **Character:** Heavy geometric headlines in navy that carry the sunny voice, set against a clean, regular body face.
 

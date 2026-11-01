@@ -126,6 +126,10 @@
       "label-md": {
         "displayName": "Label",
         "purpose": "Buttons, navigation, and tags."
+      },
+      "icon": {
+        "displayName": "Icon",
+        "purpose": "Material Symbols Outlined, icons only. Outlined by default; filled for emphasis."
       }
     },
     "shadows": [
