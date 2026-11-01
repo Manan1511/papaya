@@ -11,7 +11,4 @@ export const landingCopy = {
   bestSellerHandle: "sorrento-sun-ring",
   makingTitle: "How we make",
   makingBody: "Read how each piece is designed, finished and packed.",
-  newsletterTitle: "Join the Beach Club",
-  newsletterBody:
-    "Subscribe for early access to new collections, exclusive events, and a touch of sunshine in your inbox.",
 };

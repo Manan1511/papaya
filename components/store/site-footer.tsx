@@ -1,9 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Card } from "../ui/card";
 import { Container } from "../ui/container";
 import { Icon } from "../ui/icon";
-import { NewsletterForm } from "./newsletter-form";
 
 const columns = [
   {
@@ -52,19 +50,7 @@ export function SiteFooter({ socials = [] }: { socials?: SocialLink[] }) {
 
   return (
     <footer className="mt-section-gap overflow-hidden rounded-t-xl bg-surface-container">
-      <Container className="pt-12">
-        <Card className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
-          <div className="max-w-md">
-            <h2 className="font-headline text-headline-md text-on-surface">Join the Beach Club</h2>
-            <p className="mt-2 font-body text-body-md text-on-surface-variant">
-              Early access to new collections, events, and a touch of sunshine in your inbox.
-            </p>
-          </div>
-          <div className="w-full md:max-w-md">
-            <NewsletterForm />
-          </div>
-        </Card>
-      </Container>
+      <div aria-hidden="true" className="stripe-band h-6" />
 
       <Container className="grid gap-10 py-12 md:grid-cols-5">
         <div className="col-span-2 flex flex-col gap-4 md:col-span-1">

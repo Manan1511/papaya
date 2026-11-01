@@ -13,15 +13,15 @@ import { SearchField } from "../../components/ui/search-field";
 
 // Literal class names so Tailwind generates them.
 const swatches = [
-  { name: "primary", note: "#904d00, text and button fills", className: "bg-primary text-on-primary" },
-  { name: "primary-container", note: "#ff8c00, accent fills", className: "bg-primary-container text-on-primary-container" },
-  { name: "secondary", note: "#0059bb, azure", className: "bg-secondary text-on-secondary" },
-  { name: "secondary-container", note: "#0070ea", className: "bg-secondary-container text-on-secondary-container" },
-  { name: "tertiary-fixed-dim", note: "#e9c400, sunny yellow", className: "bg-tertiary-fixed-dim text-on-tertiary-fixed" },
-  { name: "tertiary", note: "#705d00, yellow text", className: "bg-tertiary text-on-tertiary" },
-  { name: "error", note: "#ba1a1a", className: "bg-error text-on-error" },
-  { name: "surface-container", note: "#eeeef0, section bands", className: "bg-surface-container text-on-surface" },
-  { name: "on-surface", note: "#1a1c1e, neutral text", className: "bg-on-surface text-surface" },
+  { name: "primary", note: "#7a111d, chili maroon: text and button fills", className: "bg-primary text-on-primary" },
+  { name: "primary-container", note: "#f08a1a, sun orange: badges and accents", className: "bg-primary-container text-on-primary-container" },
+  { name: "secondary", note: "#04204a, marine navy: text and lines", className: "bg-secondary text-on-secondary" },
+  { name: "secondary-container", note: "#9bc8e7, sky blue: stripes", className: "bg-secondary-container text-on-secondary-container" },
+  { name: "tertiary-fixed-dim", note: "#e4d2b8, sand: tiles", className: "bg-tertiary-fixed-dim text-on-tertiary-fixed" },
+  { name: "tertiary", note: "#04204a, navy: borders", className: "bg-tertiary text-on-tertiary" },
+  { name: "error", note: "#b3261e", className: "bg-error text-on-error" },
+  { name: "surface-container", note: "#f6e1c4, footer and bands", className: "bg-surface-container text-on-surface" },
+  { name: "on-surface", note: "#04204a, navy text", className: "bg-on-surface text-surface" },
 ];
 
 // Review page for the design system. Hidden in production builds.

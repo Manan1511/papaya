@@ -1,0 +1,256 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-11-01T15:40:56.111Z",
+  "title": "Design System: Papaya Retro Beach Club",
+  "extensions": {
+    "colorMeta": {
+      "primary": {
+        "role": "primary",
+        "displayName": "Chili Maroon",
+        "canonical": "#7a111d",
+        "tonalRamp": [
+          "#430910",
+          "#76101c",
+          "#a91828",
+          "#dd1f34",
+          "#e64f60",
+          "#ee828f",
+          "#f5b5bd",
+          "#fce9eb"
+        ]
+      },
+      "primary-container": {
+        "role": "primary",
+        "displayName": "Sun Orange",
+        "canonical": "#f08a1a",
+        "tonalRamp": [
+          "#482805",
+          "#7e4608",
+          "#b5640c",
+          "#ec830f",
+          "#f39f43",
+          "#f6bb7a",
+          "#fad7b0",
+          "#fdf3e7"
+        ]
+      },
+      "secondary": {
+        "role": "secondary",
+        "displayName": "Marine Navy",
+        "canonical": "#04204a",
+        "tonalRamp": [
+          "#041f49",
+          "#073780",
+          "#0a4fb7",
+          "#0d67ee",
+          "#4189f5",
+          "#78abf8",
+          "#b0cefb",
+          "#e7f0fe"
+        ]
+      },
+      "secondary-container": {
+        "role": "secondary",
+        "displayName": "Sky Blue",
+        "canonical": "#9bc8e7",
+        "tonalRamp": [
+          "#0f2b3e",
+          "#1a4b6d",
+          "#256b9c",
+          "#318ccb",
+          "#5da6d8",
+          "#8cc0e4",
+          "#bbdaef",
+          "#eaf4fa"
+        ]
+      },
+      "surface": {
+        "role": "neutral",
+        "displayName": "Cream Ground",
+        "canonical": "#fdf1e0",
+        "tonalRamp": [
+          "#482c05",
+          "#7f4e08",
+          "#b56f0c",
+          "#ec910f",
+          "#f3aa43",
+          "#f6c37a",
+          "#fadbb0",
+          "#fdf4e7"
+        ]
+      },
+      "tertiary-fixed": {
+        "role": "neutral",
+        "displayName": "Sand",
+        "canonical": "#f1e6d7",
+        "tonalRamp": [
+          "#392914",
+          "#644823",
+          "#8f6832",
+          "#ba8741",
+          "#cba26b",
+          "#dabd96",
+          "#e9d8c1",
+          "#f8f3ec"
+        ]
+      },
+      "on-surface-variant": {
+        "role": "neutral",
+        "displayName": "Muted Navy",
+        "canonical": "#3e4a66",
+        "tonalRamp": [
+          "#1d2330",
+          "#333d54",
+          "#495778",
+          "#5f719c",
+          "#8291b3",
+          "#a7b1c9",
+          "#cbd1df",
+          "#eff1f5"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "headline-xl": {
+        "displayName": "Display",
+        "purpose": "Hero headline only."
+      },
+      "headline-lg": {
+        "displayName": "Section headline",
+        "purpose": "Section titles such as Latest additions."
+      },
+      "body-lg": {
+        "displayName": "Lead text",
+        "purpose": "Lead paragraphs and the hero's body pill."
+      },
+      "label-md": {
+        "displayName": "Label",
+        "purpose": "Buttons, navigation, and tags."
+      }
+    },
+    "shadows": [
+      {
+        "name": "cta",
+        "value": "0 8px 20px -4px rgba(122, 17, 29, 0.35)",
+        "purpose": "Primary button only."
+      },
+      {
+        "name": "hard-tertiary",
+        "value": "4px 4px 0px 0px #7a111d",
+        "purpose": "Hover on outlined actions. Use sparingly."
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease-emphasized",
+        "value": "cubic-bezier(0.2, 0.8, 0.2, 1)",
+        "purpose": "Hover and press transitions."
+      },
+      {
+        "name": "stripe-drift",
+        "value": "background-position over 24s, linear, infinite",
+        "purpose": "Hero stripe field. Reduced motion holds it still."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "phone-wide",
+        "value": "360px"
+      },
+      {
+        "name": "md",
+        "value": "768px"
+      },
+      {
+        "name": "lg",
+        "value": "1024px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "The main action: shop, add to bag, checkout.",
+      "html": "<a class=\"ds-btn-primary\" href=\"#\">Shop the collection</a>",
+      "css": ".ds-btn-primary{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:56px;padding:0 32px;border-radius:0.5rem;background:#7a111d;color:#ffffff;font-family:\"Be Vietnam Pro\",sans-serif;font-size:16px;font-weight:700;letter-spacing:0.02em;text-transform:uppercase;text-decoration:none;box-shadow:0 8px 20px -4px rgba(122,17,29,0.35);transition:background-color 200ms,transform 200ms cubic-bezier(0.2,0.8,0.2,1)}.ds-btn-primary:hover{background:#5a0b15;transform:translateY(-2px)}.ds-btn-primary:focus-visible{outline:2px solid #04204a;outline-offset:2px}"
+    },
+    {
+      "name": "Outlined Button",
+      "kind": "button",
+      "refersTo": "button-outlined",
+      "description": "Secondary action beside a card or inside a tile.",
+      "html": "<a class=\"ds-btn-outlined\" href=\"#\">Explore the edit</a>",
+      "css": ".ds-btn-outlined{display:inline-flex;align-items:center;justify-content:center;height:44px;padding:0 24px;border:2px solid #7a111d;border-radius:0.5rem;background:#fffbf4;color:#7a111d;font-family:\"Be Vietnam Pro\",sans-serif;font-size:14px;font-weight:600;letter-spacing:0.02em;text-decoration:none;transition:background-color 200ms}.ds-btn-outlined:hover{background:#fbd9ae;box-shadow:4px 4px 0 0 #7a111d}.ds-btn-outlined:focus-visible{outline:2px solid #04204a;outline-offset:2px}"
+    },
+    {
+      "name": "Editorial Card",
+      "kind": "card",
+      "refersTo": "card",
+      "description": "A tile on a sky or sun field, with navy edges and a headline.",
+      "html": "<div class=\"ds-card\"><h3 class=\"ds-card-title\">The Amalfi Edit</h3><p class=\"ds-card-body\">Bold pieces designed for long lunches and late nights on the coast.</p></div>",
+      "css": ".ds-card{background:#d6e9f7;border:1.5px solid #04204a;border-radius:1rem;padding:24px;color:#04204a;font-family:\"Be Vietnam Pro\",sans-serif}.ds-card-title{margin:0 0 8px;font-family:\"Plus Jakarta Sans\",sans-serif;font-size:24px;font-weight:700;line-height:32px}.ds-card-body{margin:0;font-size:18px;line-height:28px}"
+    },
+    {
+      "name": "Header Pill",
+      "kind": "nav",
+      "refersTo": "",
+      "description": "The sand pill that holds search, account, and bag on the sticky header.",
+      "html": "<div class=\"ds-pill\"><button class=\"ds-pill-btn\" aria-label=\"Search\"><svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" aria-hidden=\"true\"><circle cx=\"11\" cy=\"11\" r=\"7\"/><path d=\"M20 20l-4-4\"/></svg></button><button class=\"ds-pill-btn\" aria-label=\"Bag\"><svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" aria-hidden=\"true\"><path d=\"M5 8h14l-1 12H6z\"/><path d=\"M9 8V6a3 3 0 0 1 6 0v2\"/></svg></button></div>",
+      "css": ".ds-pill{display:inline-flex;gap:4px;padding:6px;border-radius:9999px;background:#ead0aa}.ds-pill-btn{display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;border:0;border-radius:9999px;background:transparent;color:#04204a;cursor:pointer;transition:background-color 200ms}.ds-pill-btn:hover{background:#fcebcf}.ds-pill-btn:focus-visible{outline:2px solid #04204a;outline-offset:2px}"
+    },
+    {
+      "name": "Stripe Band",
+      "kind": "custom",
+      "refersTo": "",
+      "description": "The navy and cream band that closes the hero and opens the footer.",
+      "html": "<div class=\"ds-stripe-band\" aria-hidden=\"true\"></div>",
+      "css": ".ds-stripe-band{height:36px;background-image:repeating-linear-gradient(90deg,#04204a 0 14px,#fdf1e0 14px 28px)}"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Beach Club Cabana",
+    "overview": "The storefront reads like a striped beach cabana: a warm cream sand ground, chili maroon and sky blue stripes, and navy for text and lines. The jewellery is the bright accent, so the page keeps its colour in fields and bands rather than in decoration on top of the product.\n\nThe system is flat by default. Depth comes from tonal surfaces and a single soft maroon shadow on the primary action. Stripes frame a page edge or a hero field; they never sit behind body text. Motion is limited to one slow drift of the hero stripes, which reduced-motion settings stop.",
+    "keyCharacteristics": [
+      "Cream ground, not white or cool grey.",
+      "Chili maroon for actions and headings; navy for text and every line.",
+      "Stripes as fields and bands at page edges.",
+      "Uppercase, heavy primary buttons; sentence-case secondary text.",
+      "Pill-shaped header tools on a sand pill."
+    ],
+    "rules": [
+      {
+        "name": "The Stripe Edge Rule",
+        "body": "Stripes frame a page edge or fill a hero field. They never sit behind text or form fields.",
+        "section": "colors"
+      },
+      {
+        "name": "The Navy Line Rule",
+        "body": "Borders and text use navy. Maroon is for fills and primary actions, never for borders.",
+        "section": "colors"
+      },
+      {
+        "name": "The Heavy Headline Rule",
+        "body": "Headlines carry the weight, not colour. Emphasis within a headline comes from size, not a second colour.",
+        "section": "typography"
+      },
+      {
+        "name": "The Flat-By-Default Rule",
+        "body": "Surfaces are flat at rest. A shadow appears only as a response to a primary action or hover.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do keep primary actions in chili maroon with white uppercase text.",
+      "Do set body text in navy or muted navy on cream and card white.",
+      "Do use the stripe field only at a hero or section edge."
+    ],
+    "donts": [
+      "Don't put stripes, dots, or checkers behind body text or form fields.",
+      "Don't use the Citrus orange gradient hero or the checker band; both are retired.",
+      "Don't use blur or glass as decoration.",
+      "Don't introduce cool grey surfaces; the ground is cream."
+    ]
+  }
+}

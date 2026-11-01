@@ -18,7 +18,7 @@ const navLinks = [
 // The logo file has a white background, so it blends into the page with multiply.
 export function SiteHeader({ cart }: { cart: Cart | null }) {
   return (
-    <header className="sticky top-0 z-50 border-b border-outline-variant/30 bg-surface/80 backdrop-blur-xl">
+    <header className="sticky top-0 z-50 border-b border-outline-variant bg-surface">
       <Container className="flex h-16 items-center justify-between gap-2 min-[360px]:gap-4 md:h-20">
         <Link href="/" aria-label="Papaya home" className="shrink-0">
           <Image

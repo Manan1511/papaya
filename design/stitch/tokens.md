@@ -1,4 +1,6 @@
-# Citrus + Azure tokens
+# Citrus + Azure tokens (superseded)
+
+Superseded by the retro beach-club system in [DESIGN.md](../../DESIGN.md). Kept for reference only.
 
 Source: shared `tailwind.config` in the Stitch screens `product`, `story`, `diary`, `reviews`, `admin`.
 The `landing` screen uses the retro set (marine, piscine, melon, chili, sunny, Bricolage Grotesque). It is superseded by the Q5 decision: Citrus + Azure everywhere.

@@ -1,4 +1,3 @@
-import { NewsletterForm } from "../../components/store/newsletter-form";
 import { ProductCard } from "../../components/store/product-card";
 import { ButtonLink } from "../../components/ui/button";
 import { Container } from "../../components/ui/container";
@@ -13,23 +12,25 @@ export default function Home() {
 
   return (
     <>
-      <section className="bg-gradient-to-br from-primary-container via-tertiary-fixed to-secondary-fixed">
-        <Container className="flex min-h-[28rem] flex-col justify-center gap-6 py-section-gap">
-          <h1 className="max-w-2xl font-headline text-headline-xl text-on-primary-container">
-            {landingCopy.heroTitle}
-          </h1>
-          <p className="w-fit max-w-xl text-balance rounded-3xl border border-outline-variant bg-surface-bright/70 px-5 py-3 font-body text-body-lg font-semibold text-on-surface backdrop-blur-sm">
+      <section className="relative isolate overflow-hidden">
+        <div aria-hidden="true" className="beach-stripes absolute inset-0 -z-10" />
+        {/* The cream wave sweeps from the upper left to the lower right over the stripes. */}
+        <svg aria-hidden="true" viewBox="0 0 100 100" preserveAspectRatio="none" className="absolute inset-0 -z-10 size-full">
+          <path d="M0 6C35 6 55 36 100 31V70C60 66 35 97 0 99Z" className="fill-surface" />
+        </svg>
+        <Container className="flex min-h-[34rem] flex-col justify-center gap-6 py-section-gap">
+          <h1 className="max-w-xl font-headline text-headline-xl text-on-surface">{landingCopy.heroTitle}</h1>
+          <p className="w-fit max-w-xl text-balance rounded-lg border border-outline-variant bg-surface-container-lowest px-5 py-3 font-body text-body-lg font-semibold text-on-surface">
             {landingCopy.heroBody}
           </p>
           <div>
-            <ButtonLink href="/shop" size="lg" className="hover:shadow-hard-tertiary">
+            <ButtonLink href="/shop" size="lg">
               Shop the collection
             </ButtonLink>
           </div>
         </Container>
+        <div aria-hidden="true" className="stripe-band h-9 md:h-10" />
       </section>
-
-      <div aria-hidden="true" className="checker-band h-12 border-y-2 border-tertiary bg-surface-container-lowest" />
 
       <Container className="space-y-10 py-section-gap">
         <header className="space-y-3 text-center">
@@ -80,21 +81,6 @@ export default function Home() {
           </div>
         </Grid>
       </Container>
-
-      <section className="polka-dots border-y-2 border-tertiary bg-primary-fixed/25 py-section-gap">
-        <Container>
-          <div className="mx-auto max-w-3xl rounded-lg border-[1.5px] border-tertiary bg-surface-container-lowest/90 p-8 text-center shadow-hard-secondary backdrop-blur-md md:p-12">
-            <Icon name="wb_sunny" filled className="mb-4 text-[40px] text-primary-container" />
-            <h2 className="font-headline text-headline-md text-on-surface">{landingCopy.newsletterTitle}</h2>
-            <p className="mx-auto mb-8 mt-3 max-w-md font-body text-body-md text-on-surface-variant">
-              {landingCopy.newsletterBody}
-            </p>
-            <div className="mx-auto max-w-md">
-              <NewsletterForm />
-            </div>
-          </div>
-        </Container>
-      </section>
     </>
   );
 }

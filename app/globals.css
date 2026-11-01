@@ -72,19 +72,15 @@ dialog[open]::backdrop {
   }
 }
 
-/* Checker band from the landing page: melon squares on white, drawn as a conic gradient. */
-.checker-band {
-  background-image: repeating-conic-gradient(theme('colors.primary-container') 0% 25%, transparent 0% 50%);
-  background-size: 40px 40px;
+/* Beach stripes: chili and sky, the field behind the hero. It drifts slowly; reduced motion holds it. */
+.beach-stripes {
+  background-image: repeating-linear-gradient(90deg, theme('colors.primary') 0 40px, theme('colors.secondary-container') 40px 80px);
+  background-size: 160px 100%;
 }
 
-/* Polka dots from the landing newsletter: chili and piscine dots, offset by half a tile. */
-.polka-dots {
-  background-image:
-    radial-gradient(theme('colors.primary') 10%, transparent 11%),
-    radial-gradient(theme('colors.secondary-fixed-dim') 10%, transparent 11%);
-  background-size: 60px 60px;
-  background-position: 0 0, 30px 30px;
+/* Navy and cream stripes: the band that closes a section. */
+.stripe-band {
+  background-image: repeating-linear-gradient(90deg, theme('colors.secondary') 0 14px, theme('colors.surface') 14px 28px);
 }
 
 @layer base {
@@ -252,5 +248,15 @@ dialog[open]::backdrop {
 @media (prefers-reduced-motion: no-preference) {
   .link-underline::after {
     transition: transform 240ms cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+
+  .beach-stripes {
+    animation: beach-stripes-drift 24s linear infinite;
+  }
+}
+
+@keyframes beach-stripes-drift {
+  to {
+    background-position: 160px 0;
   }
 }
