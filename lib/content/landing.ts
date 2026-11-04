@@ -5,10 +5,8 @@ export const landingCopy = {
   heroBody: "Curated essentials for the sun‑seekers. Crafted for golden hours.",
   latestTitle: "Latest additions",
   latestBody: "Fresh from the studio, designed to catch the coastal light.",
-  latestHandles: ["riviera-chain", "capri-hoops", "citrine-solitaire", "positano-bracelet"],
   amalfiTitle: "The Amalfi Edit",
   amalfiBody: "Bold pieces designed for long lunches and late nights on the coast.",
-  bestSellerHandle: "sorrento-sun-ring",
   makingTitle: "How we make",
   makingBody: "Read how each piece is designed, finished and packed.",
 };

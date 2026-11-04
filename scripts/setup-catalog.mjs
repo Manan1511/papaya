@@ -1,4 +1,5 @@
-// Creates the dev store's catalog structure: the manual collections, the "all"
+// Creates the dev store's catalog structure: the manual collections, the type
+// collections (Necklaces, Earrings, Bracelets), which fill from each product's type, the "all"
 // collection the shop page reads, and Headless publishing for both. Also creates
 // the product metafields the storefront reads. Safe to re-run: anything that
 // already exists is skipped, never changed.
@@ -10,11 +11,11 @@
 
 import { connectAdmin } from "./shopify-admin.mjs";
 
+// Filled by product type, so imported products appear without being added by hand.
+const TYPE_COLLECTIONS = ["Necklaces", "Earrings", "Bracelets"];
+
 const MANUAL_COLLECTIONS = [
-  "Necklaces",
-  "Earrings",
   "Rings",
-  "Bracelets",
   "Anklets",
   "New Arrivals",
   "Best Sellers",
@@ -84,7 +85,16 @@ const [headless] = headlessMatches;
 const { collections } = await admin(COLLECTIONS, { publication: headless.id });
 const byHandle = new Map(collections.nodes.map((collection) => [collection.handle, collection]));
 
-const wanted = [...MANUAL_COLLECTIONS.map((title) => ({ title, handle: toHandle(title) })), ALL_PRODUCTS];
+const typeRuleSet = (type) => ({
+  appliedDisjunctively: false,
+  rules: [{ column: "TYPE", relation: "EQUALS", condition: type }],
+});
+
+const wanted = [
+  ...MANUAL_COLLECTIONS.map((title) => ({ title, handle: toHandle(title) })),
+  ...TYPE_COLLECTIONS.map((title) => ({ title, handle: toHandle(title), ruleSet: typeRuleSet(title) })),
+  ALL_PRODUCTS,
+];
 
 for (const { title, handle, ruleSet } of wanted) {
   let collection = byHandle.get(handle);

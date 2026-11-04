@@ -61,7 +61,7 @@ Fallback, only if the Dev Dashboard path is blocked: create a legacy custom app 
 
 `scripts/setup-catalog.mjs` creates these manual collections and publishes them to Headless. Each title gives the handle, lowercased and hyphenated:
 
-Necklaces, Earrings, Rings, Bracelets, Anklets, New Arrivals, Best Sellers, The Amalfi Edit
+Necklaces, Earrings and Bracelets are automatic: they fill from each product's type, so imported products appear without being added by hand. Rings, Anklets, New Arrivals, Best Sellers and The Amalfi Edit are manual.
 
 It also creates an automated collection titled All products, with handle `all` because the shop page reads it. Its rule is price above zero, so every priced product joins it.
 

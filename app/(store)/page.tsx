@@ -4,11 +4,15 @@ import { Container } from "../../components/ui/container";
 import { Grid } from "../../components/ui/grid";
 import { Icon } from "../../components/ui/icon";
 import { landingCopy } from "../../lib/content/landing";
-import { getPlaceholder } from "../../lib/content/placeholders";
+import { ALL_PRODUCTS_HANDLE, getCollectionPage } from "../../lib/shopify/catalog";
 
-export default function Home() {
-  const latest = landingCopy.latestHandles.map(getPlaceholder);
-  const bestSeller = getPlaceholder(landingCopy.bestSellerHandle);
+export default async function Home() {
+  const [newest, bestSelling] = await Promise.all([
+    getCollectionPage({ handle: ALL_PRODUCTS_HANDLE, sort: "newest", filters: [] }),
+    getCollectionPage({ handle: ALL_PRODUCTS_HANDLE, sort: "best", filters: [] }),
+  ]);
+  const latest = newest?.products.nodes.slice(0, 4) ?? [];
+  const [bestSeller] = (bestSelling?.products.nodes ?? []).filter((product) => !latest.some((item) => item.id === product.id));
 
   return (
     <>
@@ -32,19 +36,21 @@ export default function Home() {
         <div aria-hidden="true" className="stripe-band h-9 md:h-10" />
       </section>
 
-      <Container className="space-y-10 py-section-gap">
-        <header className="space-y-3 text-center">
-          <h2 className="font-headline text-headline-lg text-primary">{landingCopy.latestTitle}</h2>
-          <p className="mx-auto max-w-md font-body text-body-md text-on-surface-variant">{landingCopy.latestBody}</p>
-        </header>
-        <Grid>
-          {latest.map((product) => (
-            <div key={product.id} className="col-span-2 md:col-span-4 lg:col-span-3">
-              <ProductCard product={product} />
-            </div>
-          ))}
-        </Grid>
-      </Container>
+      {latest.length > 0 && (
+        <Container className="space-y-10 py-section-gap">
+          <header className="space-y-3 text-center">
+            <h2 className="font-headline text-headline-lg text-primary">{landingCopy.latestTitle}</h2>
+            <p className="mx-auto max-w-md font-body text-body-md text-on-surface-variant">{landingCopy.latestBody}</p>
+          </header>
+          <Grid>
+            {latest.map((product) => (
+              <div key={product.id} className="col-span-2 md:col-span-4 lg:col-span-3">
+                <ProductCard product={product} />
+              </div>
+            ))}
+          </Grid>
+        </Container>
+      )}
 
       <Container className="pb-section-gap">
         <Grid>
@@ -60,10 +66,12 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="col-span-4 flex flex-col gap-4 md:col-span-4 lg:col-span-3">
-            <h2 className="font-headline text-headline-md text-on-surface">Best seller</h2>
-            <ProductCard product={bestSeller} />
-          </div>
+          {bestSeller && (
+            <div className="col-span-4 flex flex-col gap-4 md:col-span-4 lg:col-span-3">
+              <h2 className="font-headline text-headline-md text-on-surface">Best seller</h2>
+              <ProductCard product={bestSeller} />
+            </div>
+          )}
 
           <div className="col-span-4 flex flex-col justify-between gap-6 rounded-lg border-[1.5px] border-tertiary bg-tertiary-fixed-dim p-6 shadow-hard-secondary md:col-span-4 lg:col-span-3">
             <span className="flex size-16 items-center justify-center rounded-full border-[1.5px] border-tertiary bg-surface-container-lowest">
