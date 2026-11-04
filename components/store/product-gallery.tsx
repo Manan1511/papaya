@@ -17,7 +17,7 @@ export function ProductGallery({ images, title }: { images: GalleryImage[]; titl
       {/* Keyed by image, so the main photo fades in whenever the shopper picks another one. */}
       <div
         key={current.url}
-        className="relative aspect-[4/5] overflow-hidden rounded-xl bg-surface-container motion-safe:animate-fade-in"
+        className="relative aspect-[4/5] overflow-hidden rounded-xl bg-background motion-safe:animate-fade-in"
       >
         <Image
           src={current.url}
@@ -26,7 +26,7 @@ export function ProductGallery({ images, title }: { images: GalleryImage[]; titl
           height={current.height ?? 1250}
           priority
           sizes="(min-width: 768px) 50vw, 100vw"
-          className="h-full w-full scale-110 object-cover"
+          className="absolute -inset-[5%] h-[110%] w-[110%] max-w-none object-cover mix-blend-multiply"
         />
       </div>
 
@@ -40,7 +40,7 @@ export function ProductGallery({ images, title }: { images: GalleryImage[]; titl
               aria-pressed={position === index}
               onClick={() => setIndex(position)}
               className={cx(
-                "h-24 w-20 shrink-0 overflow-hidden rounded-lg border-2 transition-[opacity,border-color] duration-200 ease-emphasized",
+                "relative h-24 w-20 shrink-0 overflow-hidden rounded-lg border-2 transition-[opacity,border-color] duration-200 ease-emphasized",
                 position === index ? "border-primary" : "border-transparent opacity-70 hover:opacity-100",
               )}
             >
@@ -49,7 +49,7 @@ export function ProductGallery({ images, title }: { images: GalleryImage[]; titl
                 alt=""
                 width={image.width ?? 200}
                 height={image.height ?? 250}
-                className="h-full w-full scale-110 object-cover"
+                className="absolute -inset-[5%] h-[110%] w-[110%] max-w-none object-cover mix-blend-multiply"
               />
             </button>
           ))}

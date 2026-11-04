@@ -27,7 +27,7 @@ export function ProductCard({ product }: { product: ProductSummary }) {
       href={`/products/${product.handle}`}
       className="group flex h-full flex-col overflow-hidden rounded-lg border-[1.5px] border-tertiary bg-surface-container-lowest transition-transform duration-300 ease-emphasized motion-safe:hover:-translate-y-1"
     >
-      <div className="relative aspect-[4/5] overflow-hidden bg-tertiary-fixed-dim/20 md:aspect-auto md:h-64">
+      <div className="relative aspect-[4/5] overflow-hidden md:aspect-auto md:h-64">
         {image ? (
           <Image
             src={image.url}
@@ -35,10 +35,10 @@ export function ProductCard({ product }: { product: ProductSummary }) {
             width={image.width ?? 800}
             height={image.height ?? 1000}
             sizes="(min-width: 1024px) 25vw, (min-width: 768px) 33vw, 50vw"
-            className="h-full w-full scale-110 object-cover mix-blend-multiply transition-transform duration-500 ease-emphasized motion-safe:group-hover:scale-[1.15]"
+            className="absolute -inset-[5%] h-[110%] w-[110%] max-w-none object-cover mix-blend-multiply"
           />
         ) : (
-          <div className="flex h-full w-full items-center justify-center text-outline">
+          <div className="flex h-full w-full items-center justify-center bg-tertiary-fixed-dim/20 text-outline">
             <Icon name="diamond" className="text-[48px]" />
           </div>
         )}
