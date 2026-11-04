@@ -35,7 +35,7 @@ export function ProductCard({ product }: { product: ProductSummary }) {
             width={image.width ?? 800}
             height={image.height ?? 1000}
             sizes="(min-width: 1024px) 25vw, (min-width: 768px) 33vw, 50vw"
-            className="h-full w-full object-cover mix-blend-multiply transition-transform duration-500 ease-emphasized motion-safe:group-hover:scale-105"
+            className="h-full w-full scale-110 object-cover mix-blend-multiply transition-transform duration-500 ease-emphasized motion-safe:group-hover:scale-[1.15]"
           />
         ) : (
           <div className="flex h-full w-full items-center justify-center text-outline">

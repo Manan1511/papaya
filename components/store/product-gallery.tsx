@@ -26,7 +26,7 @@ export function ProductGallery({ images, title }: { images: GalleryImage[]; titl
           height={current.height ?? 1250}
           priority
           sizes="(min-width: 768px) 50vw, 100vw"
-          className="h-full w-full object-cover"
+          className="h-full w-full scale-110 object-cover"
         />
       </div>
 
@@ -49,7 +49,7 @@ export function ProductGallery({ images, title }: { images: GalleryImage[]; titl
                 alt=""
                 width={image.width ?? 200}
                 height={image.height ?? 250}
-                className="h-full w-full object-cover"
+                className="h-full w-full scale-110 object-cover"
               />
             </button>
           ))}
