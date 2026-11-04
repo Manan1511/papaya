@@ -103,7 +103,7 @@
   {
     "slug": "shipping-returns",
     "title": "Shipping and returns",
-    "intro": "Placeholder: the delivery and returns policy in plain language.",
+    "intro": "How we dispatch orders, what delivery costs, and how exchanges work.",
     "body": {
       "type": "doc",
       "content": [
@@ -124,7 +124,52 @@
           "content": [
             {
               "type": "text",
-              "text": "Placeholder: delivery times and costs, once they are confirmed."
+              "text": "Orders are generally dispatched within 5–7 business days after payment is confirmed. Delivery time after dispatch depends on your location and the courier partner. Tracking details are shared once your order has shipped."
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "content": [
+            {
+              "type": "text",
+              "text": "Delivery timelines can vary with the shipping partner, your destination, public holidays and circumstances beyond our control."
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "content": [
+            {
+              "type": "text",
+              "text": "Shipping charges apply to all orders. The fee is shown at checkout before you complete your purchase."
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "content": [
+            {
+              "type": "text",
+              "text": "We accept prepaid orders only. Cash on Delivery is not available."
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "content": [
+            {
+              "type": "text",
+              "text": "We ship within India only. International shipping is not available at this time."
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "content": [
+            {
+              "type": "text",
+              "text": "Please give accurate shipping details: your name, address, email address and contact number. We cannot guarantee delivery if they are incomplete or incorrect."
             }
           ]
         },
@@ -136,7 +181,7 @@
           "content": [
             {
               "type": "text",
-              "text": "Returns"
+              "text": "Exchanges"
             }
           ]
         },
@@ -145,7 +190,133 @@
           "content": [
             {
               "type": "text",
-              "text": "Placeholder: how to return an item and how long you have to do it."
+              "text": "We currently offer exchanges only. Returns and refunds for change of mind are not accepted."
+            }
+          ]
+        },
+        {
+          "type": "bulletList",
+          "content": [
+            {
+              "type": "listItem",
+              "content": [
+                {
+                  "type": "paragraph",
+                  "content": [
+                    {
+                      "type": "text",
+                      "text": "Raise an exchange request within 7 days of receiving your order."
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "listItem",
+              "content": [
+                {
+                  "type": "paragraph",
+                  "content": [
+                    {
+                      "type": "text",
+                      "text": "Return the product unused, unworn and undamaged, in its original packaging."
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "listItem",
+              "content": [
+                {
+                  "type": "paragraph",
+                  "content": [
+                    {
+                      "type": "text",
+                      "text": "Products showing wear, damage, alteration or misuse may not qualify for an exchange."
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "listItem",
+              "content": [
+                {
+                  "type": "paragraph",
+                  "content": [
+                    {
+                      "type": "text",
+                      "text": "We may ask for proof of purchase and your original order details."
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "listItem",
+              "content": [
+                {
+                  "type": "paragraph",
+                  "content": [
+                    {
+                      "type": "text",
+                      "text": "Any shipping or exchange-related costs are told to you before the exchange is processed."
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "content": [
+            {
+              "type": "text",
+              "text": "All exchange requests are subject to verification and approval under our Exchange Policy."
+            }
+          ]
+        },
+        {
+          "type": "heading",
+          "attrs": {
+            "level": 2
+          },
+          "content": [
+            {
+              "type": "text",
+              "text": "Damaged, defective or incorrect items"
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "content": [
+            {
+              "type": "text",
+              "text": "If you receive a damaged, defective or incorrect item, contact us promptly with your order details and clear photographs so we can review it and help."
+            }
+          ]
+        },
+        {
+          "type": "heading",
+          "attrs": {
+            "level": 2
+          },
+          "content": [
+            {
+              "type": "text",
+              "text": "Contact us"
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "content": [
+            {
+              "type": "text",
+              "text": "Email papayaaccessories.06@gmail.com or call +91 73040 12250."
             }
           ]
         }
