@@ -1,29 +1,13 @@
-// Story copy. Milestones are placeholders until the real history is written. Don't publish
-// dates or results that haven't been checked.
+// Story copy, from the founders' story card. The photo beside it is public/brand/story-founders.jpg.
 export const storyCopy = {
-  title: "The Endless Summer.",
-  body:
-    "Born from sun-drenched afternoons and the vibrant energy of coastal living. Papaya isn't just jewellery; it's a feeling of warmth you can wear all year round.",
-  cta: "Discover our journey",
+  title: "two dreamers. one vision",
+  paragraphs: [
+    "Papaya is the meeting of two kindred spirits — a love for beautiful things, a belief in slow living and a shared dream to create something meaningful.",
+    "What started as a simple idea between friends grew into a jewellery brand celebrating playful designs, colourful beads, semi-precious stones and contemporary gold and silver jewellery.",
+    "We're Sneha & Asmita, the founders of Papaya.",
+  ],
+  signOff: "Jewellery with personality.",
+  signature: "– Papaya",
+  photoAlt: "Sneha and Asmita, the founders of Papaya, standing together on a beach",
+  cta: "Shop the collection",
 };
-
-export const storyMilestones = [
-  {
-    when: "Placeholder date",
-    title: "The spark",
-    body: "Placeholder: describe where the idea started.",
-    icon: "draw",
-  },
-  {
-    when: "Placeholder date",
-    title: "The first collection",
-    body: "Placeholder: describe the first collection and how it was received.",
-    icon: "storefront",
-  },
-  {
-    when: "Now",
-    title: "Chasing the sun",
-    body: "Placeholder: describe where the brand is today and what comes next.",
-    icon: "public",
-  },
-];

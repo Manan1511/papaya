@@ -2,71 +2,51 @@ import Image from "next/image";
 import { ButtonLink } from "../../../components/ui/button";
 import { Container } from "../../../components/ui/container";
 import { Icon } from "../../../components/ui/icon";
-import { storyCopy, storyMilestones } from "../../../lib/content/story";
+import { storyCopy } from "../../../lib/content/story";
 
 export const metadata = { title: "Our Story" };
 
 export default function StoryPage() {
   return (
-    <>
-      <section className="bg-surface-container-low">
-        <Container className="grid items-center gap-10 py-section-gap md:grid-cols-2">
-          <div className="space-y-6">
-            <h1 className="font-headline text-headline-xl text-primary">{storyCopy.title}</h1>
-            <p className="font-body text-body-lg text-on-surface-variant">{storyCopy.body}</p>
-            <div>
-              <ButtonLink href="#timeline" variant="secondary">
-                {storyCopy.cta}
-                <Icon name="arrow_downward" className="text-[18px]" />
-              </ButtonLink>
-            </div>
+    <section className="bg-surface-container-low">
+      <Container className="grid items-center gap-10 py-section-gap md:grid-cols-2">
+        <div className="space-y-6">
+          <h1 className="text-balance font-headline text-headline-xl text-primary">{storyCopy.title}</h1>
+          {storyCopy.paragraphs.map((paragraph) => (
+            <p key={paragraph} className="font-body text-body-lg text-on-surface-variant">
+              {paragraph}
+            </p>
+          ))}
+          <p className="font-headline text-headline-md text-on-surface">
+            {storyCopy.signOff}
+            <span className="block text-primary">{storyCopy.signature}</span>
+          </p>
+          <div>
+            <ButtonLink href="/shop" size="lg">
+              {storyCopy.cta}
+            </ButtonLink>
           </div>
-          <div className="relative mt-lg md:mt-0">
-            <div className="rotate-2 rounded-lg border border-white/40 bg-white/70 p-2 shadow-sm backdrop-blur-lg transition-transform duration-500 hover:rotate-0">
-              <div className="flex items-center justify-center rounded-md bg-gradient-to-br from-primary-container via-tertiary-fixed to-secondary-fixed p-10">
-                <Image
-                  src="/brand/papaya-logo.png"
-                  alt="Papaya"
-                  width={865}
-                  height={263}
-                  className="h-auto w-full max-w-sm mix-blend-multiply"
-                />
-              </div>
-            </div>
-            {/* A sun sticker rather than the Stitch "Est." text: the story copy doesn't publish unchecked dates. */}
-            <span
-              aria-hidden="true"
-              className="absolute -bottom-6 -left-6 flex size-16 -rotate-12 items-center justify-center rounded-full bg-tertiary-fixed text-on-tertiary-fixed-variant shadow-sm"
-            >
-              <Icon name="wb_sunny" filled className="text-[32px]" />
-            </span>
+        </div>
+        <div className="relative mt-lg md:mt-0">
+          <div className="overflow-hidden rounded-lg border-[1.5px] border-tertiary shadow-hard-secondary">
+            <Image
+              src="/brand/story-founders.jpg"
+              alt={storyCopy.photoAlt}
+              width={870}
+              height={1087}
+              priority
+              sizes="(min-width: 768px) 50vw, 100vw"
+              className="h-auto w-full"
+            />
           </div>
-        </Container>
-      </section>
-
-      <section id="timeline" aria-labelledby="timeline-title">
-        <Container className="space-y-10 py-section-gap">
-          <h2 id="timeline-title" className="text-center font-headline text-headline-lg text-on-surface">
-            Milestones in the sun
-          </h2>
-          <ol className="mx-auto flex max-w-3xl flex-col gap-8">
-            {storyMilestones.map((milestone) => (
-              <li key={milestone.title} className="flex gap-6">
-                <div className="flex size-12 shrink-0 items-center justify-center rounded-full bg-primary-container text-on-primary-container">
-                  <Icon name={milestone.icon} />
-                </div>
-                <div className="space-y-2">
-                  <p className="font-label text-label-sm uppercase tracking-wider text-on-surface-variant">
-                    {milestone.when}
-                  </p>
-                  <h3 className="font-headline text-headline-md text-on-surface">{milestone.title}</h3>
-                  <p className="font-body text-body-md text-on-surface-variant">{milestone.body}</p>
-                </div>
-              </li>
-            ))}
-          </ol>
-        </Container>
-      </section>
-    </>
+          <span
+            aria-hidden="true"
+            className="absolute -bottom-4 -left-2 flex size-16 -rotate-12 items-center justify-center rounded-full bg-tertiary-fixed text-on-tertiary-fixed-variant shadow-sm md:-bottom-6 md:-left-6"
+          >
+            <Icon name="wb_sunny" filled className="text-[32px]" />
+          </span>
+        </div>
+      </Container>
+    </section>
   );
 }
