@@ -17,10 +17,10 @@ const swatches = [
   { name: "primary-container", note: "#f08a1a, sun orange: badges and accents", className: "bg-primary-container text-on-primary-container" },
   { name: "secondary", note: "#04204a, marine navy: text and lines", className: "bg-secondary text-on-secondary" },
   { name: "secondary-container", note: "#9bc8e7, sky blue: stripes", className: "bg-secondary-container text-on-secondary-container" },
-  { name: "tertiary-fixed-dim", note: "#e4d2b8, sand: tiles", className: "bg-tertiary-fixed-dim text-on-tertiary-fixed" },
+  { name: "tertiary-fixed-dim", note: "#eef1f5, light grey: tiles and the header pill", className: "bg-tertiary-fixed-dim text-on-tertiary-fixed" },
   { name: "tertiary", note: "#04204a, navy: borders", className: "bg-tertiary text-on-tertiary" },
   { name: "error", note: "#b3261e", className: "bg-error text-on-error" },
-  { name: "surface-container", note: "#f6e1c4, footer and bands", className: "bg-surface-container text-on-surface" },
+  { name: "surface-container", note: "#f1f3f6, light grey: footer and panels", className: "bg-surface-container text-on-surface" },
   { name: "on-surface", note: "#04204a, navy text", className: "bg-on-surface text-surface" },
 ];
 

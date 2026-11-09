@@ -66,32 +66,32 @@
       },
       "surface": {
         "role": "neutral",
-        "displayName": "Cream Ground",
-        "canonical": "#fdf1e0",
+        "displayName": "White Ground",
+        "canonical": "#ffffff",
         "tonalRamp": [
-          "#482c05",
-          "#7f4e08",
-          "#b56f0c",
-          "#ec910f",
-          "#f3aa43",
-          "#f6c37a",
-          "#fadbb0",
-          "#fdf4e7"
+          "#292929",
+          "#4d4d4d",
+          "#737373",
+          "#949494",
+          "#adadad",
+          "#c7c7c7",
+          "#dedede",
+          "#fcfcfc"
         ]
       },
       "tertiary-fixed": {
         "role": "neutral",
-        "displayName": "Sand",
-        "canonical": "#f1e6d7",
+        "displayName": "Light Grey",
+        "canonical": "#eef1f5",
         "tonalRamp": [
-          "#392914",
-          "#644823",
-          "#8f6832",
-          "#ba8741",
-          "#cba26b",
-          "#dabd96",
-          "#e9d8c1",
-          "#f8f3ec"
+          "#292929",
+          "#4d4d4d",
+          "#737373",
+          "#949494",
+          "#adadad",
+          "#c7c7c7",
+          "#dedede",
+          "#fcfcfc"
         ]
       },
       "on-surface-variant": {
@@ -191,7 +191,7 @@
       "refersTo": "button-outlined",
       "description": "Secondary action beside a card or inside a tile.",
       "html": "<a class=\"ds-btn-outlined\" href=\"#\">Explore the edit</a>",
-      "css": ".ds-btn-outlined{display:inline-flex;align-items:center;justify-content:center;height:44px;padding:0 24px;border:2px solid #7a111d;border-radius:0.5rem;background:#fffbf4;color:#7a111d;font-family:\"Be Vietnam Pro\",sans-serif;font-size:14px;font-weight:600;letter-spacing:0.02em;text-decoration:none;transition:background-color 200ms}.ds-btn-outlined:hover{background:#fbd9ae;box-shadow:4px 4px 0 0 #7a111d}.ds-btn-outlined:focus-visible{outline:2px solid #04204a;outline-offset:2px}"
+      "css": ".ds-btn-outlined{display:inline-flex;align-items:center;justify-content:center;height:44px;padding:0 24px;border:2px solid #7a111d;border-radius:0.5rem;background:#ffffff;color:#7a111d;font-family:\"Be Vietnam Pro\",sans-serif;font-size:14px;font-weight:600;letter-spacing:0.02em;text-decoration:none;transition:background-color 200ms}.ds-btn-outlined:hover{background:#fbd9ae;box-shadow:4px 4px 0 0 #7a111d}.ds-btn-outlined:focus-visible{outline:2px solid #04204a;outline-offset:2px}"
     },
     {
       "name": "Editorial Card",
@@ -205,28 +205,28 @@
       "name": "Header Pill",
       "kind": "nav",
       "refersTo": "",
-      "description": "The sand pill that holds search, account, and bag on the sticky header.",
+      "description": "The light grey pill that holds search, account, and bag on the sticky header.",
       "html": "<div class=\"ds-pill\"><button class=\"ds-pill-btn\" aria-label=\"Search\"><svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" aria-hidden=\"true\"><circle cx=\"11\" cy=\"11\" r=\"7\"/><path d=\"M20 20l-4-4\"/></svg></button><button class=\"ds-pill-btn\" aria-label=\"Bag\"><svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" aria-hidden=\"true\"><path d=\"M5 8h14l-1 12H6z\"/><path d=\"M9 8V6a3 3 0 0 1 6 0v2\"/></svg></button></div>",
-      "css": ".ds-pill{display:inline-flex;gap:4px;padding:6px;border-radius:9999px;background:#ead0aa}.ds-pill-btn{display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;border:0;border-radius:9999px;background:transparent;color:#04204a;cursor:pointer;transition:background-color 200ms}.ds-pill-btn:hover{background:#fcebcf}.ds-pill-btn:focus-visible{outline:2px solid #04204a;outline-offset:2px}"
+      "css": ".ds-pill{display:inline-flex;gap:4px;padding:6px;border-radius:9999px;background:#eceff3}.ds-pill-btn{display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;border:0;border-radius:9999px;background:transparent;color:#04204a;cursor:pointer;transition:background-color 200ms}.ds-pill-btn:hover{background:#f6f7f9}.ds-pill-btn:focus-visible{outline:2px solid #04204a;outline-offset:2px}"
     },
     {
       "name": "Stripe Band",
       "kind": "custom",
       "refersTo": "",
-      "description": "The navy and cream band that closes the hero and opens the footer.",
+      "description": "The navy and white band that closes the hero and opens the footer.",
       "html": "<div class=\"ds-stripe-band\" aria-hidden=\"true\"></div>",
-      "css": ".ds-stripe-band{height:36px;background-image:repeating-linear-gradient(90deg,#04204a 0 14px,#fdf1e0 14px 28px)}"
+      "css": ".ds-stripe-band{height:36px;background-image:repeating-linear-gradient(90deg,#04204a 0 14px,#ffffff 14px 28px)}"
     }
   ],
   "narrative": {
     "northStar": "The Beach Club Cabana",
-    "overview": "The storefront reads like a striped beach cabana: a warm cream sand ground, chili maroon and sky blue stripes, and navy for text and lines. The jewellery is the bright accent, so the page keeps its colour in fields and bands rather than in decoration on top of the product.\n\nThe system is flat by default. Depth comes from tonal surfaces and a single soft maroon shadow on the primary action. Stripes frame a page edge or a hero field; they never sit behind body text. Motion is limited to one slow drift of the hero stripes, which reduced-motion settings stop.",
+    "overview": "The storefront reads like a striped beach cabana: a clean white ground, chili maroon and sky blue stripes, and navy for text and lines. The jewellery is the bright accent, so the page keeps its colour in fields and bands rather than in decoration on top of the product.\n\nThe system is flat by default. Depth comes from tonal surfaces and a single soft maroon shadow on the primary action. Stripes frame a page edge or a hero field; they never sit behind body text. Motion is limited to one slow drift of the hero stripes, which reduced-motion settings stop.",
     "keyCharacteristics": [
-      "Cream ground, not white or cool grey.",
+      "White ground. Light grey is for panels, pills, and hover states only.",
       "Chili maroon for actions and headings; navy for text and every line.",
       "Stripes as fields and bands at page edges.",
       "Uppercase, heavy primary buttons; sentence-case secondary text.",
-      "Pill-shaped header tools on a sand pill."
+      "Pill-shaped header tools on a light grey pill."
     ],
     "rules": [
       {
@@ -252,14 +252,14 @@
     ],
     "dos": [
       "Do keep primary actions in chili maroon with white uppercase text.",
-      "Do set body text in navy or muted navy on cream and card white.",
+      "Do set body text in navy or muted navy on white.",
       "Do use the stripe field only at a hero or section edge."
     ],
     "donts": [
       "Don't put stripes, dots, or checkers behind body text or form fields.",
       "Don't use the Citrus orange gradient hero or the checker band; both are retired.",
       "Don't use blur or glass as decoration.",
-      "Don't introduce cool grey surfaces; the ground is cream.",
+      "Don't tint the ground. Light grey is for panels, pills, and hover states only.",
       "Don't fill a large area with sun orange; it is for badges."
     ]
   }

@@ -78,7 +78,7 @@ dialog[open]::backdrop {
   background-size: 160px 100%;
 }
 
-/* Navy and cream stripes: the band that closes a section. */
+/* Navy and white stripes: the band that closes a section. */
 .stripe-band {
   background-image: repeating-linear-gradient(90deg, theme('colors.secondary') 0 14px, theme('colors.surface') 14px 28px);
 }

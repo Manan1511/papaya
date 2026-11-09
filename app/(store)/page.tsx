@@ -18,7 +18,7 @@ export default async function Home() {
     <>
       <section className="relative isolate overflow-hidden">
         <div aria-hidden="true" className="beach-stripes absolute inset-0 -z-10" />
-        {/* The cream wave sweeps from the upper left to the lower right over the stripes. */}
+        {/* The white wave sweeps from the upper left to the lower right over the stripes. */}
         <svg aria-hidden="true" viewBox="0 0 100 100" preserveAspectRatio="none" className="absolute inset-0 -z-10 size-full">
           <path d="M0 6C40 6 70 30 100 31V70C92 78 45 95 0 99Z" className="fill-surface" />
         </svg>
@@ -73,7 +73,7 @@ export default async function Home() {
             </div>
           )}
 
-          <div className="col-span-4 flex flex-col justify-between gap-6 rounded-lg border-[1.5px] border-tertiary bg-tertiary-fixed-dim p-6 shadow-hard-secondary md:col-span-4 lg:col-span-3">
+          <div className="col-span-4 flex flex-col justify-between gap-6 rounded-lg border-[1.5px] border-tertiary bg-surface-container-lowest p-6 shadow-hard-secondary md:col-span-4 lg:col-span-3">
             <span className="flex size-16 items-center justify-center rounded-full border-[1.5px] border-tertiary bg-surface-container-lowest">
               <Icon name="diamond" className="text-[32px] text-tertiary" />
             </span>

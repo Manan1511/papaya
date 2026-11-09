@@ -1,6 +1,6 @@
 ---
 name: Papaya Retro Beach Club
-description: A striped, sunny beach-club storefront: cream sand ground, chili maroon and sky stripes, navy lines and text.
+description: A striped, sunny beach-club storefront: white ground, chili maroon and sky stripes, navy lines and text.
 colors:
   primary: "#7a111d"
   primary-container: "#f08a1a"
@@ -22,28 +22,28 @@ colors:
   tertiary: "#04204a"
   tertiary-container: "#1d3c66"
   on-tertiary: "#ffffff"
-  on-tertiary-container: "#f1e6d7"
-  tertiary-fixed: "#f1e6d7"
-  tertiary-fixed-dim: "#e4d2b8"
+  on-tertiary-container: "#ffffff"
+  tertiary-fixed: "#eef1f5"
+  tertiary-fixed-dim: "#eef1f5"
   on-tertiary-fixed: "#04204a"
   on-tertiary-fixed-variant: "#1d3c66"
-  surface: "#fdf1e0"
-  surface-bright: "#fdf1e0"
-  background: "#fdf1e0"
-  surface-dim: "#eadbc3"
-  surface-container-lowest: "#fffbf4"
-  surface-container-low: "#fcebcf"
-  surface-container: "#f6e1c4"
-  surface-container-high: "#f1d9b8"
-  surface-container-highest: "#ead0aa"
-  surface-variant: "#ead0aa"
+  surface: "#ffffff"
+  surface-bright: "#ffffff"
+  background: "#ffffff"
+  surface-dim: "#e3e7ed"
+  surface-container-lowest: "#ffffff"
+  surface-container-low: "#f6f7f9"
+  surface-container: "#f1f3f6"
+  surface-container-high: "#eceff3"
+  surface-container-highest: "#e3e7ed"
+  surface-variant: "#e3e7ed"
   on-surface: "#04204a"
   on-background: "#04204a"
   on-surface-variant: "#3e4a66"
   outline: "#5d6b86"
-  outline-variant: "#e0cdb0"
+  outline-variant: "#dde2e9"
   inverse-surface: "#04204a"
-  inverse-on-surface: "#fdf1e0"
+  inverse-on-surface: "#ffffff"
   error: "#b3261e"
   error-container: "#f9dedc"
   on-error: "#ffffff"
@@ -143,22 +143,22 @@ components:
 
 **Creative North Star: "The Beach Club Cabana"**
 
-The storefront reads like a striped beach cabana: a warm cream sand ground, chili maroon and sky blue stripes, and navy for text and lines. The jewellery is the bright accent, so the page keeps its colour in fields and bands rather than in decoration on top of the product.
+The storefront reads like a striped beach cabana: a clean white ground, chili maroon and sky blue stripes, and navy for text and lines. The jewellery is the bright accent, so the page keeps its colour in fields and bands rather than in decoration on top of the product.
 
 The system is flat by default. Depth comes from tonal surfaces and a single soft maroon shadow on the primary action. Stripes frame a page edge or a hero field; they never sit behind body text. Motion is limited to one slow drift of the hero stripes, which reduced-motion settings stop.
 
 This system replaces the Citrus + Azure guide. The orange gradient hero, the checker band, and the cool grey surfaces are retired.
 
 **Key Characteristics:**
-- Cream ground, not white or cool grey.
+- White ground. Light grey is for panels, pills, and hover states only.
 - Chili maroon for actions and headings; navy for text and every line.
 - Stripes as fields and bands at page edges.
 - Uppercase, heavy primary buttons; sentence-case secondary text.
-- Pill-shaped header tools on a sand pill.
+- Pill-shaped header tools on a light grey pill.
 
 ## Colors
 
-A committed palette: cream carries most of the page, maroon carries actions, sky and navy carry the stripes and lines, and sun orange is used sparingly.
+A committed palette: white carries most of the page, maroon carries actions, sky and navy carry the stripes and lines, and sun orange is used sparingly.
 
 ### Primary
 - **Chili Maroon** (#7a111d): primary buttons, section headings, active outlines. The only colour for primary action.
@@ -171,10 +171,10 @@ A committed palette: cream carries most of the page, maroon carries actions, sky
 - **Sky Tint** (#d6e9f7): the light sky tile behind editorial blocks.
 
 ### Neutral
-- **Cream Ground** (#fdf1e0): the page background and surfaces that sit on it.
-- **Card White** (#fffbf4): cards, inputs, and the lightest surfaces.
-- **Sand** (#f1e6d7 and #f6e1c4): the header pill, the footer, and hairlines (#e0cdb0).
-- **Muted Navy** (#3e4a66): secondary text on cream; it keeps body text above 4.5:1.
+- **White Ground** (#ffffff): the page background, cards, and inputs.
+- **Light Grey** (#f6f7f9 to #e3e7ed): panels, the footer, the header pill, and hover states.
+- **Hairline** (#dde2e9): borders and table rules.
+- **Muted Navy** (#3e4a66): secondary text on white; it keeps body text above 4.5:1.
 
 ### Named Rules
 **The Stripe Edge Rule.** Stripes frame a page edge or fill a hero field. They never sit behind text or form fields.
@@ -201,11 +201,11 @@ A committed palette: cream carries most of the page, maroon carries actions, sky
 
 ## Layout
 
-Mobile uses a 4-column grid with 16px margins. Tablet uses 8 columns with 32px margins. Desktop uses 12 columns with 40px margins, capped at 1280px. Sections are separated by 80px. The hero fills at least 34rem and keeps its headline column at most 36rem wide, so the headline stays on the cream wave.
+Mobile uses a 4-column grid with 16px margins. Tablet uses 8 columns with 32px margins. Desktop uses 12 columns with 40px margins, capped at 1280px. Sections are separated by 80px. The hero fills at least 34rem and keeps its headline column at most 36rem wide, so the headline stays on the white wave.
 
 ## Elevation & Depth
 
-Surfaces are flat. Depth comes from tonal change between cream, card white, and sand. The primary button carries one soft maroon shadow. Feature tiles carry the navy hard offset, as the reference card does; product cards stay flat.
+Surfaces are flat. Depth comes from hairlines and light grey panels, since the ground and cards are both white. The primary button carries one soft maroon shadow. Feature tiles carry the navy hard offset, as the reference card does; product cards stay flat.
 
 ### Shadow Vocabulary
 - **CTA** (`box-shadow: 0 8px 20px -4px rgba(122, 17, 29, 0.35)`): the primary button only.
@@ -217,7 +217,7 @@ Surfaces are flat. Depth comes from tonal change between cream, card white, and 
 
 ## Shapes
 
-Buttons and inputs use an 8px radius. Cards and panels use 16px. Pills are fully rounded. The hero's cream wave is a single authored path, not a clip-path polygon.
+Buttons and inputs use an 8px radius. Cards and panels use 16px. Pills are fully rounded. The hero's white wave is a single authored path, not a clip-path polygon.
 
 ## Components
 
@@ -229,7 +229,7 @@ Buttons and inputs use an 8px radius. Cards and panels use 16px. Pills are fully
 
 ### Cards / Containers
 - **Corner Style:** 16px radius for tiles and panels.
-- **Background:** card white on cream; sky tint or sand for feature tiles.
+- **Background:** white; sky tint for editorial tiles, light grey for panels.
 - **Shadow Strategy:** feature tiles carry the navy hard offset; product cards are flat. See Elevation & Depth.
 - **Border:** 1.5px navy on feature tiles and product cards.
 - **Internal Padding:** 24px.
@@ -240,24 +240,24 @@ Buttons and inputs use an 8px radius. Cards and panels use 16px. Pills are fully
 - **Disabled:** 50% opacity, pointer events off.
 
 ### Navigation
-- **Style:** a sticky cream bar with a navy wordmark row and a sand pill for search, account, and bag. The menu icon is maroon.
+- **Style:** a sticky white bar with a navy wordmark row and a light grey pill for search, account, and bag. The menu icon is maroon.
 - **Links:** navy text; hover changes to maroon; the underline draws from the left.
 - **Mobile:** the same pill with the menu icon opening a drawer.
 
 ### Stripe Field and Bands
 - **Hero field:** chili and sky vertical stripes, 40px each, drifting slowly over 24s. Reduced motion holds still.
-- **Band:** navy and cream stripes, 14px each, closing the hero and opening the footer.
+- **Band:** navy and white stripes, 14px each, closing the hero and opening the footer.
 
 ## Do's and Don'ts
 
 ### Do:
 - **Do** keep primary actions in chili maroon with white uppercase text.
-- **Do** set body text in navy or muted navy on cream and card white.
+- **Do** set body text in navy or muted navy on white.
 - **Do** use the stripe field only at a hero or section edge.
 
 ### Don't:
 - **Don't** put stripes, dots, or checkers behind body text or form fields.
 - **Don't** use the Citrus orange gradient hero or the checker band; both are retired.
 - **Don't** use blur or glass as decoration.
-- **Don't** introduce cool grey surfaces; the ground is cream.
+- **Don't** tint the ground. Light grey is for panels, pills, and hover states only.
 - **Don't** fill a large area with sun orange; it is for badges.
