@@ -15,7 +15,7 @@ const sections = [
 
 // The admin frame from the Stitch admin screen. Each page checks the session before it renders
 // this shell, so the shell itself only lays things out.
-export function AdminShell({ title, children }: { title: string; children: ReactNode }) {
+export function AdminShell({ title, children }: { title: ReactNode; children: ReactNode }) {
   return (
     <div className="min-h-screen bg-surface md:flex">
       <aside className="hidden w-64 shrink-0 flex-col gap-6 border-r border-outline-variant/40 bg-surface-container-lowest p-6 md:flex">
