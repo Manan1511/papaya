@@ -49,6 +49,7 @@ Expected output: `{"data":{"shop":{"name":"..."}}}`
 2. Request these access scopes: `read_products`, `write_products`, `read_publications`, `write_publications`, `read_orders`, `read_customers`, `write_customers`, `read_metaobjects`, `write_metaobjects`, `read_metaobject_definitions`, `write_metaobject_definitions`, `read_files`, `write_files`. `write_products` and `write_publications` are for collections and Headless publishing. If a call later fails and the error names another scope, add it then.
 3. Install the app on the development store.
 4. Copy the client ID to `SHOPIFY_CLIENT_ID` and the client secret to `SHOPIFY_CLIENT_SECRET`. The secret stays on the server.
+5. Homepage hero video uploads need `read_files` and `write_files`. An app installed before the homepage editor didn't get them, so uploads fail with a permissions message. Add both scopes, then approve the update on the store.
 
 Fallback, only if the Dev Dashboard path is blocked: create a legacy custom app under Settings, then Apps and sales channels, then Develop apps. Grant the same scopes and copy its Admin API access token to `SHOPIFY_ADMIN_TOKEN`. Whether Shopify still lets you create these apps, and how long their tokens last, is unconfirmed.
 

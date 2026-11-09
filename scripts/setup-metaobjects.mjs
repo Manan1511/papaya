@@ -19,6 +19,8 @@ const DEFINITIONS = [
   { type: "$app:cms_page", name: "CMS page", fields: draftable },
   // Title, category, cover, excerpt, body, featured and published_at live inside draft/published.
   { type: "$app:diary_post", name: "Diary post", fields: draftable },
+  // The homepage: one entry with its live and draft copy, including the hero video address.
+  { type: "$app:home_page", name: "Homepage", fields: draftable },
   {
     type: "$app:review",
     name: "Review",

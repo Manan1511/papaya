@@ -46,6 +46,41 @@ export const postKind: Kind<PostContent> = {
   schema: postContentSchema,
 };
 
+// The homepage is one entry, always at this address. Its copy and hero video live here.
+export const HOME_SLUG = "home";
+
+function isHttpsAddress(value: string): boolean {
+  try {
+    return new URL(value).protocol === "https:";
+  } catch {
+    return false;
+  }
+}
+
+export const homeContentSchema = z.object({
+  heroVideo: z
+    .string()
+    .trim()
+    .max(500, "Keep the video address under 500 characters")
+    .refine((value) => value === "" || isHttpsAddress(value), "Use a secure (https) address for the video"),
+  heroTitle: z.string().trim().min(1, "Add a hero headline").max(120),
+  heroBody: z.string().trim().min(1, "Add the text for the hero pill").max(200),
+  latestTitle: z.string().trim().min(1, "Add a title for the latest additions").max(120),
+  latestBody: z.string().trim().max(300),
+  amalfiTitle: z.string().trim().min(1, "Add a title for the Amalfi tile").max(120),
+  amalfiBody: z.string().trim().max(300),
+  makingTitle: z.string().trim().min(1, "Add a title for the making tile").max(120),
+  makingBody: z.string().trim().max(300),
+});
+
+export type HomeContent = z.infer<typeof homeContentSchema>;
+
+export const homeKind: Kind<HomeContent> = {
+  name: "home_page",
+  type: "$app:home_page",
+  schema: homeContentSchema,
+};
+
 // Roughly 200 words a minute, counted from the text in the body.
 export function readingMinutes(body: RichText): number {
   const words = collectText(body).split(/\s+/).filter(Boolean).length;

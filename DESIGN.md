@@ -246,6 +246,7 @@ Buttons and inputs use an 8px radius. Cards and panels use 16px. Pills are fully
 
 ### Stripe Field and Bands
 - **Hero field:** chili and sky vertical stripes, 40px each, drifting slowly over 24s. Reduced motion holds still.
+- **Hero video:** an optional muted, looping video in a navy-edged frame with the navy offset, beside the headline on desktop and below it on phones. It doesn't autoplay when the shopper asks for less motion.
 - **Band:** navy and white stripes, 14px each, closing the hero and opening the footer.
 
 ## Do's and Don'ts

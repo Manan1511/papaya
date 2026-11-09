@@ -3,12 +3,19 @@ import { Panel, StatCard } from "../../components/admin/ui";
 import { Grid } from "../../components/ui/grid";
 import { requireAdmin } from "../../lib/auth/session";
 import { hasUnpublishedChanges, listEntries } from "../../lib/cms/entries";
-import { pageKind, postKind } from "../../lib/cms/model";
+import { homeKind, pageKind, postKind } from "../../lib/cms/model";
 
 export default async function AdminDashboard() {
   await requireAdmin();
-  const [pages, posts] = await Promise.all([listEntries(pageKind), listEntries(postKind)]);
-  const waiting = pages.filter(hasUnpublishedChanges).length + posts.filter(hasUnpublishedChanges).length;
+  const [pages, posts, home] = await Promise.all([
+    listEntries(pageKind),
+    listEntries(postKind),
+    listEntries(homeKind),
+  ]);
+  const waiting =
+    pages.filter(hasUnpublishedChanges).length +
+    posts.filter(hasUnpublishedChanges).length +
+    home.filter(hasUnpublishedChanges).length;
   const live =
     pages.filter((entry) => entry.published !== null).length + posts.filter((entry) => entry.published !== null).length;
 
@@ -25,8 +32,7 @@ export default async function AdminDashboard() {
 
       <Panel title="Still to come">
         <p className="font-body text-body-md text-on-surface-variant">
-          Reviews and messages appear here once shoppers can leave reviews and send the contact form. Homepage copy
-          moves into this editor with the homepage work.
+          Reviews and messages appear here once shoppers can leave reviews and send the contact form.
         </p>
       </Panel>
     </AdminShell>

@@ -3,16 +3,19 @@
 import { Button } from "../ui/button";
 
 // Buttons for a draft. Each one sets the "intent" field the save action reads.
+// A fixed entry, such as the homepage, can be published and previewed but never unpublished or deleted.
 export function EntryActions({
   live,
   isNew,
   pending,
   previewHref,
+  fixed = false,
 }: {
   live: boolean;
   isNew: boolean;
   pending: boolean;
   previewHref?: string;
+  fixed?: boolean;
 }) {
   return (
     <div className="flex flex-wrap items-center gap-3">
@@ -22,7 +25,7 @@ export function EntryActions({
       <Button type="submit" name="intent" value="publish" disabled={pending}>
         {live ? "Publish changes" : "Publish"}
       </Button>
-      {live && (
+      {live && !fixed && (
         <Button type="submit" name="intent" value="unpublish" variant="outlined" disabled={pending}>
           Unpublish
         </Button>
@@ -37,7 +40,7 @@ export function EntryActions({
           Preview draft
         </a>
       )}
-      {!isNew && (
+      {!isNew && !fixed && (
         <Button
           type="submit"
           name="intent"
