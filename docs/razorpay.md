@@ -26,6 +26,13 @@ You do these. Keep every key in `.env.local`, never in chat or commits.
 
 Payments are captured automatically when Razorpay's auto-capture is on. If it is off, the site captures the payment itself when it makes the order.
 
+## Protection around payments
+
+- `proxy.ts` limits POSTs per address each minute: 15 on `/checkout` (each attempt makes a Razorpay order), 120 on the Razorpay webhook, 240 on other storefront actions (add to bag, search suggestions). Over the limit gets a 429 with `Retry-After`. The counts live in memory, so each server instance keeps its own: this slows floods but is not a hard limit. Add a rate-limit rule at Netlify for a hard one.
+- A webhook body over 1 MB is refused. The webhook and the confirm step each verify Razorpay's signature.
+- Every response carries `X-Content-Type-Options`, `X-Frame-Options: DENY`, `Referrer-Policy`, `Permissions-Policy` and HSTS (`next.config.mjs`). There is no Content-Security-Policy yet: a nonce-based one makes every page render per request, so add it after a real test payment shows what Razorpay's window needs.
+- The checkout page is marked noindex.
+
 ## What you see in Shopify
 
 - Orders show as paid, with gateway "Razorpay" and the payment id in the order note.

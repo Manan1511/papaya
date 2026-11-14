@@ -29,12 +29,21 @@ export const productSummary = z.object({
 });
 export type ProductSummary = z.infer<typeof productSummary>;
 
-const collectionSummary = z.object({
-  id: z.string(),
-  handle: z.string(),
-  title: z.string(),
-  image: image.nullable(),
-});
+// A collection with no picture of its own shows its first product's photo, and hasProducts lets a
+// page leave out collections that are still empty.
+const collectionSummary = z
+  .object({
+    id: z.string(),
+    handle: z.string(),
+    title: z.string(),
+    image: image.nullable(),
+    products: z.object({ nodes: z.array(z.object({ featuredImage: image.nullable() })) }),
+  })
+  .transform(({ products, image: own, ...rest }) => ({
+    ...rest,
+    image: own ?? products.nodes[0]?.featuredImage ?? null,
+    hasProducts: products.nodes.length > 0,
+  }));
 export type CollectionSummary = z.infer<typeof collectionSummary>;
 
 const variant = z.object({

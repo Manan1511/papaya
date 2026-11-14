@@ -7,8 +7,8 @@ export const homeDefaults: HomeContent = {
   heroTitle: "Endless Summer State of Mind",
   // The non-breaking hyphen keeps "sun-seekers" on one line when the pill wraps.
   heroBody: "Curated essentials for the sun‑seekers. Crafted for golden hours.",
-  latestTitle: "Latest additions",
-  latestBody: "Fresh from the studio, designed to catch the coastal light.",
+  collectionsTitle: "Shop by collection",
+  collectionsBody: "Pick a collection and find your next favourite piece.",
   amalfiTitle: "The Amalfi Edit",
   amalfiBody: "Bold pieces designed for long lunches and late nights on the coast.",
   makingTitle: "How we make",

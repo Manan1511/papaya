@@ -27,5 +27,6 @@ Until `ADMIN_PASSWORD_HASH` is set, sign-in is off and the admin stays closed.
 
 - The sign-in lockout (five wrong passwords, then 15 minutes) counts in memory, so each server instance keeps its own count. Move it to shared storage before launch.
 - There is one shared password, so the admin keeps no record of who made a change.
-- Images can't be uploaded yet. That needs the `read_files` and `write_files` Admin API scopes.
-- Reviews, the inbox and the homepage content aren't connected yet.
+- Reviews and the inbox aren't connected yet.
+- The homepage editor (Content) sets the hero video, the hero text, the collections heading and the two tiles. Video uploads need the `read_files` and `write_files` Admin API scopes. Other images can't be uploaded yet.
+- `proxy.ts` sends a visitor with no session cookie to the sign-in page before any admin page runs. It checks only that the cookie exists. Each page and action still verifies the session itself.

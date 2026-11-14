@@ -19,8 +19,8 @@ describe("video uploads", () => {
 describe("choosing the MP4 to play", () => {
   const mp4 = (height: number) => ({ url: `https://cdn.example/${height}.mp4`, mimeType: "video/mp4", height });
 
-  it("uses the largest MP4 up to 1080 lines", () => {
-    expect(pickMp4Url([mp4(360), mp4(1080), mp4(2160), mp4(720)])).toBe("https://cdn.example/1080.mp4");
+  it("uses the largest MP4 up to 720 lines", () => {
+    expect(pickMp4Url([mp4(360), mp4(1080), mp4(2160), mp4(720)])).toBe("https://cdn.example/720.mp4");
   });
 
   it("falls back to the smallest MP4 when every size is larger", () => {

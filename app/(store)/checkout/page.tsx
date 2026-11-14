@@ -11,7 +11,7 @@ import { formatPrice } from "../../../lib/format";
 import { getRazorpayConfig } from "../../../lib/payments/config";
 import { fromPaise } from "../../../lib/payments/money";
 
-export const metadata: Metadata = { title: "Checkout" };
+export const metadata: Metadata = { title: "Checkout", robots: { index: false, follow: false } };
 
 const rupees = (paise: number) => formatPrice({ amount: fromPaise(paise), currencyCode: "INR" });
 

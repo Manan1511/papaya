@@ -1,3 +1,4 @@
+import { CollectionTile } from "../../components/store/collection-tile";
 import { HeroVideo } from "../../components/store/hero-video";
 import { PreviewBanner } from "../../components/store/preview-banner";
 import { ProductCard } from "../../components/store/product-card";
@@ -6,16 +7,22 @@ import { Container } from "../../components/ui/container";
 import { Grid } from "../../components/ui/grid";
 import { Icon } from "../../components/ui/icon";
 import { getHomeContent } from "../../lib/cms/home";
-import { ALL_PRODUCTS_HANDLE, getCollectionPage } from "../../lib/shopify/catalog";
+import { ALL_PRODUCTS_HANDLE, getCollectionPage, getHomeCollections } from "../../lib/shopify/catalog";
+
+// Tiles per row: two on a phone, with an odd one out given the first full row; two on a tablet; up to
+// three on a desktop.
+function tileSpan(index: number, count: number): string {
+  const lead = index === 0 && count % 2 === 1;
+  return `${lead ? "col-span-4" : "col-span-2"} ${lead ? "md:col-span-8" : "md:col-span-4"} lg:col-span-4`;
+}
 
 export default async function Home() {
-  const [{ content, preview }, newest, bestSelling] = await Promise.all([
+  const [{ content, preview }, collections, bestSelling] = await Promise.all([
     getHomeContent(),
-    getCollectionPage({ handle: ALL_PRODUCTS_HANDLE, sort: "newest", filters: [] }),
+    getHomeCollections(),
     getCollectionPage({ handle: ALL_PRODUCTS_HANDLE, sort: "best", filters: [] }),
   ]);
-  const latest = newest?.products.nodes.slice(0, 4) ?? [];
-  const [bestSeller] = (bestSelling?.products.nodes ?? []).filter((product) => !latest.some((item) => item.id === product.id));
+  const [bestSeller] = bestSelling?.products.nodes ?? [];
 
   return (
     <>
@@ -43,16 +50,16 @@ export default async function Home() {
         <div aria-hidden="true" className="stripe-band h-9 md:h-10" />
       </section>
 
-      {latest.length > 0 && (
+      {collections.length > 0 && (
         <Container className="space-y-10 py-section-gap">
           <header className="space-y-3 text-center">
-            <h2 className="font-headline text-headline-lg text-primary">{content.latestTitle}</h2>
-            <p className="mx-auto max-w-md font-body text-body-md text-on-surface-variant">{content.latestBody}</p>
+            <h2 className="font-headline text-headline-lg text-primary">{content.collectionsTitle}</h2>
+            <p className="mx-auto max-w-md font-body text-body-md text-on-surface-variant">{content.collectionsBody}</p>
           </header>
           <Grid>
-            {latest.map((product) => (
-              <div key={product.id} className="col-span-2 md:col-span-4 lg:col-span-3">
-                <ProductCard product={product} />
+            {collections.map((collection, index) => (
+              <div key={collection.id} className={tileSpan(index, collections.length)}>
+                <CollectionTile collection={collection} />
               </div>
             ))}
           </Grid>

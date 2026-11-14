@@ -41,6 +41,16 @@ const COLLECTION_CARD = /* GraphQL */ `
       width
       height
     }
+    products(first: 1) {
+      nodes {
+        featuredImage {
+          url
+          altText
+          width
+          height
+        }
+      }
+    }
   }
 `;
 

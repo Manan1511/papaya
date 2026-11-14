@@ -3,6 +3,7 @@ import { getIronSession } from "iron-session";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import { getAdminAuthConfig } from "./config";
+import { ADMIN_COOKIE } from "./cookie";
 
 const SESSION_SECONDS = 12 * 60 * 60;
 
@@ -14,7 +15,7 @@ async function currentSession() {
 
   return getIronSession<AdminSession>(await cookies(), {
     password: config.sessionSecret,
-    cookieName: "papaya_admin",
+    cookieName: ADMIN_COOKIE,
     ttl: SESSION_SECONDS,
     cookieOptions: {
       httpOnly: true,

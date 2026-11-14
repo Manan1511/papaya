@@ -42,12 +42,18 @@ export function HomeForm({
         </Field>
       </Panel>
 
-      <Panel title="Latest additions">
+      <Panel title="Collections">
         <Field label="Title">
-          <Input name="latestTitle" defaultValue={initial.latestTitle} required maxLength={120} />
+          <Input name="collectionsTitle" defaultValue={initial.collectionsTitle} required maxLength={120} />
         </Field>
         <Field label="Text">
-          <textarea name="latestBody" rows={2} defaultValue={initial.latestBody} maxLength={300} className={fieldClass} />
+          <textarea
+            name="collectionsBody"
+            rows={2}
+            defaultValue={initial.collectionsBody}
+            maxLength={300}
+            className={fieldClass}
+          />
         </Field>
       </Panel>
 

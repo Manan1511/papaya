@@ -22,6 +22,15 @@ export async function getCollections(): Promise<schemas.CollectionSummary[]> {
   return data.collections.nodes.filter((collection) => collection.handle !== ALL_PRODUCTS_HANDLE);
 }
 
+// Shopify's automatic home page collection isn't one a shopper would browse by.
+const HOME_PAGE_HANDLE = "frontpage";
+
+// The collections the homepage shows: those with something in them, up to six.
+export async function getHomeCollections(): Promise<schemas.CollectionSummary[]> {
+  const collections = await getCollections();
+  return collections.filter((collection) => collection.hasProducts && collection.handle !== HOME_PAGE_HANDLE).slice(0, 6);
+}
+
 export async function getCollectionPage(args: {
   handle: string;
   sort: SortKey;
