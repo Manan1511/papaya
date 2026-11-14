@@ -145,11 +145,11 @@ export function CartSummary({ cart }: { cart: Cart | null }) {
           <dd>{formatPrice(cart.cost.totalAmount)}</dd>
         </div>
       </dl>
-      {/* Checkout runs on Shopify's domain, so this is a plain link rather than a Next.js Link. */}
-      <a href={cart.checkoutUrl} className={buttonClass({ size: "lg", className: "w-full" })}>
+      {/* A plain link, so the bag drawer closes with the page change instead of staying open over checkout. */}
+      <a href="/checkout" className={buttonClass({ size: "lg", className: "w-full" })}>
         Checkout
       </a>
-      <p className="font-body text-label-md text-on-surface-variant">Shipping and taxes are calculated at checkout.</p>
+      <p className="font-body text-label-md text-on-surface-variant">Shipping is shown at checkout.</p>
     </div>
   );
 }

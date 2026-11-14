@@ -8,6 +8,9 @@ out/
 # real env values stay local; .env.example is committed
 .env*.local
 
+# downloaded key files from payment dashboards (keys belong in .env.local only)
+razorpay*.csv
+
 # local tool settings
 .claude/settings.local.json
 

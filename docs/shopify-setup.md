@@ -46,7 +46,7 @@ Expected output: `{"data":{"shop":{"name":"..."}}}`
 ### 3. Admin API app (proposed: Dev Dashboard)
 
 1. In the Partner dashboard, in the same organization as the development store, create a Dev Dashboard app.
-2. Request these access scopes: `read_products`, `write_products`, `read_publications`, `write_publications`, `read_orders`, `read_customers`, `write_customers`, `read_metaobjects`, `write_metaobjects`, `read_metaobject_definitions`, `write_metaobject_definitions`, `read_files`, `write_files`. `write_products` and `write_publications` are for collections and Headless publishing. If a call later fails and the error names another scope, add it then.
+2. Request these access scopes: `read_products`, `write_products`, `read_publications`, `write_publications`, `read_orders`, `write_orders` (the Razorpay checkout creates orders), `read_customers`, `write_customers`, `read_metaobjects`, `write_metaobjects`, `read_metaobject_definitions`, `write_metaobject_definitions`, `read_files`, `write_files`. `write_products` and `write_publications` are for collections and Headless publishing. If a call later fails and the error names another scope, add it then.
 3. Install the app on the development store.
 4. Copy the client ID to `SHOPIFY_CLIENT_ID` and the client secret to `SHOPIFY_CLIENT_SECRET`. The secret stays on the server.
 5. Homepage hero video uploads need `read_files` and `write_files`. An app installed before the homepage editor didn't get them, so uploads fail with a permissions message. Add both scopes, then approve the update on the store.
@@ -113,7 +113,7 @@ Shopify tells the site when products or collections change, so cached pages refr
 - **Protected customer data:** reading customer fields such as email and name needs Shopify approval. Not checked yet. Reviews and the newsletter depend on it.
 - **`read_all_orders`:** request it only if the 60-day window is not enough.
 - **Customer Account API callbacks:** add them in the Headless channel when accounts are built. Use a tunnel or deploy-preview URL.
-- **Launch payment gateway for India:** choose it and confirm Shopify's country list.
+- **Payment gateway for India:** Razorpay, taken on the store's own checkout page. Setup is in `docs/razorpay.md`.
 
 ## Done when
 
