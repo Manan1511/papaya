@@ -12,11 +12,12 @@
 import { connectAdmin } from "./shopify-admin.mjs";
 
 // Filled by product type, so imported products appear without being added by hand.
-const TYPE_COLLECTIONS = ["Necklaces", "Earrings", "Bracelets"];
+const TYPE_COLLECTIONS = ["Necklaces", "Earrings", "Bracelets", "Scarf Necklaces", "Waist Belts"];
 
 const MANUAL_COLLECTIONS = [
   "Rings",
   "Anklets",
+  "Everyday Minimal Jewellery",
   "New Arrivals",
   "Best Sellers",
   "The Amalfi Edit",
