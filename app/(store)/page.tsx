@@ -7,6 +7,7 @@ import { ButtonLink } from "../../components/ui/button";
 import { Container } from "../../components/ui/container";
 import { Grid } from "../../components/ui/grid";
 import { Icon } from "../../components/ui/icon";
+import { homeDefaults } from "../../lib/content/landing";
 import { getHomeContent } from "../../lib/cms/home";
 import { ALL_PRODUCTS_HANDLE, getCollectionPage, getHomeCollections } from "../../lib/shopify/catalog";
 
@@ -24,6 +25,9 @@ export default async function Home() {
     getCollectionPage({ handle: ALL_PRODUCTS_HANDLE, sort: "best", filters: [] }),
   ]);
   const [bestSeller] = bestSelling?.products.nodes ?? [];
+  // Until reels are added the section shows placeholder frames, with the shipped heading if none was saved.
+  const reelsTitle = content.reelsTitle || homeDefaults.reelsTitle;
+  const reelsBody = content.reelsBody || homeDefaults.reelsBody;
   return (
     <>
       {preview && <PreviewBanner path="/" />}
@@ -66,21 +70,15 @@ export default async function Home() {
         </Container>
       )}
 
-      {content.reels.length > 0 && (
-        <section className="space-y-10 pb-section-gap">
-          {(content.reelsTitle || content.reelsBody) && (
-            <Container>
-              <header className="space-y-3 text-center">
-                {content.reelsTitle && <h2 className="font-headline text-headline-lg text-primary">{content.reelsTitle}</h2>}
-                {content.reelsBody && (
-                  <p className="mx-auto max-w-md font-body text-body-md text-on-surface-variant">{content.reelsBody}</p>
-                )}
-              </header>
-            </Container>
-          )}
-          <ReelsStrip reels={content.reels} />
-        </section>
-      )}
+      <section className="space-y-10 pb-section-gap">
+        <Container>
+          <header className="space-y-3 text-center">
+            <h2 className="font-headline text-headline-lg text-primary">{reelsTitle}</h2>
+            <p className="mx-auto max-w-md font-body text-body-md text-on-surface-variant">{reelsBody}</p>
+          </header>
+        </Container>
+        <ReelsStrip reels={content.reels} />
+      </section>
 
       <Container className="pb-section-gap">
         <Grid>
