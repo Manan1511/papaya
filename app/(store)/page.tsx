@@ -40,7 +40,11 @@ export default async function Home() {
         </svg>
         <Container className="grid min-h-[38rem] items-center gap-10 pb-section-gap pt-32 md:grid-cols-2">
           <div className="flex flex-col justify-center gap-6">
-            <h1 className="max-w-xl font-headline text-headline-xl text-on-surface">{content.heroTitle}</h1>
+            {/* On a phone the headline runs across the stripes, so each letter gets a white outline (stroke painted
+                under the fill) to stay readable on any colour. */}
+            <h1 className="max-w-xl font-headline text-headline-xl text-on-surface max-md:[-webkit-text-stroke:0.4rem_#fff] max-md:[paint-order:stroke_fill]">
+              {content.heroTitle}
+            </h1>
             <p className="w-fit max-w-xl text-balance rounded-lg border border-outline-variant bg-surface-container-lowest px-5 py-3 font-body text-body-lg font-semibold text-on-surface">
               {content.heroBody}
             </p>
