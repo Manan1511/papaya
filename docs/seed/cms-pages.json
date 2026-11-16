@@ -53,11 +53,137 @@
   },
   {
     "slug": "care-guide",
-    "title": "Care guide",
-    "intro": "Keep your pieces looking fresh off the beach with a few simple habits.",
+    "title": "How to care for your Papaya",
+    "intro": "A little love goes a long way. Your Papaya pieces are made to add personality to your everyday style. With the right care, you can keep them looking beautiful for longer.",
     "body": {
       "type": "doc",
       "content": [
+        {
+          "type": "heading",
+          "attrs": {
+            "level": 3
+          },
+          "content": [
+            {
+              "type": "text",
+              "text": "1. Keep away from water"
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "content": [
+            {
+              "type": "text",
+              "text": "Avoid direct contact with water, swimming pools, showers and excessive moisture. Always remove your jewellery before bathing or swimming."
+            }
+          ]
+        },
+        {
+          "type": "heading",
+          "attrs": {
+            "level": 3
+          },
+          "content": [
+            {
+              "type": "text",
+              "text": "2. Avoid perfumes & chemicals"
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "content": [
+            {
+              "type": "text",
+              "text": "Apply perfumes, lotions, hairsprays and other beauty products before wearing your jewellery. Chemicals can affect the plating and finish."
+            }
+          ]
+        },
+        {
+          "type": "heading",
+          "attrs": {
+            "level": 3
+          },
+          "content": [
+            {
+              "type": "text",
+              "text": "3. Store with care"
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "content": [
+            {
+              "type": "text",
+              "text": "Keep each piece in its individual pouch or jewellery box to prevent scratches, tangling and friction with other pieces."
+            }
+          ]
+        },
+        {
+          "type": "heading",
+          "attrs": {
+            "level": 3
+          },
+          "content": [
+            {
+              "type": "text",
+              "text": "4. Keep away from sweat & humidity"
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "content": [
+            {
+              "type": "text",
+              "text": "Excessive sweat and humidity can affect the finish of your jewellery. We recommend removing your pieces before workouts and other activities that cause heavy sweating."
+            }
+          ]
+        },
+        {
+          "type": "heading",
+          "attrs": {
+            "level": 3
+          },
+          "content": [
+            {
+              "type": "text",
+              "text": "5. Clean gently"
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "content": [
+            {
+              "type": "text",
+              "text": "After every wear, gently wipe your jewellery with a soft, dry microfiber cloth to remove any residue or moisture. Avoid abrasive materials and chemical cleaners."
+            }
+          ]
+        },
+        {
+          "type": "heading",
+          "attrs": {
+            "level": 3
+          },
+          "content": [
+            {
+              "type": "text",
+              "text": "6. Handle with love"
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "content": [
+            {
+              "type": "text",
+              "text": "Our pieces are crafted with attention to detail. Avoid pulling, bending or applying excessive pressure, especially on delicate beads, charms and embellishments."
+            }
+          ]
+        },
         {
           "type": "heading",
           "attrs": {
@@ -66,7 +192,7 @@
           "content": [
             {
               "type": "text",
-              "text": "Keep it shining"
+              "text": "A little Papaya reminder 🍊"
             }
           ]
         },
@@ -75,7 +201,7 @@
           "content": [
             {
               "type": "text",
-              "text": "Avoid direct contact with lotions, perfumes and sunscreen."
+              "text": "Our jewellery features brass bases and micro gold plating, along with carefully selected materials and handcrafted details. Like all fashion jewellery, its finish may naturally change over time depending on usage, storage and exposure."
             }
           ]
         },
@@ -84,16 +210,7 @@
           "content": [
             {
               "type": "text",
-              "text": "Wipe with a soft, dry cloth after wearing, especially after time at the beach or pool."
-            }
-          ]
-        },
-        {
-          "type": "paragraph",
-          "content": [
-            {
-              "type": "text",
-              "text": "Store pieces apart so chains and hoops don't tangle or scratch."
+              "text": "Treat your Papaya pieces with love, and they’ll keep bringing a little joy to your everyday moments."
             }
           ]
         }
