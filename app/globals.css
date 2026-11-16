@@ -245,13 +245,48 @@ dialog[open]::backdrop {
   }
 }
 
+/* The homepage reels. The track holds two identical rows, so moving it half its width loops cleanly. */
+.reels-viewport {
+  overflow: hidden;
+}
+
+.reels-track {
+  display: flex;
+  width: max-content;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reels-viewport {
+    overflow-x: auto;
+  }
+
+  .reels-copy {
+    display: none;
+  }
+}
+
 @media (prefers-reduced-motion: no-preference) {
+  .reels-track {
+    animation: reels-scroll var(--reels-seconds, 60s) linear infinite;
+  }
+
+  .reels-viewport:hover .reels-track,
+  .reels-viewport:focus-within .reels-track {
+    animation-play-state: paused;
+  }
+
   .link-underline::after {
     transition: transform 240ms cubic-bezier(0.2, 0.8, 0.2, 1);
   }
 
   .beach-stripes {
     animation: beach-stripes-drift 24s linear infinite;
+  }
+}
+
+@keyframes reels-scroll {
+  to {
+    transform: translateX(-50%);
   }
 }
 

@@ -57,12 +57,23 @@ function isHttpsAddress(value: string): boolean {
   }
 }
 
+export const MAX_REELS = 12;
+
+const videoAddress = z
+  .string()
+  .trim()
+  .max(500, "Keep the video address under 500 characters")
+  .refine((value) => value === "" || isHttpsAddress(value), "Use a secure (https) address for the video");
+
 export const homeContentSchema = z.object({
-  heroVideo: z
-    .string()
-    .trim()
-    .max(500, "Keep the video address under 500 characters")
-    .refine((value) => value === "" || isHttpsAddress(value), "Use a secure (https) address for the video"),
+  heroVideo: videoAddress,
+  // Entries saved before the reels existed have no such fields, so they read as empty.
+  reelsTitle: z.string().trim().max(120).default(""),
+  reelsBody: z.string().trim().max(300).default(""),
+  reels: z
+    .array(videoAddress.min(1, "Remove the empty reel"))
+    .max(MAX_REELS, `Keep it to ${MAX_REELS} reels`)
+    .default([]),
   heroTitle: z.string().trim().min(1, "Add a hero headline").max(120),
   heroBody: z.string().trim().min(1, "Add the text for the hero pill").max(200),
   collectionsTitle: z.string().trim().min(1, "Add a title for the collections").max(120),

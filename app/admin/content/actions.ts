@@ -20,6 +20,9 @@ export async function saveHome(_previous: HomeFormState, formData: FormData): Pr
     heroBody: readText(formData, "heroBody"),
     collectionsTitle: readText(formData, "collectionsTitle"),
     collectionsBody: readText(formData, "collectionsBody"),
+    reelsTitle: readText(formData, "reelsTitle"),
+    reelsBody: readText(formData, "reelsBody"),
+    reels: formData.getAll("reels").filter((value): value is string => typeof value === "string"),
     amalfiTitle: readText(formData, "amalfiTitle"),
     amalfiBody: readText(formData, "amalfiBody"),
     makingTitle: readText(formData, "makingTitle"),
@@ -201,7 +204,7 @@ export async function registerVideo(input: { resourceUrl: string; filename: stri
           {
             originalSource: parsed.data.resourceUrl,
             contentType: "VIDEO",
-            alt: "Homepage hero video",
+            alt: "Homepage video",
             filename: `${Date.now()}-${parsed.data.filename}`,
           },
         ],

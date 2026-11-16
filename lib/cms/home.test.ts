@@ -73,6 +73,24 @@ describe("homepage fields", () => {
     expect(result.success).toBe(false);
   });
 
+  it("reads a homepage saved before reels existed as having none", () => {
+    const { reels, reelsTitle, reelsBody, ...older } = homeDefaults;
+    const result = homeContentSchema.safeParse(older);
+    expect(result.success && result.data.reels).toEqual([]);
+    expect(result.success && result.data.reelsTitle).toBe("");
+  });
+
+  it("accepts up to twelve secure reels", () => {
+    const reel = "https://cdn.example.com/reel.mp4";
+    expect(homeContentSchema.safeParse({ ...homeDefaults, reels: Array(12).fill(reel) }).success).toBe(true);
+    expect(homeContentSchema.safeParse({ ...homeDefaults, reels: Array(13).fill(reel) }).success).toBe(false);
+  });
+
+  it("refuses a reel that isn't https or is empty", () => {
+    expect(homeContentSchema.safeParse({ ...homeDefaults, reels: ["http://cdn.example.com/a.mp4"] }).success).toBe(false);
+    expect(homeContentSchema.safeParse({ ...homeDefaults, reels: [""] }).success).toBe(false);
+  });
+
   it("needs a hero headline", () => {
     expect(homeContentSchema.safeParse({ ...homeDefaults, heroTitle: "   " }).success).toBe(false);
   });

@@ -2,6 +2,7 @@ import { CollectionTile } from "../../components/store/collection-tile";
 import { HeroVideo } from "../../components/store/hero-video";
 import { PreviewBanner } from "../../components/store/preview-banner";
 import { ProductCard } from "../../components/store/product-card";
+import { ReelsStrip } from "../../components/store/reels-strip";
 import { ButtonLink } from "../../components/ui/button";
 import { Container } from "../../components/ui/container";
 import { Grid } from "../../components/ui/grid";
@@ -23,7 +24,6 @@ export default async function Home() {
     getCollectionPage({ handle: ALL_PRODUCTS_HANDLE, sort: "best", filters: [] }),
   ]);
   const [bestSeller] = bestSelling?.products.nodes ?? [];
-
   return (
     <>
       {preview && <PreviewBanner path="/" />}
@@ -64,6 +64,22 @@ export default async function Home() {
             ))}
           </Grid>
         </Container>
+      )}
+
+      {content.reels.length > 0 && (
+        <section className="space-y-10 pb-section-gap">
+          {(content.reelsTitle || content.reelsBody) && (
+            <Container>
+              <header className="space-y-3 text-center">
+                {content.reelsTitle && <h2 className="font-headline text-headline-lg text-primary">{content.reelsTitle}</h2>}
+                {content.reelsBody && (
+                  <p className="mx-auto max-w-md font-body text-body-md text-on-surface-variant">{content.reelsBody}</p>
+                )}
+              </header>
+            </Container>
+          )}
+          <ReelsStrip reels={content.reels} />
+        </section>
       )}
 
       <Container className="pb-section-gap">

@@ -3,6 +3,7 @@
 import { useActionState } from "react";
 import { EntryActions, EntryMessage } from "../../../components/admin/entry-actions";
 import { Field, fieldClass, Panel } from "../../../components/admin/ui";
+import { ReelsField } from "../../../components/admin/reels-field";
 import { VideoField } from "../../../components/admin/video-field";
 import { Input } from "../../../components/ui/input";
 import type { HomeContent } from "../../../lib/cms/model";
@@ -55,6 +56,16 @@ export function HomeForm({
             className={fieldClass}
           />
         </Field>
+      </Panel>
+
+      <Panel title="Reels">
+        <Field label="Title">
+          <Input name="reelsTitle" defaultValue={initial.reelsTitle} maxLength={120} />
+        </Field>
+        <Field label="Text">
+          <textarea name="reelsBody" rows={2} defaultValue={initial.reelsBody} maxLength={300} className={fieldClass} />
+        </Field>
+        <ReelsField initial={initial.reels} />
       </Panel>
 
       <Panel title="The Amalfi Edit">
