@@ -18,7 +18,7 @@ export function HeroHeadline({ children, className }: { children: string; classN
       ))}
       <span className="block whitespace-nowrap">
         {words.length > 0 && `${words.join(" ")} `}
-        <span className="relative inline-block -my-3 font-script text-[1.6em] font-normal leading-none text-primary max-md:[-webkit-text-stroke:0.25rem_#fff]">
+        <span className="relative inline-block -my-2 font-script text-[1.3em] font-normal leading-none text-primary max-md:[-webkit-text-stroke:0.25rem_#fff]">
           {accent}
           <svg
             aria-hidden="true"
