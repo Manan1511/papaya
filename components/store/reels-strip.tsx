@@ -17,8 +17,15 @@ function PlaceholderFrame({ index }: { index: number }) {
   return (
     <li className={`${frameClass} flex flex-col items-center justify-center gap-3 ${FRAME_TINTS[index % FRAME_TINTS.length]}`}>
       <span className="flex size-14 items-center justify-center rounded-full border-[1.5px] border-tertiary bg-surface-container-lowest">
-        <svg aria-hidden="true" viewBox="0 0 24 24" className="size-6 translate-x-0.5 fill-tertiary">
-          <path d="M8 5.5v13a1 1 0 0 0 1.5.86l10.5-6.5a1 1 0 0 0 0-1.72L9.5 4.64A1 1 0 0 0 8 5.5Z" />
+        <svg
+          aria-hidden="true"
+          viewBox="0 0 24 24"
+          className="size-6 fill-tertiary stroke-tertiary"
+          strokeWidth="2"
+          strokeLinejoin="round"
+        >
+          {/* Drawn so the triangle's weight, not its bounding box, sits on the centre. */}
+          <polygon points="8.5,6 17.5,12 8.5,18" />
         </svg>
       </span>
       <span className="font-label text-label-md text-on-surface">Reel coming soon</span>

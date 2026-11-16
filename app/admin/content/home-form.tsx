@@ -66,6 +66,15 @@ export function HomeForm({
           <textarea name="reelsBody" rows={2} defaultValue={initial.reelsBody} maxLength={300} className={fieldClass} />
         </Field>
         <ReelsField initial={initial.reels} />
+        <label className="flex items-center gap-2 font-label text-label-md text-on-surface">
+          <input
+            type="checkbox"
+            name="reelsPlaceholders"
+            defaultChecked={initial.reelsPlaceholders}
+            className="size-4 accent-primary"
+          />
+          Show placeholder frames while there are no reels
+        </label>
       </Panel>
 
       <Panel title="The Amalfi Edit">

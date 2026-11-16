@@ -70,6 +70,8 @@ export const homeContentSchema = z.object({
   // Entries saved before the reels existed have no such fields, so they read as empty.
   reelsTitle: z.string().trim().max(120).default(""),
   reelsBody: z.string().trim().max(300).default(""),
+  // Whether to show empty frames while there are no reels. On unless the admin turns it off.
+  reelsPlaceholders: z.boolean().default(true),
   reels: z
     .array(videoAddress.min(1, "Remove the empty reel"))
     .max(MAX_REELS, `Keep it to ${MAX_REELS} reels`)

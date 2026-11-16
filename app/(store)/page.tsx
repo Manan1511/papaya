@@ -70,6 +70,7 @@ export default async function Home() {
         </Container>
       )}
 
+      {(content.reels.length > 0 || content.reelsPlaceholders) && (
       <section className="space-y-10 pb-section-gap">
         <Container>
           <header className="space-y-3 text-center">
@@ -79,6 +80,7 @@ export default async function Home() {
         </Container>
         <ReelsStrip reels={content.reels} />
       </section>
+      )}
 
       <Container className="pb-section-gap">
         <Grid>

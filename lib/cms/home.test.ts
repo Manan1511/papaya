@@ -80,6 +80,14 @@ describe("homepage fields", () => {
     expect(result.success && result.data.reelsTitle).toBe("");
   });
 
+  it("shows placeholder frames unless the admin turns them off", () => {
+    const { reelsPlaceholders, ...older } = homeDefaults;
+    const result = homeContentSchema.safeParse(older);
+    expect(result.success && result.data.reelsPlaceholders).toBe(true);
+    const off = homeContentSchema.safeParse({ ...homeDefaults, reelsPlaceholders: false });
+    expect(off.success && off.data.reelsPlaceholders).toBe(false);
+  });
+
   it("accepts up to twelve secure reels", () => {
     const reel = "https://cdn.example.com/reel.mp4";
     expect(homeContentSchema.safeParse({ ...homeDefaults, reels: Array(12).fill(reel) }).success).toBe(true);

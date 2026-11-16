@@ -11,6 +11,7 @@ export const homeDefaults: HomeContent = {
   collectionsBody: "Pick a collection and find your next favourite piece.",
   reelsTitle: "Summer on reel",
   reelsBody: "Short clips from the shop and the shore.",
+  reelsPlaceholders: true,
   reels: [],
   amalfiTitle: "The Amalfi Edit",
   amalfiBody: "Bold pieces designed for long lunches and late nights on the coast.",

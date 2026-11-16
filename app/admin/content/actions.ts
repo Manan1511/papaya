@@ -22,6 +22,7 @@ export async function saveHome(_previous: HomeFormState, formData: FormData): Pr
     collectionsBody: readText(formData, "collectionsBody"),
     reelsTitle: readText(formData, "reelsTitle"),
     reelsBody: readText(formData, "reelsBody"),
+    reelsPlaceholders: formData.get("reelsPlaceholders") === "on",
     reels: formData.getAll("reels").filter((value): value is string => typeof value === "string"),
     amalfiTitle: readText(formData, "amalfiTitle"),
     amalfiBody: readText(formData, "amalfiBody"),
