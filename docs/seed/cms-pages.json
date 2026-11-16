@@ -1,20 +1,17 @@
 [
   {
     "slug": "sustainability",
-    "title": "Sustainability",
-    "intro": "Placeholder: a short summary of how the brand thinks about materials and making.",
+    "title": "Sustainability at Papaya",
+    "intro": "At Papaya, we believe in creating pieces that are made to be loved, worn and cherished for years.",
     "body": {
       "type": "doc",
       "content": [
         {
-          "type": "heading",
-          "attrs": {
-            "level": 2
-          },
+          "type": "paragraph",
           "content": [
             {
               "type": "text",
-              "text": "Materials"
+              "text": "We focus on thoughtful designs, small-batch collections and mindful production to reduce excess. By creating in limited quantities and valuing craftsmanship, we encourage a more conscious approach to style."
             }
           ]
         },
@@ -23,28 +20,12 @@
           "content": [
             {
               "type": "text",
-              "text": "Placeholder: describe the materials used, with facts you can stand behind."
-            }
-          ]
-        },
-        {
-          "type": "heading",
-          "attrs": {
-            "level": 2
-          },
-          "content": [
-            {
-              "type": "text",
-              "text": "Packaging"
-            }
-          ]
-        },
-        {
-          "type": "paragraph",
-          "content": [
-            {
-              "type": "text",
-              "text": "Placeholder: describe the packaging and what it is made from."
+              "text": "Less excess. More meaning. Pieces to treasure.",
+              "marks": [
+                {
+                  "type": "bold"
+                }
+              ]
             }
           ]
         }
