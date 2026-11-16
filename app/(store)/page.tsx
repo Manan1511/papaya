@@ -39,7 +39,7 @@ export default async function Home() {
             <p className="w-fit max-w-xl text-balance rounded-lg border border-outline-variant bg-surface-container-lowest px-5 py-3 font-body text-body-lg font-semibold text-on-surface">
               {content.heroBody}
             </p>
-            <div>
+            <div className="flex justify-center md:justify-start">
               <ButtonLink href="/shop" size="lg">
                 Shop the collection
               </ButtonLink>
