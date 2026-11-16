@@ -6,7 +6,7 @@ import { listPublished } from "../../../lib/cms/entries";
 import { diaryCategories, postKind } from "../../../lib/cms/model";
 import { firstParam } from "../../../lib/params";
 
-export const metadata = { title: "Diary" };
+export const metadata = { title: "The Papaya Collective" };
 
 function filterLink(label: string, href: string, current: boolean) {
   return (
@@ -47,9 +47,9 @@ export default async function DiaryPage({
   return (
     <Container className="space-y-lg py-lg">
       <header className="space-y-4 text-center">
-        <h1 className="font-headline text-headline-xl text-primary">The Beach Club Diary</h1>
+        <h1 className="font-headline text-headline-xl text-primary">The Papaya Collective</h1>
         <p className="mx-auto max-w-2xl font-body text-body-lg text-on-surface-variant">
-          Sun-drenched styling tips, travel guides, and the vibrant life.
+          A world of style and inspiration.
         </p>
       </header>
 
