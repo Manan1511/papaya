@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { parseListing, toCollectionSort, toProductFilters } from "./listing";
+import { listingHref, parseListing, toCollectionSort, toProductFilters } from "./listing";
 
 describe("parseListing", () => {
   it("defaults to best selling with no filters", () => {
@@ -49,5 +49,33 @@ describe("toCollectionSort", () => {
   it("maps price sorts to the price key in both directions", () => {
     expect(toCollectionSort("price-asc")).toEqual({ sortKey: "PRICE", reverse: false });
     expect(toCollectionSort("price-desc")).toEqual({ sortKey: "PRICE", reverse: true });
+  });
+});
+
+describe("listingHref", () => {
+  const current = parseListing({ sort: "newest", type: "Rings", size: "7", min: "500", max: "2000", available: "1", after: "abc" });
+
+  it("keeps every filter and drops the page cursor", () => {
+    const href = listingHref("/shop", current);
+    const query = new URLSearchParams(href.split("?")[1]);
+    expect(href.startsWith("/shop?")).toBe(true);
+    expect(Object.fromEntries(query)).toEqual({ sort: "newest", type: "Rings", size: "7", min: "500", max: "2000", available: "1" });
+  });
+
+  it("swaps one filter and leaves the rest", () => {
+    const query = new URLSearchParams(listingHref("/shop", current, { type: "Earrings" }).split("?")[1]);
+    expect(query.get("type")).toBe("Earrings");
+    expect(query.get("size")).toBe("7");
+  });
+
+  it("removes a filter that is set to undefined", () => {
+    const query = new URLSearchParams(listingHref("/shop", current, { type: undefined, available: undefined }).split("?")[1]);
+    expect(query.has("type")).toBe(false);
+    expect(query.has("available")).toBe(false);
+    expect(query.get("max")).toBe("2000");
+  });
+
+  it("works under a collection's address", () => {
+    expect(listingHref("/collections/necklaces", parseListing({}))).toBe("/collections/necklaces?sort=best");
   });
 });

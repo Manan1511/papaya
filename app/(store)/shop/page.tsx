@@ -28,7 +28,7 @@ export default async function ShopPage({
   return (
     <Container className="space-y-lg py-lg">
       <h1 className="font-headline text-headline-lg text-on-surface">Shop</h1>
-      <ProductFilters params={params} showType />
+      <ProductFilters params={params} showType basePath="/shop" />
       {nodes.length === 0 ? (
         <p className="font-body text-body-lg text-on-surface-variant">No pieces match these filters.</p>
       ) : (

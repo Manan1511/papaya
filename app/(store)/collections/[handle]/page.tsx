@@ -50,7 +50,7 @@ export default async function CollectionPage({
           <p className="font-body text-body-lg text-on-surface-variant">{page.description}</p>
         )}
       </header>
-      <ProductFilters params={listing} showType={false} />
+      <ProductFilters params={listing} showType={false} basePath={`/collections/${encodeURIComponent(handle)}`} />
       {nodes.length === 0 ? (
         <p className="font-body text-body-lg text-on-surface-variant">No pieces match these filters.</p>
       ) : (

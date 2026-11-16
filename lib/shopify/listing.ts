@@ -71,6 +71,17 @@ export function listingToSearch(params: ListingParams): Record<string, string> {
   return search;
 }
 
+export type ListingChange = Partial<Pick<ListingParams, "sort" | "type" | "size" | "min" | "max" | "available">>;
+
+// The address of this listing with some filters changed. A key that is present in `change` replaces
+// the current value, and one set to undefined removes it. The page cursor always goes, because a new
+// filter starts again from the first page.
+export function listingHref(basePath: string, params: ListingParams, change: ListingChange = {}): string {
+  const next: ListingParams = { ...params, after: undefined, ...change };
+  const query = new URLSearchParams(listingToSearch(next)).toString();
+  return `${basePath}?${query}`;
+}
+
 // Collections and the product search use different sort enums, so each has its own mapping.
 export function toCollectionSort(sort: SortKey): {
   sortKey: "BEST_SELLING" | "CREATED" | "PRICE";
