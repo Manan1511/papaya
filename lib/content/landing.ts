@@ -4,9 +4,9 @@ import type { HomeContent } from "../cms/model";
 // in the admin, and the starting point the editor creates from.
 export const homeDefaults: HomeContent = {
   heroVideo: "",
-  heroTitle: "Endless Summer State of Mind",
-  // The non-breaking hyphen keeps "sun-seekers" on one line when the pill wraps.
-  heroBody: "Curated essentials for the sun‑seekers. Crafted for golden hours.",
+  heroTitle: "A little different. A lot more you.",
+  heroBody:
+    "Jewellery with personality, crafted with love. Discover thoughtfully handcrafted pieces, playful details and unexpected combinations designed to make every look your own.",
   collectionsTitle: "Shop by collection",
   collectionsBody: "Pick a collection and find your next favourite piece.",
   reelsTitle: "Papaya in Motion",
