@@ -13,22 +13,22 @@ export function AccentHeading({ children, className }: { children: string; class
         {last}
         <svg
           aria-hidden="true"
-          viewBox="0 0 160 12"
+          viewBox="0 0 160 14"
           preserveAspectRatio="none"
-          className={cx("absolute -bottom-2 left-0 h-2.5 w-full fill-none stroke-primary")}
-          strokeWidth="3"
+          className="absolute -bottom-3 -left-1 h-3 w-[calc(100%+0.5rem)] fill-none stroke-primary"
+          strokeWidth="3.5"
           strokeLinecap="round"
         >
-          <path d="M3 8C30 2 60 3 90 6s45 3 67-1" />
+          <path d="M3 4C45 13 110 13 157 2" />
         </svg>
         <svg
           aria-hidden="true"
-          viewBox="0 0 24 24"
-          className="absolute -right-6 -top-4 size-6 fill-none stroke-primary"
+          viewBox="0 0 28 28"
+          className="absolute -right-5 -top-5 size-7 fill-none stroke-primary"
           strokeWidth="2.5"
           strokeLinecap="round"
         >
-          <path d="M4 20 8 12M11 22l3-9M17 9l6-3" />
+          <path d="M8 13 11.5 3.5M13 16.5 21 10M16 22 25.5 20.5" />
         </svg>
       </span>
     </h2>
