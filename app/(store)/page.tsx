@@ -2,6 +2,7 @@ import { CollectionTile } from "../../components/store/collection-tile";
 import { HeroVideo } from "../../components/store/hero-video";
 import { PreviewBanner } from "../../components/store/preview-banner";
 import { ProductCard } from "../../components/store/product-card";
+import { AccentHeading } from "../../components/store/accent-heading";
 import { ReelsStrip } from "../../components/store/reels-strip";
 import { ButtonLink } from "../../components/ui/button";
 import { Container } from "../../components/ui/container";
@@ -74,8 +75,8 @@ export default async function Home() {
       <section className="space-y-10 pb-section-gap">
         <Container>
           <header className="space-y-3 text-center">
-            <h2 className="font-headline text-headline-lg text-primary">{reelsTitle}</h2>
-            <p className="mx-auto max-w-md font-body text-body-md text-on-surface-variant">{reelsBody}</p>
+            <AccentHeading className="font-headline text-headline-lg text-tertiary">{reelsTitle}</AccentHeading>
+            <p className="mx-auto max-w-xs text-balance font-body text-body-md text-on-surface-variant md:max-w-md">{reelsBody}</p>
           </header>
         </Container>
         <ReelsStrip reels={content.reels} />

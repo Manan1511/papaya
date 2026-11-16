@@ -28,7 +28,7 @@ function PlaceholderFrame({ index }: { index: number }) {
           <polygon points="8.5,6 17.5,12 8.5,18" />
         </svg>
       </span>
-      <span className="font-label text-label-md text-on-surface">Reel coming soon</span>
+      <span className="font-label text-label-md text-on-surface">Watch the Reels</span>
     </li>
   );
 }
