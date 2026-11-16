@@ -58,6 +58,7 @@ const config = {
         headline: ["var(--font-headline)", "sans-serif"],
         body: ["var(--font-body)", "sans-serif"],
         label: ["var(--font-body)", "sans-serif"],
+        script: ["var(--font-script)", "cursive"],
       },
       fontSize: {
         "headline-xl": ["48px", { lineHeight: "56px", letterSpacing: "-0.02em", fontWeight: "800" }],

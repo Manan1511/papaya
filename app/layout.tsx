@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Be_Vietnam_Pro, Plus_Jakarta_Sans } from "next/font/google";
+import { Be_Vietnam_Pro, Plus_Jakarta_Sans, Yellowtail } from "next/font/google";
 import type { ReactNode } from "react";
 import "./globals.css";
 
@@ -17,6 +17,14 @@ const body = Be_Vietnam_Pro({
   display: "swap",
 });
 
+// A brush script for one accent word in the hero headline.
+const script = Yellowtail({
+  subsets: ["latin"],
+  weight: "400",
+  variable: "--font-script",
+  display: "swap",
+});
+
 export const metadata: Metadata = {
   title: { default: "Papaya Jewellery", template: "%s | Papaya Jewellery" },
   description: "Curated essentials for the sun-seekers. Crafted for golden hours.",
@@ -24,7 +32,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <html lang="en" className={`${headline.variable} ${body.variable}`}>
+    <html lang="en" className={`${headline.variable} ${body.variable} ${script.variable}`}>
       <body>{children}</body>
     </html>
   );
