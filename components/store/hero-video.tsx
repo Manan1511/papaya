@@ -45,7 +45,7 @@ export function HeroVideo({ src }: { src: string }) {
   const tall = ratio < 1;
 
   return (
-    <div className="flex justify-center md:justify-end">
+    <div className="flex justify-center md:justify-end md:pr-16">
       <div
         style={{ aspectRatio: ratio }}
         className={cx(
