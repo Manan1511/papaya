@@ -2,14 +2,15 @@
 
 import { useRef, useState } from "react";
 import { checkVideo, registerVideo, startVideoUpload } from "../../app/admin/content/actions";
-import { VIDEO_TYPES, validateVideoUpload } from "../../lib/cms/video";
+import { MAX_VIDEO_BYTES, VIDEO_TYPES, validateVideoUpload } from "../../lib/cms/video";
+import { MAX_SOURCE_BYTES, optimizeVideo } from "../../lib/cms/video-optimize";
 import { Button } from "../ui/button";
 import { Input } from "../ui/input";
 
 const POLL_MS = 2000;
 // About three minutes. Longer videos can be checked again from the editor.
 const MAX_POLLS = 90;
-const HINT = "MP4, WebM or MOV, up to 50 MB. Keep it short so the page loads quickly.";
+const HINT = "MP4, WebM or MOV. Large videos are shrunk automatically before they upload. Keep it short so the page loads quickly.";
 
 const wait = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
@@ -41,13 +42,25 @@ export function VideoUploader({
   const input = useRef<HTMLInputElement>(null);
   const locked = busy || disabled;
 
-  async function upload(file: File) {
-    const problem = validateVideoUpload({ mimeType: file.type, size: file.size });
+  async function upload(original: File) {
+    // Size is checked after optimizing, so a big phone video is fine as long as it shrinks under the limit.
+    const problem = validateVideoUpload({ mimeType: original.type, size: Math.min(original.size, MAX_VIDEO_BYTES) });
     if (problem) return setMessage(problem);
+    if (original.size > MAX_SOURCE_BYTES) return setMessage("That video is over 1 GB. Trim it and try again.");
 
     setBusy(true);
-    setMessage("Uploading the video…");
     try {
+      setMessage("Optimizing the video… 0%");
+      let file = original;
+      try {
+        file = (await optimizeVideo(original, (done) => setMessage(`Optimizing the video… ${Math.round(done * 100)}%`))).file;
+      } catch {
+        // Optimizing is a bonus. Fall through and send the original if it fits.
+      }
+      const tooBig = validateVideoUpload({ mimeType: file.type, size: file.size });
+      if (tooBig) return setMessage(tooBig);
+
+      setMessage("Uploading the video…");
       const started = await startVideoUpload({ filename: file.name, mimeType: file.type, size: file.size });
       if (!started.ok) return setMessage(started.error);
 
