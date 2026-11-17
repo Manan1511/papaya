@@ -34,14 +34,14 @@ export default async function Home() {
     <>
       {preview && <PreviewBanner path="/" />}
       <section className="relative isolate overflow-hidden">
-        <div aria-hidden="true" className="beach-stripes absolute inset-0 -z-10" />
-        {/* The white wave sweeps from the upper left to the lower right over the stripes. */}
+        <div aria-hidden="true" className="beach-dots absolute inset-0 -z-10" />
+        {/* The white wave sweeps from the upper left to the lower right over the dots. */}
         <svg aria-hidden="true" viewBox="0 0 100 100" preserveAspectRatio="none" className="absolute inset-0 -z-10 size-full">
           <path d="M0 6C40 6 70 30 100 31V70C92 78 45 95 0 99Z" className="fill-surface" />
         </svg>
         <Container className="grid min-h-[38rem] items-center gap-10 pb-section-gap pt-32 md:grid-cols-2">
           <div className="flex flex-col justify-center gap-6">
-            {/* On a phone the headline runs across the stripes, so each letter gets a white outline (stroke
+            {/* On a phone the headline runs across the dots, so each letter gets a white outline (stroke
                 painted under the fill) to stay readable on any colour. */}
             <HeroHeadline className="max-w-xl text-[clamp(1.75rem,9.6vw,3rem)] font-extrabold leading-[1.15] tracking-[-0.02em] text-on-surface max-md:[-webkit-text-stroke:0.4rem_#fff] max-md:[paint-order:stroke_fill] md:text-[clamp(1.75rem,4.4vw,3rem)]">
               {content.heroTitle}
