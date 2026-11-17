@@ -37,8 +37,21 @@ export function HeroVideo({ src }: { src: string }) {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
     video.muted = true;
-    video.play().catch(() => {}); // Browsers can refuse autoplay. The first frame still shows.
+    // Plays while on screen and picks up again after being scrolled away or the tab being hidden. Browsers
+    // can refuse autoplay, and the first frame still shows if they do.
+    const watcher = new IntersectionObserver(([entry]) => {
+      if (entry?.isIntersecting) video.play().catch(() => {});
+      else video.pause();
+    });
+    watcher.observe(video);
+    return () => watcher.disconnect();
   }, [src]);
+
+  // `loop` restarts the video by itself, but some phones stop at the end anyway, so start it again by hand.
+  function restart(video: HTMLVideoElement) {
+    video.currentTime = 0;
+    video.play().catch(() => {});
+  }
 
   if (failedSrc === src) return null;
 
@@ -63,6 +76,7 @@ export function HeroVideo({ src }: { src: string }) {
           preload="auto"
           aria-hidden="true"
           onLoadedMetadata={(event) => measure(event.currentTarget)}
+          onEnded={(event) => restart(event.currentTarget)}
           onError={() => setFailedSrc(src)}
           className="h-full w-full object-cover"
         />
