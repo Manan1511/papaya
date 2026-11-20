@@ -1,8 +1,7 @@
 import Link from "next/link";
 import { AdminShell } from "../../../components/admin/shell";
-import { Panel, StatusChip } from "../../../components/admin/ui";
+import { Panel, PublishState } from "../../../components/admin/ui";
 import { ButtonLink } from "../../../components/ui/button";
-import { Chip } from "../../../components/ui/chip";
 import { requireAdmin } from "../../../lib/auth/session";
 import { entryUrlId, hasUnpublishedChanges, listEntries } from "../../../lib/cms/entries";
 import { pageKind } from "../../../lib/cms/model";
@@ -43,10 +42,7 @@ export default async function AdminPages() {
                     </td>
                     <td className="py-3 text-on-surface-variant">/pages/{entry.slug}</td>
                     <td className="py-3">
-                      <div className="flex flex-wrap items-center gap-2">
-                        <StatusChip status={entry.published ? "published" : "draft"} />
-                        {entry.published && hasUnpublishedChanges(entry) && <Chip>Changes not published</Chip>}
-                      </div>
+                      <PublishState live={entry.published !== null} changed={hasUnpublishedChanges(entry)} />
                     </td>
                     <td className="py-3 text-on-surface-variant">{formatDateTime(entry.updatedAt)}</td>
                   </tr>

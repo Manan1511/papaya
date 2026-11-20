@@ -1,4 +1,5 @@
 import { AdminShell } from "../../../components/admin/shell";
+import { PublishState } from "../../../components/admin/ui";
 import { requireAdmin } from "../../../lib/auth/session";
 import { hasUnpublishedChanges } from "../../../lib/cms/entries";
 import { ensureHomeEntry } from "../../../lib/cms/home";
@@ -10,12 +11,15 @@ export default async function AdminContent() {
   const live = entry.published !== null;
   const changed = live && hasUnpublishedChanges(entry);
   const status = live
-    ? `Live on the homepage.${changed ? " Changes since the last publish are not live yet." : ""}`
+    ? "What visitors see is the last published version."
     : "Not public yet. The homepage keeps its original copy until you publish.";
 
   return (
     <AdminShell title="Homepage">
-      <p className="font-body text-body-md text-on-surface-variant">{status}</p>
+      <div className="flex flex-wrap items-center gap-3">
+        <PublishState live={live} changed={changed} />
+        <p className="font-body text-body-md text-on-surface-variant">{status}</p>
+      </div>
       <HomeForm entry={{ id: entry.id, updatedAt: entry.updatedAt, live }} initial={entry.draft} />
     </AdminShell>
   );

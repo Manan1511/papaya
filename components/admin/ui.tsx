@@ -33,6 +33,28 @@ export function StatCard({ label, value, hint }: { label: string; value: number;
   );
 }
 
+// Where an entry stands: a draft nobody can see, live, or live with edits that visitors can't see yet.
+export function PublishState({ live, changed }: { live: boolean; changed: boolean }) {
+  return (
+    <div className="flex flex-wrap items-center gap-2">
+      {live ? (
+        <Chip tone="secondary">
+          Live
+        </Chip>
+      ) : (
+        <Chip tone="primary">
+          Draft, not live
+        </Chip>
+      )}
+      {live && changed && (
+        <Chip tone="primary">
+          Unpublished changes
+        </Chip>
+      )}
+    </div>
+  );
+}
+
 const statusTones = {
   published: "secondary",
   approved: "secondary",
