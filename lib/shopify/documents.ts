@@ -1,5 +1,6 @@
 // GraphQL documents for the Storefront API. Kept free of server-only imports so the
 // schema test can check every document against the pinned schema.
+import { PRODUCT_ATTRIBUTE_FIELDS } from "./product-attributes";
 
 const PRODUCT_CARD = /* GraphQL */ `
   fragment ProductCard on Product {
@@ -196,6 +197,7 @@ export const PRODUCT_QUERY = /* GraphQL */ `
           title
         }
       }
+      ${PRODUCT_ATTRIBUTE_FIELDS}
       careTips: metafield(namespace: "papaya", key: "care_tips") {
         value
       }

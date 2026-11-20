@@ -10,6 +10,7 @@ import { Grid } from "../../../../components/ui/grid";
 import { formatPrice } from "../../../../lib/format";
 import { FREE_SHIPPING_THRESHOLD_INR } from "../../../../lib/content/site";
 import { getProduct } from "../../../../lib/shopify/catalog";
+import { readProductAttributes } from "../../../../lib/shopify/product-attributes";
 
 export async function generateMetadata({
   params,
@@ -41,6 +42,7 @@ export default async function ProductPage({ params }: { params: Promise<{ handle
   const price = product.priceRange.minVariantPrice;
   const compareAt = product.compareAtPriceRange.minVariantPrice;
   const showCompare = Number(compareAt.amount) > Number(price.amount);
+  const attributes = readProductAttributes(product);
   const careTips = product.careTips?.value?.trim();
   const related = product.completeTheLook?.references.nodes ?? [];
 
@@ -119,6 +121,22 @@ export default async function ProductPage({ params }: { params: Promise<{ handle
           <Link href="/pages/size-guide" className="link-underline w-fit font-label text-label-md text-secondary">
             Size guide
           </Link>
+
+          {attributes.length > 0 && (
+            <section aria-labelledby="product-details" className="space-y-2">
+              <h2 id="product-details" className="font-headline text-headline-md text-on-surface">
+                Details
+              </h2>
+              <dl className="grid grid-cols-[auto_1fr] gap-x-6 gap-y-2 font-body text-body-md">
+                {attributes.map(({ label, values }) => (
+                  <div key={label} className="contents">
+                    <dt className="font-semibold text-on-surface">{label}</dt>
+                    <dd className="text-on-surface-variant">{values.join(", ")}</dd>
+                  </div>
+                ))}
+              </dl>
+            </section>
+          )}
 
           {careTips && (
             <section aria-labelledby="care-tips" className="space-y-2">
