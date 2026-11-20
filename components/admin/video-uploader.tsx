@@ -52,13 +52,22 @@ export function VideoUploader({
     try {
       setMessage("Optimizing the video… 0%");
       let file = original;
+      let undecodable = false;
       try {
-        file = (await optimizeVideo(original, (done) => setMessage(`Optimizing the video… ${Math.round(done * 100)}%`))).file;
+        const result = await optimizeVideo(original, (done) => setMessage(`Optimizing the video… ${Math.round(done * 100)}%`));
+        file = result.file;
+        undecodable = result.undecodable === true;
       } catch {
         // Optimizing is a bonus. Fall through and send the original if it fits.
       }
       const tooBig = validateVideoUpload({ mimeType: file.type, size: file.size });
-      if (tooBig) return setMessage(tooBig);
+      if (tooBig) {
+        return setMessage(
+          undecodable
+            ? "This video uses an older format that can't be shrunk here, and it's over 50 MB. Export it as an MP4 (H.264) or use a shorter clip."
+            : tooBig,
+        );
+      }
 
       setMessage("Uploading the video…");
       const started = await startVideoUpload({ filename: file.name, mimeType: file.type, size: file.size });

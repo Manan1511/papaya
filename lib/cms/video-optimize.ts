@@ -6,7 +6,9 @@ const MAX_SHORT_SIDE = 720;
 // A file this small and this sharp is already light, so it goes up as it is.
 const LIGHT_ENOUGH_BYTES = 6 * 1024 * 1024;
 
-export type Optimized = { file: File; changed: boolean };
+// `undecodable` means the browser can't read this video's format (older MPEG-4 files, for one), so it
+// could not be shrunk and `file` is the original.
+export type Optimized = { file: File; changed: boolean; undecodable?: boolean };
 
 // Returns the original file when it is already light, or when this browser can't re-encode (the caller
 // then applies the plain size limit). Throws only if a started conversion fails.
@@ -20,6 +22,7 @@ export async function optimizeVideo(file: File, onProgress: (fraction: number) =
   try {
     const track = await input.getPrimaryVideoTrack();
     if (!track || !(await canEncodeVideo("avc"))) return { file, changed: false };
+    if (!(await track.canDecode())) return { file, changed: false, undecodable: true };
 
     const shortSide = Math.min(track.displayWidth, track.displayHeight);
     const isMp4 = file.type === "video/mp4";
