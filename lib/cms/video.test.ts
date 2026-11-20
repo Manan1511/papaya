@@ -12,7 +12,7 @@ describe("video uploads", () => {
 
   it("refuses empty and oversized files", () => {
     expect(validateVideoUpload({ mimeType: "video/mp4", size: 0 })).toMatch(/empty/);
-    expect(validateVideoUpload({ mimeType: "video/mp4", size: MAX_VIDEO_BYTES + 1 })).toMatch(/50 MB/);
+    expect(validateVideoUpload({ mimeType: "video/mp4", size: MAX_VIDEO_BYTES + 1 })).toMatch(/500 MB/);
   });
 });
 

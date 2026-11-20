@@ -64,7 +64,7 @@ export function VideoUploader({
       if (tooBig) {
         return setMessage(
           undecodable
-            ? "This video uses an older format that can't be shrunk here, and it's over 50 MB. Export it as an MP4 (H.264) or use a shorter clip."
+            ? "This video uses an older format that can't be shrunk here, and it's over 500 MB. Export it as an MP4 (H.264) or use a shorter clip."
             : tooBig,
         );
       }

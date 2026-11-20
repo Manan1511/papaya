@@ -3,14 +3,15 @@
 
 export const VIDEO_TYPES = ["video/mp4", "video/webm", "video/quicktime"] as const;
 
-// A hero loop should stay small. The limit is ours; Shopify accepts larger files.
-export const MAX_VIDEO_BYTES = 50 * 1024 * 1024;
+// What one upload may weigh. The storefront plays the smaller versions Shopify makes, so this only
+// bounds the upload itself. The limit is ours; Shopify accepts larger files.
+export const MAX_VIDEO_BYTES = 500 * 1024 * 1024;
 
 // The reason a file can't be used, or null when it can.
 export function validateVideoUpload(file: { mimeType: string; size: number }): string | null {
   if (!(VIDEO_TYPES as readonly string[]).includes(file.mimeType)) return "Choose an MP4, WebM or MOV video.";
   if (!(file.size > 0)) return "That file is empty.";
-  if (file.size > MAX_VIDEO_BYTES) return "Videos can be up to 50 MB. Shorten or compress the video and try again.";
+  if (file.size > MAX_VIDEO_BYTES) return "Videos can be up to 500 MB. Shorten or compress the video and try again.";
   return null;
 }
 
