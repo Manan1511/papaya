@@ -3,7 +3,7 @@
 import { z } from "zod";
 
 export const SORT_OPTIONS = ["best", "newest", "price-asc", "price-desc"] as const;
-export const PRODUCT_TYPES = ["Necklaces", "Scarf Necklaces", "Earrings", "Rings", "Bracelets", "Anklets", "Waist Belts"] as const;
+export const PRODUCT_TYPES = ["Necklaces", "Scarf Necklaces", "Earrings", "Rings", "Bracelets", "Anklets", "Waist Belts", "Everyday Minimal Jewellery"] as const;
 export const RING_SIZES = ["6", "7", "8", "9"] as const;
 
 const priceParam = z
