@@ -1,7 +1,8 @@
 import "server-only";
 import * as documents from "./documents";
 import type { ProductFilter, SortKey } from "./listing";
-import { toCollectionSort } from "./listing";
+import type { ListingParams } from "./listing";
+import { toCollectionSort, toShopSearch } from "./listing";
 import * as schemas from "./schemas";
 import { storefront } from "./storefront";
 
@@ -20,6 +21,40 @@ export async function getCollections(): Promise<schemas.CollectionSummary[]> {
     { tags: CATALOG_TAGS },
   );
   return data.collections.nodes.filter((collection) => collection.handle !== ALL_PRODUCTS_HANDLE);
+}
+
+// The shop page: every product matching the filters, searched rather than read from a collection.
+export async function getShopPage(params: ListingParams) {
+  const { sortKey, reverse } = toCollectionSort(params.sort);
+  const data = await storefront(
+    documents.SHOP_QUERY,
+    schemas.shopResponse,
+    {
+      query: toShopSearch(params) || null,
+      first: PAGE_SIZE,
+      after: params.after ?? null,
+      sortKey: sortKey === "CREATED" ? "CREATED_AT" : sortKey,
+      reverse,
+    },
+    { tags: CATALOG_TAGS },
+  );
+  return data.products;
+}
+
+export type ListingFacets = { types: string[]; sizes: string[] };
+
+// The choices the shop's filters offer, taken from the catalog so nothing is listed by hand: every
+// product type in use (in Shopify's order), and every value of the "Size" option, smallest first.
+export async function getListingFacets(): Promise<ListingFacets> {
+  const data = await storefront(documents.FACETS_QUERY, schemas.facetsResponse, {}, { tags: CATALOG_TAGS });
+  const sizes = new Set<string>();
+  for (const product of data.products.nodes) {
+    for (const option of product.options) if (option.name === "Size") option.values.forEach((value) => sizes.add(value));
+  }
+  return {
+    types: data.productTypes.nodes.filter((type) => type.trim() !== ""),
+    sizes: [...sizes].sort((a, b) => a.localeCompare(b, undefined, { numeric: true })),
+  };
 }
 
 // Shopify's automatic home page collection isn't one a shopper would browse by.

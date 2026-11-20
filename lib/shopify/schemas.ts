@@ -71,6 +71,17 @@ export const productDetail = productSummary.extend({
 });
 export type ProductDetail = z.infer<typeof productDetail>;
 
+export const shopResponse = z.object({
+  products: z.object({ pageInfo, nodes: z.array(productSummary) }),
+});
+
+export const facetsResponse = z.object({
+  productTypes: z.object({ nodes: z.array(z.string()) }),
+  products: z.object({
+    nodes: z.array(z.object({ options: z.array(z.object({ name: z.string(), values: z.array(z.string()) })) })),
+  }),
+});
+
 export const collectionsResponse = z.object({
   collections: z.object({ nodes: z.array(collectionSummary) }),
 });

@@ -1,10 +1,8 @@
-// Turns listing URL parameters into safe Storefront arguments. Values are whitelisted,
-// so nothing from the URL reaches the API unchecked.
+// Turns listing URL parameters into Storefront arguments. Every value is parsed and length-limited
+// first, and reaches the API only as a typed variable.
 import { z } from "zod";
 
 export const SORT_OPTIONS = ["best", "newest", "price-asc", "price-desc"] as const;
-export const PRODUCT_TYPES = ["Necklaces", "Scarf Necklaces", "Earrings", "Rings", "Bracelets", "Anklets", "Waist Belts", "Everyday Minimal Jewellery"] as const;
-export const RING_SIZES = ["6", "7", "8", "9"] as const;
 
 const priceParam = z
   .string()
@@ -20,8 +18,10 @@ const listingSchema = z.object({
     .transform(() => true)
     .optional()
     .catch(undefined),
-  type: z.enum(PRODUCT_TYPES).optional().catch(undefined),
-  size: z.enum(RING_SIZES).optional().catch(undefined),
+  // The product types and sizes come from the catalog, so any short text is accepted here. It only
+  // ever goes to Shopify as a filter value, and a value nothing matches shows an empty listing.
+  type: z.string().trim().min(1).max(80).optional().catch(undefined),
+  size: z.string().trim().min(1).max(40).optional().catch(undefined),
   min: priceParam,
   max: priceParam,
   after: z.string().max(512).optional().catch(undefined),
@@ -58,6 +58,21 @@ export function toProductFilters(params: ListingParams): ProductFilter[] {
   }
   if (params.size) filters.push({ variantOption: { name: "Size", value: params.size } });
   return filters;
+}
+
+// The shop searches the whole catalog, because a collection only filters by what Shopify's Search &
+// Discovery app has switched on, and that is never product type or size. A search string can filter
+// by anything, so the shop uses one. Text is quoted, with quote marks and backslashes removed.
+const quoted = (value: string) => `"${value.replace(/["\\]/g, "")}"`;
+
+export function toShopSearch(params: ListingParams): string {
+  const terms: string[] = [];
+  if (params.available) terms.push("available_for_sale:true");
+  if (params.type) terms.push(`product_type:${quoted(params.type)}`);
+  if (params.size) terms.push(`variants.title:${quoted(params.size)}`);
+  if (params.min !== undefined) terms.push(`variants.price:>=${params.min}`);
+  if (params.max !== undefined) terms.push(`variants.price:<=${params.max}`);
+  return terms.join(" ");
 }
 
 // Serialises the listing state back into URL parameters, for pagination links.

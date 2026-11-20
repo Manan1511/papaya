@@ -215,6 +215,39 @@ export const PRODUCT_QUERY = /* GraphQL */ `
   ${PRODUCT_CARD}
 `;
 
+export const SHOP_QUERY = /* GraphQL */ `
+  query Shop($query: String, $first: Int!, $after: String, $sortKey: ProductSortKeys, $reverse: Boolean) {
+    products(first: $first, after: $after, query: $query, sortKey: $sortKey, reverse: $reverse) {
+      pageInfo {
+        hasNextPage
+        endCursor
+      }
+      nodes {
+        ...ProductCard
+      }
+    }
+  }
+  ${PRODUCT_CARD}
+`;
+
+// What the shop's filters offer, read from the catalog: the product types in use, and the options
+// on every product, from which the sizes are taken.
+export const FACETS_QUERY = /* GraphQL */ `
+  query Facets {
+    productTypes(first: 250) {
+      nodes
+    }
+    products(first: 250) {
+      nodes {
+        options {
+          name
+          values
+        }
+      }
+    }
+  }
+`;
+
 export const SEARCH_QUERY = /* GraphQL */ `
   query Search($query: String!, $first: Int!, $after: String) {
     search(query: $query, types: [PRODUCT], first: $first, after: $after, unavailableProducts: HIDE) {

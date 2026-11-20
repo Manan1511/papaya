@@ -1,8 +1,9 @@
 import Link from "next/link";
 import { cx } from "../../lib/cx";
 import { formatPrice } from "../../lib/format";
+import type { ListingFacets } from "../../lib/shopify/catalog";
 import type { ListingParams } from "../../lib/shopify/listing";
-import { listingHref, PRODUCT_TYPES, RING_SIZES } from "../../lib/shopify/listing";
+import { listingHref } from "../../lib/shopify/listing";
 import { Button } from "../ui/button";
 import { SortSelect } from "./sort-select";
 
@@ -47,10 +48,12 @@ function Choice({ children, ...input }: React.InputHTMLAttributes<HTMLInputEleme
 // without JavaScript and every filtered view has its own address.
 export function ProductFilters({
   params,
+  facets,
   showType,
   basePath,
 }: {
   params: ListingParams;
+  facets: ListingFacets;
   showType: boolean;
   basePath: string;
 }) {
@@ -72,7 +75,7 @@ export function ProductFilters({
           >
             All
           </Link>
-          {PRODUCT_TYPES.map((type) => (
+          {facets.types.map((type) => (
             <Link
               key={type}
               href={listingHref(basePath, params, { type })}
@@ -124,19 +127,21 @@ export function ProductFilters({
           </summary>
 
           <div className="absolute inset-x-0 top-full z-20 mt-2 space-y-5 md:inset-x-auto md:left-0 md:w-[26rem] rounded-lg border-[1.5px] border-tertiary bg-surface-container-lowest p-5 shadow-hard-secondary">
-            <fieldset className="space-y-2">
-              <legend className="font-label text-label-md font-bold text-on-surface">Size</legend>
-              <div className="flex flex-wrap gap-2">
-                <Choice type="radio" name="size" value="" defaultChecked={!params.size}>
-                  Any
-                </Choice>
-                {RING_SIZES.map((size) => (
-                  <Choice key={size} type="radio" name="size" value={size} defaultChecked={params.size === size}>
-                    {size}
+            {showType && facets.sizes.length > 0 && (
+              <fieldset className="space-y-2">
+                <legend className="font-label text-label-md font-bold text-on-surface">Size</legend>
+                <div className="flex flex-wrap gap-2">
+                  <Choice type="radio" name="size" value="" defaultChecked={!params.size}>
+                    Any
                   </Choice>
-                ))}
-              </div>
-            </fieldset>
+                  {facets.sizes.map((size) => (
+                    <Choice key={size} type="radio" name="size" value={size} defaultChecked={params.size === size}>
+                      {size}
+                    </Choice>
+                  ))}
+                </div>
+              </fieldset>
+            )}
 
             <fieldset className="space-y-2">
               <legend className="font-label text-label-md font-bold text-on-surface">Price</legend>

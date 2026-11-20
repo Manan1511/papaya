@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { listingHref, parseListing, toCollectionSort, toProductFilters } from "./listing";
+import { listingHref, parseListing, toCollectionSort, toProductFilters, toShopSearch } from "./listing";
 
 describe("parseListing", () => {
   it("defaults to best selling with no filters", () => {
@@ -16,10 +16,11 @@ describe("parseListing", () => {
     expect(parseListing({ sort: ["newest", "best"] }).sort).toBe("newest");
   });
 
-  it("ignores product types and sizes outside the whitelist", () => {
-    const params = parseListing({ type: "Hats", size: "12" });
+  it("drops empty or oversized product types and sizes", () => {
+    const params = parseListing({ type: "  ", size: "x".repeat(41) });
     expect(params.type).toBeUndefined();
     expect(params.size).toBeUndefined();
+    expect(parseListing({ type: "Anklets", size: "7" })).toMatchObject({ type: "Anklets", size: "7" });
   });
 
   it("drops an inverted price range", () => {
@@ -77,5 +78,23 @@ describe("listingHref", () => {
 
   it("works under a collection's address", () => {
     expect(listingHref("/collections/necklaces", parseListing({}))).toBe("/collections/necklaces?sort=best");
+  });
+});
+
+describe("toShopSearch", () => {
+  it("is empty with no filters", () => {
+    expect(toShopSearch(parseListing({}))).toBe("");
+  });
+
+  it("joins every active filter into one search", () => {
+    const params = parseListing({ available: "1", type: "Rings", size: "7", min: "1000", max: "3000" });
+    expect(toShopSearch(params)).toBe(
+      'available_for_sale:true product_type:"Rings" variants.title:"7" variants.price:>=1000 variants.price:<=3000',
+    );
+  });
+
+  it("strips quote marks so text can't break out of its quotes", () => {
+    const params = parseListing({ type: 'Rings" OR vendor:"x' });
+    expect(toShopSearch(params)).toBe('product_type:"Rings OR vendor:x"');
   });
 });

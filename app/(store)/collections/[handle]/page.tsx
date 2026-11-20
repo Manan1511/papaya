@@ -5,7 +5,7 @@ import { ProductCard } from "../../../../components/store/product-card";
 import { ProductFilters } from "../../../../components/store/product-filters";
 import { Container } from "../../../../components/ui/container";
 import { Grid } from "../../../../components/ui/grid";
-import { getCollectionPage } from "../../../../lib/shopify/catalog";
+import { getCollectionPage, getListingFacets } from "../../../../lib/shopify/catalog";
 import { listingToSearch, parseListing, toProductFilters } from "../../../../lib/shopify/listing";
 
 export async function generateMetadata({
@@ -32,12 +32,15 @@ export default async function CollectionPage({
 }) {
   const { handle } = await params;
   const listing = parseListing(await searchParams);
-  const page = await getCollectionPage({
-    handle,
-    sort: listing.sort,
-    filters: toProductFilters(listing),
-    after: listing.after,
-  });
+  const [page, facets] = await Promise.all([
+    getCollectionPage({
+      handle,
+      sort: listing.sort,
+      filters: toProductFilters(listing),
+      after: listing.after,
+    }),
+    getListingFacets(),
+  ]);
   if (!page) notFound();
 
   const { nodes, pageInfo } = page.products;
@@ -50,7 +53,7 @@ export default async function CollectionPage({
           <p className="font-body text-body-lg text-on-surface-variant">{page.description}</p>
         )}
       </header>
-      <ProductFilters params={listing} showType={false} basePath={`/collections/${encodeURIComponent(handle)}`} />
+      <ProductFilters params={listing} facets={facets} showType={false} basePath={`/collections/${encodeURIComponent(handle)}`} />
       {nodes.length === 0 ? (
         <p className="font-body text-body-lg text-on-surface-variant">No pieces match these filters.</p>
       ) : (
