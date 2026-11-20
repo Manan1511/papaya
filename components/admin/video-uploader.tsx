@@ -14,6 +14,21 @@ const HINT = "MP4, WebM or MOV. Large videos are shrunk automatically before the
 
 const wait = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
+// Posts the form to Shopify's upload address. fetch can't report how much has gone up, so this uses a
+// request that can. Resolves true when Shopify accepted the file.
+function send(url: string, body: FormData, onProgress: (fraction: number) => void): Promise<boolean> {
+  return new Promise((resolve) => {
+    const request = new XMLHttpRequest();
+    request.open("POST", url);
+    request.upload.onprogress = (event) => {
+      if (event.lengthComputable) onProgress(event.loaded / event.total);
+    };
+    request.onload = () => resolve(request.status >= 200 && request.status < 300);
+    request.onerror = () => resolve(false);
+    request.send(body);
+  });
+}
+
 function isSecureLink(value: string): boolean {
   try {
     return new URL(value).protocol === "https:";
@@ -39,6 +54,8 @@ export function VideoUploader({
   const [link, setLink] = useState("");
   const [message, setMessage] = useState("");
   const [busy, setBusy] = useState(false);
+  // How far the current step is, from 0 to 1, or null when it can't be measured (Shopify processing).
+  const [progress, setProgress] = useState<number | null>(0);
   const input = useRef<HTMLInputElement>(null);
   const locked = busy || disabled;
 
@@ -50,11 +67,15 @@ export function VideoUploader({
 
     setBusy(true);
     try {
+      setProgress(0);
       setMessage("Optimizing the video… 0%");
       let file = original;
       let undecodable = false;
       try {
-        const result = await optimizeVideo(original, (done) => setMessage(`Optimizing the video… ${Math.round(done * 100)}%`));
+        const result = await optimizeVideo(original, (done) => {
+          setProgress(done);
+          setMessage(`Optimizing the video… ${Math.round(done * 100)}%`);
+        });
         file = result.file;
         undecodable = result.undecodable === true;
       } catch {
@@ -69,19 +90,24 @@ export function VideoUploader({
         );
       }
 
-      setMessage("Uploading the video…");
+      setProgress(0);
+      setMessage("Uploading the video… 0%");
       const started = await startVideoUpload({ filename: file.name, mimeType: file.type, size: file.size });
       if (!started.ok) return setMessage(started.error);
 
       const body = new FormData();
       for (const { name, value } of started.target.parameters) body.append(name, value);
       body.append("file", file);
-      const sent = await fetch(started.target.url, { method: "POST", body });
-      if (!sent.ok) return setMessage("The upload didn't go through. Try again.");
+      const sent = await send(started.target.url, body, (done) => {
+        setProgress(done);
+        setMessage(`Uploading the video… ${Math.round(done * 100)}%`);
+      });
+      if (!sent) return setMessage("The upload didn't go through. Try again.");
 
       const registered = await registerVideo({ resourceUrl: started.target.resourceUrl, filename: file.name });
       if (!registered.ok) return setMessage(registered.error);
 
+      setProgress(null);
       setMessage("Shopify is processing the video. This can take a minute.");
       for (let attempt = 0; attempt < MAX_POLLS; attempt++) {
         await wait(POLL_MS);
@@ -144,6 +170,22 @@ export function VideoUploader({
           Use link
         </Button>
       </div>
+
+      {busy && (
+        <div
+          role="progressbar"
+          aria-label="Video upload progress"
+          aria-valuemin={0}
+          aria-valuemax={100}
+          aria-valuenow={progress === null ? undefined : Math.round(progress * 100)}
+          className="h-2 w-full overflow-hidden rounded-full bg-surface-container-high"
+        >
+          <div
+            className={`h-full rounded-full bg-primary ${progress === null ? "w-full animate-pulse" : "transition-[width] duration-200"}`}
+            style={progress === null ? undefined : { width: `${Math.round(progress * 100)}%` }}
+          />
+        </div>
+      )}
 
       <p role="status" className="font-body text-label-md text-on-surface-variant">
         {message || HINT}
