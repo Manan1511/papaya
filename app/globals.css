@@ -258,6 +258,14 @@ dialog[open]::backdrop {
 .reels-track {
   display: flex;
   width: max-content;
+  /* Moves on the graphics card, so the drift stays smooth while videos decode. */
+  will-change: transform;
+}
+
+/* Each card gets its own layer, so a video frame changing repaints only that card. */
+.reel-card {
+  transform: translateZ(0);
+  contain: paint;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -275,9 +283,17 @@ dialog[open]::backdrop {
     animation: reels-scroll var(--reels-seconds, 60s) linear infinite;
   }
 
-  .reels-viewport:hover .reels-track,
-  .reels-viewport:focus-within .reels-track {
+  /* The row stops for a mouse pointer resting on it, and for keyboard focus, but not after a tap on a
+     phone (a tap leaves "hover" stuck on), and it rests while a reel is open full screen. */
+  .reels-viewport:has(:focus-visible) .reels-track,
+  .reels-viewport[data-open] .reels-track {
     animation-play-state: paused;
+  }
+
+  @media (hover: hover) {
+    .reels-viewport:hover .reels-track {
+      animation-play-state: paused;
+    }
   }
 
   .link-underline::after {
@@ -291,7 +307,7 @@ dialog[open]::backdrop {
 
 @keyframes reels-scroll {
   to {
-    transform: translateX(-50%);
+    transform: translate3d(-50%, 0, 0);
   }
 }
 
