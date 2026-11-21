@@ -160,12 +160,29 @@ export const PRODUCT_QUERY = /* GraphQL */ `
     product(handle: $handle) {
       ...ProductCard
       description
-      images(first: 8) {
+      media(first: 12) {
         nodes {
-          url
-          altText
-          width
-          height
+          ... on MediaImage {
+            image {
+              url
+              altText
+              width
+              height
+            }
+          }
+          ... on Video {
+            previewImage {
+              url
+              altText
+              width
+              height
+            }
+            sources {
+              url
+              mimeType
+              height
+            }
+          }
         }
       }
       options(first: 10) {

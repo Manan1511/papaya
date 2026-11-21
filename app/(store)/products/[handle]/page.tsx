@@ -10,6 +10,7 @@ import { Grid } from "../../../../components/ui/grid";
 import { formatPrice } from "../../../../lib/format";
 import { FREE_SHIPPING_THRESHOLD_INR } from "../../../../lib/content/site";
 import { getProduct } from "../../../../lib/shopify/catalog";
+import { galleryItems } from "../../../../lib/shopify/gallery";
 import { readProductAttributes } from "../../../../lib/shopify/product-attributes";
 
 export async function generateMetadata({
@@ -33,12 +34,7 @@ export default async function ProductPage({ params }: { params: Promise<{ handle
   if (!product) notFound();
 
   const collection = product.collections.nodes[0];
-  const images =
-    product.images.nodes.length > 0
-      ? product.images.nodes
-      : product.featuredImage
-        ? [product.featuredImage]
-        : [];
+  const items = galleryItems(product.media.nodes, product.featuredImage);
   const price = product.priceRange.minVariantPrice;
   const compareAt = product.compareAtPriceRange.minVariantPrice;
   const showCompare = Number(compareAt.amount) > Number(price.amount);
@@ -52,7 +48,7 @@ export default async function ProductPage({ params }: { params: Promise<{ handle
     "@type": "Product",
     name: product.title,
     description: product.description,
-    image: images.map((image) => image.url),
+    image: items.flatMap((item) => (item.kind === "image" ? [item.url] : [])),
     offers: {
       "@type": "Offer",
       priceCurrency: price.currencyCode,
@@ -82,7 +78,7 @@ export default async function ProductPage({ params }: { params: Promise<{ handle
       </nav>
 
       <div className="grid gap-10 md:grid-cols-2">
-        <ProductGallery images={images} title={product.title} />
+        <ProductGallery items={items} title={product.title} />
 
         <div className="flex flex-col gap-6">
           <div className="space-y-2">

@@ -59,7 +59,16 @@ export type ProductVariant = z.infer<typeof variant>;
 
 export const productDetail = productSummary.extend({
   description: z.string(),
-  images: z.object({ nodes: z.array(image) }),
+  // The product's photos and videos in the order set in Shopify. Other kinds of media come back empty.
+  media: z.object({
+    nodes: z.array(
+      z.object({
+        image: image.nullable().optional(),
+        previewImage: image.nullable().optional(),
+        sources: z.array(z.object({ url: z.string(), mimeType: z.string(), height: z.number().nullable() })).optional(),
+      }),
+    ),
+  }),
   options: z.array(z.object({ name: z.string(), values: z.array(z.string()) })),
   variants: z.object({ nodes: z.array(variant) }),
   collections: z.object({ nodes: z.array(z.object({ handle: z.string(), title: z.string() })) }),
