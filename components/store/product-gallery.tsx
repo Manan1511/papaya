@@ -3,9 +3,14 @@
 import Image from "next/image";
 import { useState } from "react";
 import { cx } from "../../lib/cx";
-import type { GalleryItem } from "../../lib/shopify/gallery";
+import type { GalleryImage, GalleryItem } from "../../lib/shopify/gallery";
 
-const photoClass = "absolute -inset-[5%] h-[110%] w-[110%] max-w-none object-cover mix-blend-multiply";
+const thumbClass = "absolute inset-0 size-full object-contain mix-blend-multiply";
+
+// Videos have no size of their own until they load, so the poster's shape is used (portrait if there is none).
+function videoRatio(poster: GalleryImage | null) {
+  return poster?.width && poster.height ? `${poster.width} / ${poster.height}` : "4 / 5";
+}
 
 export function ProductGallery({ items, title }: { items: GalleryItem[]; title: string }) {
   const [index, setIndex] = useState(0);
@@ -18,7 +23,8 @@ export function ProductGallery({ items, title }: { items: GalleryItem[]; title: 
       {/* Keyed by the item, so the main picture fades in whenever the shopper picks another one. */}
       <div
         key={current.kind === "image" ? current.url : current.src}
-        className="relative aspect-[4/5] overflow-hidden rounded-xl bg-background motion-safe:animate-fade-in"
+        className="relative overflow-hidden rounded-xl bg-background motion-safe:animate-fade-in"
+        style={current.kind === "video" ? { aspectRatio: videoRatio(current.poster) } : undefined}
       >
         {current.kind === "image" ? (
           <Image
@@ -28,7 +34,7 @@ export function ProductGallery({ items, title }: { items: GalleryItem[]; title: 
             height={current.height ?? 1250}
             priority
             sizes="(min-width: 768px) 50vw, 100vw"
-            className={photoClass}
+            className="mx-auto h-auto max-h-[85vh] w-auto max-w-full mix-blend-multiply"
           />
         ) : (
           // Starts on its own, silently and on a loop, like a short clip. The controls turn sound on.
@@ -64,7 +70,7 @@ export function ProductGallery({ items, title }: { items: GalleryItem[]; title: 
               {(() => {
                 const picture = item.kind === "image" ? item : item.poster;
                 return picture ? (
-                  <Image src={picture.url} alt="" width={picture.width ?? 200} height={picture.height ?? 250} className={photoClass} />
+                  <Image src={picture.url} alt="" width={picture.width ?? 200} height={picture.height ?? 250} className={thumbClass} />
                 ) : (
                   <span className="absolute inset-0 bg-surface-container" />
                 );

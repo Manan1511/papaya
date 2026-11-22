@@ -42,7 +42,7 @@ export function CartContents({ cart }: { cart: Cart | null }) {
                     alt={variant.image.altText ?? variant.product.title}
                     width={variant.image.width ?? 200}
                     height={variant.image.height ?? 200}
-                    className="h-full w-full object-cover"
+                    className="h-full w-full object-contain"
                   />
                 )}
               </div>

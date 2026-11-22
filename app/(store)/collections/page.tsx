@@ -19,7 +19,7 @@ export default async function CollectionsPage() {
             href={`/collections/${collection.handle}`}
             className="group col-span-2 flex flex-col gap-3 md:col-span-4 lg:col-span-4"
           >
-            <div className="relative aspect-[4/5] overflow-hidden rounded-lg bg-surface-container">
+            <div className="relative overflow-hidden rounded-lg bg-surface-container">
               {collection.image && (
                 <Image
                   src={collection.image.url}
@@ -27,7 +27,7 @@ export default async function CollectionsPage() {
                   width={collection.image.width ?? 800}
                   height={collection.image.height ?? 1000}
                   sizes="(min-width: 1024px) 33vw, 50vw"
-                  className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  className="h-auto w-full transition-transform duration-500 group-hover:scale-105"
                 />
               )}
             </div>

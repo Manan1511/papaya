@@ -59,7 +59,7 @@ export default async function CheckoutPage() {
                       alt={line.merchandise.image.altText ?? line.merchandise.product.title}
                       width={line.merchandise.image.width ?? 120}
                       height={line.merchandise.image.height ?? 120}
-                      className="h-full w-full object-cover"
+                      className="h-full w-full object-contain"
                     />
                   )}
                 </div>
