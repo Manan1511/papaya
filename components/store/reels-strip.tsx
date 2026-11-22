@@ -141,7 +141,12 @@ export function ReelsStrip({ reels }: { reels: string[] }) {
           {row.map((src, index) => item(src, index, "none"))}
         </ul>
       </div>
-      {open !== null && <ReelViewer reels={reels} start={open} onClose={() => setOpen(null)} />}
+      {open !== null && <ReelViewer reels={reels} start={open} onClose={() => {
+        setOpen(null);
+        // Closing hands focus back to the tapped card, and a focused card holds the row still. On a
+        // touch screen nobody is using the keyboard, so let go of it and the row drifts again.
+        if (window.matchMedia("(hover: none)").matches && document.activeElement instanceof HTMLElement) document.activeElement.blur();
+      }} />}
     </div>
   );
 }
