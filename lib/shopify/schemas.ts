@@ -1,7 +1,6 @@
 // Response shapes for the documents in ./documents.ts. Every Storefront response is
 // parsed through these before the UI sees it.
 import { z } from "zod";
-import { productAttributeShape } from "./product-attributes";
 
 const money = z.object({ amount: z.string(), currencyCode: z.string() });
 
@@ -72,7 +71,6 @@ export const productDetail = productSummary.extend({
   options: z.array(z.object({ name: z.string(), values: z.array(z.string()) })),
   variants: z.object({ nodes: z.array(variant) }),
   collections: z.object({ nodes: z.array(z.object({ handle: z.string(), title: z.string() })) }),
-  ...productAttributeShape,
   careTips: z.object({ value: z.string().nullable() }).nullable(),
   completeTheLook: z
     .object({ references: z.object({ nodes: z.array(productSummary) }) })

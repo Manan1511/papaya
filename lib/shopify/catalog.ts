@@ -3,6 +3,8 @@ import * as documents from "./documents";
 import type { ProductFilter, SortKey } from "./listing";
 import type { ListingParams } from "./listing";
 import { toCollectionSort, toShopSearch } from "./listing";
+import { adminRequest } from "./admin";
+import * as attributes from "./product-attributes";
 import * as schemas from "./schemas";
 import { storefront } from "./storefront";
 
@@ -55,6 +57,22 @@ export async function getListingFacets(): Promise<ListingFacets> {
     types: data.productTypes.nodes.filter((type) => type.trim() !== ""),
     sizes: [...sizes].sort((a, b) => a.localeCompare(b, undefined, { numeric: true })),
   };
+}
+
+// The category facts of a product (colour, material, design and so on), read from Shopify. Two reads: which
+// facts the product has, then their values. Both are cached with the catalog.
+export async function getProductAttributes(productId: string) {
+  const found = attributes.toAttributeKeys(
+    await adminRequest(attributes.ATTRIBUTE_KEYS_QUERY, attributes.attributeKeysResponse, { id: productId }, { tags: CATALOG_TAGS }),
+  );
+  if (found.length === 0) return [];
+  const values = await storefront(
+    attributes.attributeValuesQuery(found),
+    attributes.attributeValuesResponse,
+    { id: productId },
+    { tags: CATALOG_TAGS },
+  );
+  return attributes.toProductAttributes(found, values);
 }
 
 // Shopify's automatic home page collection isn't one a shopper would browse by.

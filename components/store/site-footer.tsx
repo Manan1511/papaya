@@ -1,19 +1,11 @@
 import Image from "next/image";
 import Link from "next/link";
+import { getCollections } from "../../lib/shopify/catalog";
 import { Container } from "../ui/container";
 import { Icon } from "../ui/icon";
 
+// The columns after "Shop", which is built from the store's collections.
 const columns = [
-  {
-    title: "Shop",
-    links: [
-      { href: "/shop", label: "All products" },
-      { href: "/collections/necklaces", label: "Necklaces" },
-      { href: "/collections/earrings", label: "Earrings" },
-      { href: "/collections/rings", label: "Rings" },
-      { href: "/collections/bracelets", label: "Bracelets" },
-    ],
-  },
   {
     title: "Help",
     links: [
@@ -45,8 +37,19 @@ const columns = [
 export type SocialLink = { label: string; href: string };
 
 // Socials come from the CMS global (Phase 5). Until then the caller passes none, so no placeholder links show.
-export function SiteFooter({ socials = [] }: { socials?: SocialLink[] }) {
+export async function SiteFooter({ socials = [] }: { socials?: SocialLink[] }) {
   const year = new Date().getFullYear();
+  // The Shop column lists every collection that has products, so a new one appears without a code change.
+  // The footer still renders if the catalog can't be read.
+  const collections = await getCollections().catch(() => []);
+  const shopLinks = [
+    { href: "/shop", label: "All products" },
+    ...collections
+      .filter((collection) => collection.hasProducts && collection.handle !== "frontpage")
+      .slice(0, 8)
+      .map((collection) => ({ href: `/collections/${encodeURIComponent(collection.handle)}`, label: collection.title })),
+  ];
+  const allColumns = [{ title: "Shop", links: shopLinks }, ...columns];
 
   return (
     <footer className="mt-section-gap overflow-hidden rounded-t-xl bg-surface-container">
@@ -66,7 +69,7 @@ export function SiteFooter({ socials = [] }: { socials?: SocialLink[] }) {
           </p>
         </div>
 
-        {columns.map((column) => (
+        {allColumns.map((column) => (
           <nav key={column.title} aria-label={column.title} className="flex flex-col gap-3">
             <h2 className="font-headline text-body-lg font-bold text-on-surface">{column.title}</h2>
             {column.links.map((link) => (

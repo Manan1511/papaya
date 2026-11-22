@@ -1,64 +1,91 @@
 import { z } from "zod";
 
-// The product facts set under a product's category in Shopify (Color, Jewelry material, and so on).
-// Each is a list of values stored in the "shopify" metafield namespace, named after the field (Earring design
-// is "earring-design"). A product only has the fields of its own category, and rows with the same label
-// are shown together. Add a row to show another.
-const ATTRIBUTES = [
-  { key: "color-pattern", label: "Colour" },
-  { key: "jewelry-material", label: "Material" },
-  { key: "clothing-accessory-material", label: "Material" },
-  { key: "necklace-design", label: "Design" },
-  { key: "earring-design", label: "Design" },
-  { key: "ring-design", label: "Design" },
-  { key: "bracelet-design", label: "Design" },
-  { key: "body-jewelry-type", label: "Style" },
-  { key: "necklace-length-type", label: "Length" },
-  { key: "chain-link-type", label: "Chain link" },
-  { key: "earring-closure-type", label: "Closure" },
-  { key: "belt-buckle-type", label: "Buckle" },
-  { key: "stone-shape", label: "Stone shape" },
-  { key: "gemstone-type", label: "Gemstone" },
-  { key: "gemstone-cut-style", label: "Gemstone cut" },
-  { key: "metal-purity", label: "Metal purity" },
-  { key: "clothing-features", label: "Features" },
-  { key: "accessory-size", label: "Size" },
-  { key: "target-gender", label: "For" },
-  { key: "age-group", label: "Age group" },
-] as const;
+// The product facts set under a product's category in Shopify (Color, Jewelry material, Earring design,
+// and whatever a new category brings). They live in the "shopify" metafield namespace, one list of values
+// per fact. Nothing here names a fact: the Admin API says which ones a product has and what Shopify
+// calls them, and the Storefront API then returns the values.
 
-const alias = (index: number) => `attribute${index}`;
+// Admin API: the facts this product has, with Shopify's name for each.
+export const ATTRIBUTE_KEYS_QUERY = `query ProductAttributeKeys($id: ID!) {
+  product(id: $id) {
+    metafields(first: 50, namespace: "shopify") {
+      nodes {
+        key
+        definition {
+          name
+        }
+      }
+    }
+  }
+}`;
 
-// GraphQL fields for the product query: one aliased metafield per attribute, with each value's label.
-export const PRODUCT_ATTRIBUTE_FIELDS = ATTRIBUTES.map(
-  ({ key }, index) => `${alias(index)}: metafield(namespace: "shopify", key: "${key}") {
-        references(first: 10) {
-          nodes {
-            ... on Metaobject {
-              label: field(key: "label") {
-                value
-              }
+export const attributeKeysResponse = z.object({
+  product: z
+    .object({
+      metafields: z.object({
+        nodes: z.array(z.object({ key: z.string(), definition: z.object({ name: z.string() }).nullable() })),
+      }),
+    })
+    .nullable(),
+});
+
+export type AttributeKey = { key: string; name: string };
+
+export function toAttributeKeys(response: z.infer<typeof attributeKeysResponse>): AttributeKey[] {
+  return (response.product?.metafields.nodes ?? []).flatMap(({ key, definition }) =>
+    // Keys go into a query, so only plain keys are used.
+    definition && /^[a-z0-9_-]+$/i.test(key) ? [{ key, name: definition.name }] : [],
+  );
+}
+
+const label = `... on Metaobject {
+            label: field(key: "label") {
+              value
             }
+          }`;
+
+// Storefront API: the values for those keys, each as the label of the option chosen in Shopify.
+export function attributeValuesQuery(keys: AttributeKey[]): string {
+  const fields = keys
+    .map(
+      ({ key }, index) => `a${index}: metafield(namespace: "shopify", key: "${key}") {
+        reference {
+          ${label}
+        }
+        references(first: 20) {
+          nodes {
+            ${label}
           }
         }
       }`,
-).join("\n      ");
+    )
+    .join("\n      ");
+  return `query ProductAttributes($id: ID!) {
+  node(id: $id) {
+    ... on Product {
+      ${fields}
+    }
+  }
+}`;
+}
 
+const option = z.object({ label: z.object({ value: z.string() }).nullable().optional() });
 const attribute = z
-  .object({ references: z.object({ nodes: z.array(z.object({ label: z.object({ value: z.string() }).nullable().optional() })) }).nullable() })
+  .object({ reference: option.nullable().optional(), references: z.object({ nodes: z.array(option) }).nullable().optional() })
   .nullable();
 
-export const productAttributeShape = Object.fromEntries(ATTRIBUTES.map((_, index) => [alias(index), attribute.optional()]));
+export const attributeValuesResponse = z.object({ node: z.record(z.string(), attribute).nullable() });
 
-// The attributes this product has values for, in display order. Empty ones are left out.
-export function readProductAttributes(product: Record<string, unknown>): { label: string; values: string[] }[] {
-  const byLabel = new Map<string, string[]>();
-  ATTRIBUTES.forEach(({ label }, index) => {
-    const parsed = attribute.safeParse(product[alias(index)] ?? null);
-    const values = (parsed.success ? parsed.data?.references?.nodes : undefined)
-      ?.map((node) => node.label?.value?.trim())
-      .filter((value): value is string => Boolean(value));
-    if (values && values.length > 0) byLabel.set(label, [...(byLabel.get(label) ?? []), ...values]);
+// The facts that have values, in the order Shopify lists them. Empty ones are left out, and facts that
+// share a name (a bracelet has both "Bracelet design" and "Necklace design") stay separate.
+export function toProductAttributes(
+  keys: AttributeKey[],
+  response: z.infer<typeof attributeValuesResponse>,
+): { label: string; values: string[] }[] {
+  return keys.flatMap(({ name }, index) => {
+    const found = response.node?.[`a${index}`];
+    const options = [...(found?.reference ? [found.reference] : []), ...(found?.references?.nodes ?? [])];
+    const values = options.map((entry) => entry.label?.value?.trim()).filter((value): value is string => Boolean(value));
+    return values.length > 0 ? [{ label: name, values: [...new Set(values)] }] : [];
   });
-  return [...byLabel].map(([label, values]) => ({ label, values: [...new Set(values)] }));
 }

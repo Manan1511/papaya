@@ -9,9 +9,8 @@ import { Container } from "../../../../components/ui/container";
 import { Grid } from "../../../../components/ui/grid";
 import { formatPrice } from "../../../../lib/format";
 import { FREE_SHIPPING_THRESHOLD_INR } from "../../../../lib/content/site";
-import { getProduct } from "../../../../lib/shopify/catalog";
+import { getProduct, getProductAttributes } from "../../../../lib/shopify/catalog";
 import { galleryItems } from "../../../../lib/shopify/gallery";
-import { readProductAttributes } from "../../../../lib/shopify/product-attributes";
 
 export async function generateMetadata({
   params,
@@ -38,7 +37,7 @@ export default async function ProductPage({ params }: { params: Promise<{ handle
   const price = product.priceRange.minVariantPrice;
   const compareAt = product.compareAtPriceRange.minVariantPrice;
   const showCompare = Number(compareAt.amount) > Number(price.amount);
-  const attributes = readProductAttributes(product);
+  const attributes = await getProductAttributes(product.id).catch(() => []);
   const careTips = product.careTips?.value?.trim();
   const related = product.completeTheLook?.references.nodes ?? [];
 
