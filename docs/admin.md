@@ -25,7 +25,7 @@ Until `ADMIN_PASSWORD_HASH` is set, sign-in is off and the admin stays closed.
 
 ## The Papaya Stack
 
-Styled pictures on the homepage that a shopper can buy as a set. In the admin, open Content and find The Papaya Stack.
+Styled pictures on the homepage, in a carousel, that a shopper can buy as a set. In the admin, open Content and find The Papaya Stack.
 
 1. Choose Add a stack picture and upload a JPEG, PNG or WebP of up to 20 MB.
 2. Name the stack.

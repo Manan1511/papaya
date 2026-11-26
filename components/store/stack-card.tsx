@@ -20,7 +20,7 @@ export function StackCard({ stack, pieces }: { stack: Stack; pieces: StackProduc
         alt={stack.title}
         width={stack.image.width}
         height={stack.image.height}
-        sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
+        sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 80vw"
         className="h-auto w-full"
       />
       <div className="flex flex-col gap-3 border-t-[1.5px] border-tertiary p-4">

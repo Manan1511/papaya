@@ -6,6 +6,7 @@ import { ProductCard } from "../../components/store/product-card";
 import { AccentHeading } from "../../components/store/accent-heading";
 import { ReelsStrip } from "../../components/store/reels-strip";
 import { StackCard } from "../../components/store/stack-card";
+import { StackCarousel } from "../../components/store/stack-carousel";
 import { ButtonLink } from "../../components/ui/button";
 import { Container } from "../../components/ui/container";
 import { Grid } from "../../components/ui/grid";
@@ -95,13 +96,11 @@ export default async function Home() {
                 {content.stacksBody || homeDefaults.stacksBody}
               </p>
             </header>
-            <Grid className="items-start">
+            <StackCarousel>
               {stacks.map(({ stack, pieces }) => (
-                <div key={stack.id} className="col-span-4 md:col-span-4 lg:col-span-4">
-                  <StackCard stack={stack} pieces={pieces} />
-                </div>
+                <StackCard key={stack.id} stack={stack} pieces={pieces} />
               ))}
-            </Grid>
+            </StackCarousel>
           </Container>
         </section>
       )}
