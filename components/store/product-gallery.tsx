@@ -7,6 +7,9 @@ import type { GalleryImage, GalleryItem } from "../../lib/shopify/gallery";
 
 const thumbClass = "absolute inset-0 size-full object-contain mix-blend-multiply";
 
+const arrowClass =
+  "absolute top-1/2 flex size-11 -translate-y-1/2 items-center justify-center rounded-full border-[1.5px] border-tertiary bg-surface-container-lowest/90 text-primary transition-opacity duration-200 ease-emphasized aria-disabled:pointer-events-none aria-disabled:opacity-0";
+
 // A slide takes its picture's own shape, as wide as the gallery but never taller than most of the screen.
 // The space is held before the file arrives. Videos have no size of their own until they load, so the
 // poster's shape is used (portrait if there is none).
@@ -16,7 +19,7 @@ function shape(picture: GalleryImage | null) {
 }
 
 // The product's photos and videos in one row the shopper swipes through, one at a time. The browser's own
-// scroll snapping does the swiping, and the thumbnails jump to a slide.
+// scroll snapping does the swiping, the arrows step one slide and the thumbnails jump to one.
 export function ProductGallery({ items, title }: { items: GalleryItem[]; title: string }) {
   const [index, setIndex] = useState(0);
   const slides = useRef<HTMLDivElement>(null);
@@ -43,55 +46,77 @@ export function ProductGallery({ items, title }: { items: GalleryItem[]; title: 
 
   return (
     <div className="flex min-w-0 flex-col gap-4">
-      <div
-        ref={slides}
-        role="region"
-        aria-label="Product photos and videos"
-        tabIndex={items.length > 1 ? 0 : undefined}
-        onScroll={(event) => {
-          const { scrollLeft, clientWidth } = event.currentTarget;
-          if (clientWidth > 0) setIndex(Math.min(items.length - 1, Math.max(0, Math.round(scrollLeft / clientWidth))));
-        }}
-        className="flex snap-x snap-mandatory overflow-x-auto overscroll-x-contain rounded-xl bg-background [scrollbar-width:none] motion-safe:scroll-smooth [&::-webkit-scrollbar]:hidden"
-      >
-        {items.map((item, position) => (
-          <div
-            key={item.kind === "image" ? item.url : item.src}
-            aria-hidden={position !== index || undefined}
-            className="flex w-full shrink-0 snap-center snap-always items-center justify-center"
-          >
-            {item.kind === "image" ? (
-              <Image
-                src={item.url}
-                alt={item.altText ?? title}
-                width={item.width ?? 1000}
-                height={item.height ?? 1250}
-                priority={position === 0}
-                // The neighbours load ahead, so a swipe doesn't land on a blank slide.
-                loading={position === 0 ? undefined : Math.abs(position - index) <= 1 ? "eager" : "lazy"}
-                sizes="(min-width: 768px) 50vw, 100vw"
-                style={shape(item)}
-                className="h-auto w-full mix-blend-multiply"
-              />
-            ) : (
-              // The controls turn sound on.
-              <video
-                data-position={position}
-                src={item.src}
-                poster={item.poster?.url}
-                aria-label={`${title}, video`}
-                tabIndex={position === index ? 0 : -1}
-                muted
-                loop
-                playsInline
-                controls
-                preload="metadata"
-                style={shape(item.poster)}
-                className="w-full bg-surface-container object-contain"
-              />
-            )}
-          </div>
-        ))}
+      <div className="relative">
+        <div
+          ref={slides}
+          role="region"
+          aria-label="Product photos and videos"
+          tabIndex={items.length > 1 ? 0 : undefined}
+          onScroll={(event) => {
+            const { scrollLeft, clientWidth } = event.currentTarget;
+            if (clientWidth > 0) setIndex(Math.min(items.length - 1, Math.max(0, Math.round(scrollLeft / clientWidth))));
+          }}
+          className="flex snap-x snap-mandatory overflow-x-auto overscroll-x-contain rounded-xl bg-background [scrollbar-width:none] motion-safe:scroll-smooth [&::-webkit-scrollbar]:hidden"
+        >
+          {items.map((item, position) => (
+            <div
+              key={item.kind === "image" ? item.url : item.src}
+              aria-hidden={position !== index || undefined}
+              className="flex w-full shrink-0 snap-center snap-always items-center justify-center"
+            >
+              {item.kind === "image" ? (
+                <Image
+                  src={item.url}
+                  alt={item.altText ?? title}
+                  width={item.width ?? 1000}
+                  height={item.height ?? 1250}
+                  priority={position === 0}
+                  // The neighbours load ahead, so a swipe doesn't land on a blank slide.
+                  loading={position === 0 ? undefined : Math.abs(position - index) <= 1 ? "eager" : "lazy"}
+                  sizes="(min-width: 768px) 50vw, 100vw"
+                  style={shape(item)}
+                  className="h-auto w-full mix-blend-multiply"
+                />
+              ) : (
+                // The controls turn sound on.
+                <video
+                  data-position={position}
+                  src={item.src}
+                  poster={item.poster?.url}
+                  aria-label={`${title}, video`}
+                  tabIndex={position === index ? 0 : -1}
+                  muted
+                  loop
+                  playsInline
+                  controls
+                  preload="metadata"
+                  style={shape(item.poster)}
+                  className="w-full bg-surface-container object-contain"
+                />
+              )}
+            </div>
+          ))}
+        </div>
+
+        {items.length > 1 &&
+          [
+            { step: -1, label: "Previous", side: "left-2", path: "m15 6-6 6 6 6" },
+            { step: 1, label: "Next", side: "right-2", path: "m9 6 6 6-6 6" },
+          ].map(({ step, label, side, path }) => (
+            // Faded out at either end of the row. It keeps focus there, so a keyboard user isn't dropped.
+            <button
+              key={label}
+              type="button"
+              aria-label={`${label} photo or video`}
+              aria-disabled={!items[index + step]}
+              onClick={() => items[index + step] && show(index + step)}
+              className={cx(arrowClass, side)}
+            >
+              <svg aria-hidden="true" viewBox="0 0 24 24" className="size-6" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d={path} />
+              </svg>
+            </button>
+          ))}
       </div>
 
       {items.length > 1 && (
