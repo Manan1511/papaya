@@ -3,12 +3,14 @@
 import { revalidatePath } from "next/cache";
 import { cookies } from "next/headers";
 import { z } from "zod";
+import { MAX_STACK_PIECES } from "../cms/model";
 import { CART_COOKIE } from "./cart-id";
 import {
   type CartResult,
-  addLine,
+  addLines,
   applyDiscountCode,
   createCart,
+  type NewLine,
   removeLine,
   setLineQuantity,
 } from "./cart";
@@ -23,6 +25,8 @@ const addSchema = z.object({
   variantId: variantIdSchema,
   quantity: z.coerce.number().int().min(1).max(10),
 });
+
+const stackSchema = z.array(variantIdSchema).min(1).max(MAX_STACK_PIECES);
 
 const updateSchema = z.object({
   lineId: lineIdSchema,
@@ -42,21 +46,30 @@ export async function addToCart(_previous: CartState, formData: FormData): Promi
   });
   if (!parsed.success) return { error: "Choose a size and quantity." };
   const { variantId, quantity } = parsed.data;
+  return addToBag([{ merchandiseId: variantId, quantity }]);
+}
 
+// "Shop the stack": one of each chosen piece.
+export async function addStackToCart(_previous: CartState, formData: FormData): Promise<CartState> {
+  const parsed = stackSchema.safeParse(formData.getAll("variantId"));
+  if (!parsed.success) return { error: "Those pieces can't be added right now." };
+  return addToBag(parsed.data.map((merchandiseId) => ({ merchandiseId, quantity: 1 })));
+}
+
+async function addToBag(lines: NewLine[]): Promise<CartState> {
   const existing = await readCartId();
-  let outcome: CartResult | null = existing ? await addLine(existing, variantId, quantity) : null;
+  let outcome: CartResult | null = existing ? await addLines(existing, lines) : null;
   // No cart yet, or the stored cart has expired on Shopify's side: start a fresh one.
-  if (!outcome?.cart) outcome = await createCart(variantId, quantity);
+  if (!outcome?.cart) outcome = await createCart(lines);
 
-  if (outcome.errors.length > 0 || !outcome.cart) {
-    return { error: outcome.errors[0] ?? "We couldn't add that to your bag." };
-  }
+  if (!outcome.cart) return { error: outcome.errors[0] ?? "We couldn't add that to your bag." };
 
+  // Kept even when Shopify reports a problem: some of the lines may have gone in.
   if (outcome.cart.id !== existing) {
     (await cookies()).set(CART_COOKIE, outcome.cart.id, CART_COOKIE_OPTIONS);
   }
   revalidatePath("/", "layout");
-  return { ok: true };
+  return outcome.errors.length > 0 ? { error: outcome.errors[0] } : { ok: true };
 }
 
 export async function updateCartLine(_previous: CartState, formData: FormData): Promise<CartState> {

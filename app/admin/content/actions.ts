@@ -5,9 +5,10 @@ import { z } from "zod";
 import { requireAdmin } from "../../../lib/auth/session";
 import { CMS_TAG, ConflictError, NotFoundError, publishEntry, saveDraft } from "../../../lib/cms/entries";
 import { HOME_SLUG, homeContentSchema, homeKind } from "../../../lib/cms/model";
+import { IMAGE_TYPES, validateImageUpload } from "../../../lib/cms/image";
 import { pickMp4Url, VIDEO_TYPES, validateVideoUpload } from "../../../lib/cms/video";
 import { adminRequest } from "../../../lib/shopify/admin";
-import { firstIssue, readText } from "../form-data";
+import { firstIssue, readJson, readText } from "../form-data";
 
 export type HomeFormState = { error?: string; message?: string; updatedAt?: string };
 
@@ -28,6 +29,9 @@ export async function saveHome(_previous: HomeFormState, formData: FormData): Pr
     amalfiBody: readText(formData, "amalfiBody"),
     makingTitle: readText(formData, "makingTitle"),
     makingBody: readText(formData, "makingBody"),
+    stacksTitle: readText(formData, "stacksTitle"),
+    stacksBody: readText(formData, "stacksBody"),
+    stacks: readJson(formData, "stacks"),
   });
   if (!content.success) return { error: firstIssue(content.error) };
 
@@ -50,9 +54,9 @@ export async function saveHome(_previous: HomeFormState, formData: FormData): Pr
   }
 }
 
-// Video uploads go in three steps. The browser sends the file straight to the upload address Shopify
-// returns, so the video never passes through this server. Then Shopify is told about the file, and
-// the browser asks for its status until the MP4 is ready.
+// Uploads go in three steps. The browser sends the file straight to the upload address Shopify
+// returns, so it never passes through this server. Then Shopify is told about the file, and the
+// browser asks for its status until it is ready.
 
 const stagedUploadResult = z.object({
   stagedUploadsCreate: z.object({
@@ -74,12 +78,25 @@ const fileCreateResult = z.object({
   }),
 });
 
-const fileStatusResult = z.object({
+const fileState = {
+  fileStatus: z.enum(["UPLOADED", "PROCESSING", "READY", "FAILED"]),
+  fileErrors: z.array(z.object({ message: z.string() })),
+};
+
+const videoStatusResult = z.object({
   node: z
     .object({
-      fileStatus: z.enum(["UPLOADED", "PROCESSING", "READY", "FAILED"]),
-      fileErrors: z.array(z.object({ message: z.string() })),
+      ...fileState,
       sources: z.array(z.object({ url: z.string(), mimeType: z.string(), height: z.number().nullable() })),
+    })
+    .nullable(),
+});
+
+const imageStatusResult = z.object({
+  node: z
+    .object({
+      ...fileState,
+      image: z.object({ url: z.string(), width: z.number().nullable(), height: z.number().nullable() }).nullable(),
     })
     .nullable(),
 });
@@ -98,46 +115,44 @@ const FILE_CREATE = `mutation ($files: [FileCreateInput!]!) {
   }
 }`;
 
-const FILE_STATUS = `query ($id: ID!) {
+const VIDEO_STATUS = `query ($id: ID!) {
   node(id: $id) {
     ... on Video { fileStatus fileErrors { message } sources { url mimeType height } }
+  }
+}`;
+
+const IMAGE_STATUS = `query ($id: ID!) {
+  node(id: $id) {
+    ... on MediaImage { fileStatus fileErrors { message } image { url width height } }
   }
 }`;
 
 // Shopify refuses file calls until the app holds the files permissions. Say what to add, in plain words.
 function fileAccessMessage(error: unknown): string | undefined {
   if (error instanceof Error && /write_files|read_files|Access denied/i.test(error.message)) {
-    return "Shopify won't take videos until the app has the file permissions. Add read_files and write_files to the Shopify app, approve the update, then try again.";
+    return "Shopify won't take files until the app has the file permissions. Add read_files and write_files to the Shopify app, approve the update, then try again.";
   }
   return undefined;
 }
 
-const startRequest = z.object({
+const fileDetails = {
   filename: z.string().trim().min(1).max(120),
-  mimeType: z.enum(VIDEO_TYPES),
   size: z.number().int().positive(),
-});
+};
+const videoStart = z.object({ ...fileDetails, mimeType: z.enum(VIDEO_TYPES) });
+const imageStart = z.object({ ...fileDetails, mimeType: z.enum(IMAGE_TYPES) });
 
-export type VideoUploadTarget = {
+export type UploadTarget = {
   url: string;
   resourceUrl: string;
   parameters: { name: string; value: string }[];
 };
 
-export type StartUploadResult = { ok: true; target: VideoUploadTarget } | { ok: false; error: string };
+export type StartUploadResult = { ok: true; target: UploadTarget } | { ok: false; error: string };
 
-export async function startVideoUpload(input: {
-  filename: string;
-  mimeType: string;
-  size: number;
-}): Promise<StartUploadResult> {
-  await requireAdmin();
+type UploadRequest = { filename: string; mimeType: string; size: number };
 
-  const parsed = startRequest.safeParse(input);
-  if (!parsed.success) return { ok: false, error: "Choose an MP4, WebM or MOV video." };
-  const problem = validateVideoUpload(parsed.data);
-  if (problem) return { ok: false, error: problem };
-
+async function stageUpload(resource: "VIDEO" | "IMAGE", file: UploadRequest): Promise<StartUploadResult> {
   try {
     const data = await adminRequest(
       STAGED_UPLOAD,
@@ -145,10 +160,10 @@ export async function startVideoUpload(input: {
       {
         input: [
           {
-            resource: "VIDEO",
-            filename: parsed.data.filename,
-            mimeType: parsed.data.mimeType,
-            fileSize: String(parsed.data.size),
+            resource,
+            filename: file.filename,
+            mimeType: file.mimeType,
+            fileSize: String(file.size),
             httpMethod: "POST",
           },
         ],
@@ -166,9 +181,29 @@ export async function startVideoUpload(input: {
       target: { url: target.url, resourceUrl: target.resourceUrl, parameters: target.parameters },
     };
   } catch (error) {
-    console.error("Starting a video upload failed", error);
+    console.error("Starting an upload failed", error);
     return { ok: false, error: fileAccessMessage(error) ?? "Shopify couldn't start the upload. Try again." };
   }
+}
+
+export async function startVideoUpload(input: UploadRequest): Promise<StartUploadResult> {
+  await requireAdmin();
+
+  const parsed = videoStart.safeParse(input);
+  if (!parsed.success) return { ok: false, error: "Choose an MP4, WebM or MOV video." };
+  const problem = validateVideoUpload(parsed.data);
+  if (problem) return { ok: false, error: problem };
+  return stageUpload("VIDEO", parsed.data);
+}
+
+export async function startImageUpload(input: UploadRequest): Promise<StartUploadResult> {
+  await requireAdmin();
+
+  const parsed = imageStart.safeParse(input);
+  if (!parsed.success) return { ok: false, error: "Choose a JPEG, PNG or WebP picture." };
+  const problem = validateImageUpload(parsed.data);
+  if (problem) return { ok: false, error: problem };
+  return stageUpload("IMAGE", parsed.data);
 }
 
 const registerRequest = z.object({
@@ -188,9 +223,11 @@ function isStagedUploadAddress(value: string): boolean {
 
 export type RegisterResult = { ok: true; fileId: string } | { ok: false; error: string };
 
-export async function registerVideo(input: { resourceUrl: string; filename: string }): Promise<RegisterResult> {
-  await requireAdmin();
-
+async function createFile(
+  contentType: "VIDEO" | "IMAGE",
+  alt: string,
+  input: { resourceUrl: string; filename: string },
+): Promise<RegisterResult> {
   const parsed = registerRequest.safeParse(input);
   if (!parsed.success || !isStagedUploadAddress(parsed.data.resourceUrl)) {
     return { ok: false, error: "That upload can't be used. Try again." };
@@ -204,8 +241,8 @@ export async function registerVideo(input: { resourceUrl: string; filename: stri
         files: [
           {
             originalSource: parsed.data.resourceUrl,
-            contentType: "VIDEO",
-            alt: "Homepage video",
+            contentType,
+            alt,
             filename: `${Date.now()}-${parsed.data.filename}`,
           },
         ],
@@ -215,25 +252,37 @@ export async function registerVideo(input: { resourceUrl: string; filename: stri
 
     const { files, userErrors } = data.fileCreate;
     const file = files?.[0];
-    if (userErrors.length > 0 || !file) return { ok: false, error: "Shopify couldn't add that video. Try again." };
+    if (userErrors.length > 0 || !file) return { ok: false, error: "Shopify couldn't add that file. Try again." };
     return { ok: true, fileId: file.id };
   } catch (error) {
-    console.error("Adding the video to Shopify failed", error);
-    return { ok: false, error: fileAccessMessage(error) ?? "Shopify couldn't add that video. Try again." };
+    console.error("Adding a file to Shopify failed", error);
+    return { ok: false, error: fileAccessMessage(error) ?? "Shopify couldn't add that file. Try again." };
   }
 }
 
-export type VideoStatus = { state: "processing" } | { state: "ready"; url: string } | { state: "failed"; message: string };
+export async function registerVideo(input: { resourceUrl: string; filename: string }): Promise<RegisterResult> {
+  await requireAdmin();
+  return createFile("VIDEO", "Homepage video", input);
+}
+
+export async function registerImage(input: { resourceUrl: string; filename: string }): Promise<RegisterResult> {
+  await requireAdmin();
+  return createFile("IMAGE", "Styled jewellery stack", input);
+}
+
+const FILE_ID = /^gid:\/\/shopify\/[A-Za-z]+\/\d+$/;
+
+type Pending = { state: "processing" } | { state: "failed"; message: string };
+
+export type VideoStatus = Pending | { state: "ready"; url: string };
 
 export async function checkVideo(fileId: string): Promise<VideoStatus> {
   await requireAdmin();
 
-  if (!/^gid:\/\/shopify\/[A-Za-z]+\/\d+$/.test(fileId)) {
-    return { state: "failed", message: "That video can't be checked. Upload it again." };
-  }
+  if (!FILE_ID.test(fileId)) return { state: "failed", message: "That video can't be checked. Upload it again." };
 
   try {
-    const data = await adminRequest(FILE_STATUS, fileStatusResult, { id: fileId }, "no-store");
+    const data = await adminRequest(VIDEO_STATUS, videoStatusResult, { id: fileId }, "no-store");
     const node = data.node;
     if (!node) return { state: "failed", message: "Shopify can't find that video. Upload it again." };
 
@@ -248,5 +297,29 @@ export async function checkVideo(fileId: string): Promise<VideoStatus> {
   } catch (error) {
     console.error("Checking the video failed", error);
     return { state: "failed", message: fileAccessMessage(error) ?? "The video couldn't be checked. Try again." };
+  }
+}
+
+export type ImageStatus = Pending | { state: "ready"; image: { url: string; width: number; height: number } };
+
+export async function checkImage(fileId: string): Promise<ImageStatus> {
+  await requireAdmin();
+
+  if (!FILE_ID.test(fileId)) return { state: "failed", message: "That picture can't be checked. Upload it again." };
+
+  try {
+    const data = await adminRequest(IMAGE_STATUS, imageStatusResult, { id: fileId }, "no-store");
+    const node = data.node;
+    if (!node) return { state: "failed", message: "Shopify can't find that picture. Upload it again." };
+
+    if (node.fileStatus === "FAILED") {
+      return { state: "failed", message: node.fileErrors[0]?.message ?? "Shopify couldn't process that picture." };
+    }
+    const { image } = node;
+    if (node.fileStatus !== "READY" || !image?.width || !image.height) return { state: "processing" };
+    return { state: "ready", image: { url: image.url, width: image.width, height: image.height } };
+  } catch (error) {
+    console.error("Checking the picture failed", error);
+    return { state: "failed", message: fileAccessMessage(error) ?? "The picture couldn't be checked. Try again." };
   }
 }

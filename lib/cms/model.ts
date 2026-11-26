@@ -65,8 +65,40 @@ const videoAddress = z
   .max(500, "Keep the video address under 500 characters")
   .refine((value) => value === "" || isHttpsAddress(value), "Use a secure (https) address for the video");
 
+export const MAX_STACKS = 12;
+export const MAX_STACK_PIECES = 8;
+
+// A styled picture and the products worn in it, sold together. The picture must be one in Shopify's
+// Files, the only place the storefront loads photos from.
+export const stackSchema = z.object({
+  // Part of the stack's page address.
+  id: z.string().regex(/^[a-z0-9-]{1,40}$/),
+  title: z.string().trim().min(1, "Give every stack a name").max(120),
+  image: z.object({
+    url: z
+      .string()
+      .max(500)
+      .refine((value) => value.startsWith("https://cdn.shopify.com/"), "Upload the stack picture again"),
+    width: z.number().int().positive(),
+    height: z.number().int().positive(),
+  }),
+  productIds: z
+    .array(z.string().regex(/^gid:\/\/shopify\/Product\/\d+$/))
+    .min(1, "Choose at least one piece for every stack")
+    .max(MAX_STACK_PIECES, `Keep each stack to ${MAX_STACK_PIECES} pieces`),
+});
+
+export type Stack = z.infer<typeof stackSchema>;
+
 export const homeContentSchema = z.object({
   heroVideo: videoAddress,
+  stacksTitle: z.string().trim().max(120).default(""),
+  stacksBody: z.string().trim().max(300).default(""),
+  stacks: z
+    .array(stackSchema)
+    .max(MAX_STACKS, `Keep it to ${MAX_STACKS} stacks`)
+    .refine((stacks) => new Set(stacks.map((stack) => stack.id)).size === stacks.length, "Two stacks share an address")
+    .default([]),
   // Entries saved before the reels existed have no such fields, so they read as empty.
   reelsTitle: z.string().trim().max(120).default(""),
   reelsBody: z.string().trim().max(300).default(""),

@@ -117,6 +117,23 @@ export async function getProduct(handle: string) {
   return data.product;
 }
 
+// The products with these ids that are still published, in no particular order.
+export async function getStackProducts(ids: string[]): Promise<schemas.StackProduct[]> {
+  if (ids.length === 0) return [];
+  const data = await storefront(
+    documents.STACK_PRODUCTS_QUERY,
+    schemas.stackProductsResponse,
+    { ids: [...new Set(ids)] },
+    { tags: CATALOG_TAGS },
+  );
+  return data.nodes.filter((node) => node !== null);
+}
+
+export async function getProductChoices(): Promise<schemas.ProductChoice[]> {
+  const data = await storefront(documents.PRODUCT_CHOICES_QUERY, schemas.productChoicesResponse, {}, { tags: CATALOG_TAGS });
+  return data.products.nodes;
+}
+
 // Shopper queries vary without limit, so they are never cached.
 export async function searchProducts(query: string, after?: string) {
   const data = await storefront(

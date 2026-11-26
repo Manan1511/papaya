@@ -5,13 +5,15 @@ import { PreviewBanner } from "../../components/store/preview-banner";
 import { ProductCard } from "../../components/store/product-card";
 import { AccentHeading } from "../../components/store/accent-heading";
 import { ReelsStrip } from "../../components/store/reels-strip";
+import { StackCard } from "../../components/store/stack-card";
 import { ButtonLink } from "../../components/ui/button";
 import { Container } from "../../components/ui/container";
 import { Grid } from "../../components/ui/grid";
 import { Icon } from "../../components/ui/icon";
 import { homeDefaults } from "../../lib/content/landing";
 import { getHomeContent } from "../../lib/cms/home";
-import { ALL_PRODUCTS_HANDLE, getCollectionPage, getHomeCollections } from "../../lib/shopify/catalog";
+import { ALL_PRODUCTS_HANDLE, getCollectionPage, getHomeCollections, getStackProducts } from "../../lib/shopify/catalog";
+import { stackPieces } from "../../lib/shopify/stack";
 
 // Tiles per row: two on a phone, with an odd one out given the first full row; two on a tablet; up to
 // three on a desktop.
@@ -27,6 +29,12 @@ export default async function Home() {
     getCollectionPage({ handle: ALL_PRODUCTS_HANDLE, sort: "best", filters: [] }),
   ]);
   const [bestSeller] = bestSelling?.products.nodes ?? [];
+  // A stack shows only while at least one of its pieces is in the shop. If they can't be read, the
+  // section is left out and the rest of the page still shows.
+  const stackProducts = await getStackProducts(content.stacks.flatMap((stack) => stack.productIds)).catch(() => []);
+  const stacks = content.stacks
+    .map((stack) => ({ stack, pieces: stackPieces(stack.productIds, stackProducts) }))
+    .filter(({ pieces }) => pieces.length > 0);
   // Until reels are added the section shows placeholder frames, with the shipped heading if none was saved.
   const reelsTitle = content.reelsTitle || homeDefaults.reelsTitle;
   const reelsBody = content.reelsBody || homeDefaults.reelsBody;
@@ -74,6 +82,28 @@ export default async function Home() {
             ))}
           </Grid>
         </Container>
+      )}
+
+      {stacks.length > 0 && (
+        <section id="stacks" className="scroll-mt-24 pb-section-gap">
+          <Container className="space-y-10">
+            <header className="space-y-3 text-center">
+              <h2 className="font-headline text-headline-lg uppercase text-primary">
+                {content.stacksTitle || homeDefaults.stacksTitle}
+              </h2>
+              <p className="mx-auto max-w-md text-balance font-body text-body-md text-on-surface-variant">
+                {content.stacksBody || homeDefaults.stacksBody}
+              </p>
+            </header>
+            <Grid className="items-start">
+              {stacks.map(({ stack, pieces }) => (
+                <div key={stack.id} className="col-span-4 md:col-span-4 lg:col-span-4">
+                  <StackCard stack={stack} pieces={pieces} />
+                </div>
+              ))}
+            </Grid>
+          </Container>
+        </section>
       )}
 
       {(content.reels.length > 0 || content.reelsPlaceholders) && (

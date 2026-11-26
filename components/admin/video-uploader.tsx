@@ -6,28 +6,11 @@ import { MAX_VIDEO_BYTES, VIDEO_TYPES, validateVideoUpload } from "../../lib/cms
 import { MAX_SOURCE_BYTES, optimizeVideo } from "../../lib/cms/video-optimize";
 import { Button } from "../ui/button";
 import { Input } from "../ui/input";
+import { POLL_MS, sendToShopify, UploadProgress, wait } from "./upload";
 
-const POLL_MS = 2000;
 // About three minutes. Longer videos can be checked again from the editor.
 const MAX_POLLS = 90;
 const HINT = "MP4, WebM or MOV. Large videos are shrunk automatically before they upload. Keep it short so the page loads quickly.";
-
-const wait = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
-
-// Posts the form to Shopify's upload address. fetch can't report how much has gone up, so this uses a
-// request that can. Resolves true when Shopify accepted the file.
-function send(url: string, body: FormData, onProgress: (fraction: number) => void): Promise<boolean> {
-  return new Promise((resolve) => {
-    const request = new XMLHttpRequest();
-    request.open("POST", url);
-    request.upload.onprogress = (event) => {
-      if (event.lengthComputable) onProgress(event.loaded / event.total);
-    };
-    request.onload = () => resolve(request.status >= 200 && request.status < 300);
-    request.onerror = () => resolve(false);
-    request.send(body);
-  });
-}
 
 function isSecureLink(value: string): boolean {
   try {
@@ -95,10 +78,7 @@ export function VideoUploader({
       const started = await startVideoUpload({ filename: file.name, mimeType: file.type, size: file.size });
       if (!started.ok) return setMessage(started.error);
 
-      const body = new FormData();
-      for (const { name, value } of started.target.parameters) body.append(name, value);
-      body.append("file", file);
-      const sent = await send(started.target.url, body, (done) => {
+      const sent = await sendToShopify(started.target, file, (done) => {
         setProgress(done);
         setMessage(`Uploading the video… ${Math.round(done * 100)}%`);
       });
@@ -172,19 +152,7 @@ export function VideoUploader({
       </div>
 
       {busy && (
-        <div
-          role="progressbar"
-          aria-label="Video upload progress"
-          aria-valuemin={0}
-          aria-valuemax={100}
-          aria-valuenow={progress === null ? undefined : Math.round(progress * 100)}
-          className="h-2 w-full overflow-hidden rounded-full bg-surface-container-high"
-        >
-          <div
-            className={`h-full rounded-full bg-primary ${progress === null ? "w-full animate-pulse" : "transition-[width] duration-200"}`}
-            style={progress === null ? undefined : { width: `${Math.round(progress * 100)}%` }}
-          />
-        </div>
+        <UploadProgress label="Video upload progress" progress={progress} />
       )}
 
       <p role="status" className="font-body text-label-md text-on-surface-variant">

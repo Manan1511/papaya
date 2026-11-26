@@ -56,6 +56,23 @@ const variant = z.object({
 });
 export type ProductVariant = z.infer<typeof variant>;
 
+export const stackProduct = productSummary.extend({
+  options: z.array(z.object({ name: z.string() })),
+  variants: z.object({
+    nodes: z.array(z.object({ id: z.string(), title: z.string(), availableForSale: z.boolean(), price: money })),
+  }),
+});
+export type StackProduct = z.infer<typeof stackProduct>;
+
+export const stackProductsResponse = z.object({ nodes: z.array(stackProduct.nullable()) });
+
+export const productChoicesResponse = z.object({
+  products: z.object({
+    nodes: z.array(z.object({ id: z.string(), title: z.string(), featuredImage: image.nullable() })),
+  }),
+});
+export type ProductChoice = z.infer<typeof productChoicesResponse>["products"]["nodes"][number];
+
 export const productDetail = productSummary.extend({
   description: z.string(),
   // The product's photos and videos in the order set in Shopify. Other kinds of media come back empty.

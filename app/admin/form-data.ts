@@ -7,6 +7,16 @@ export function readText(formData: FormData, name: string): string {
   return typeof value === "string" ? value : "";
 }
 
+// A list a form field keeps as JSON. Unreadable text reads as null, which the schema refuses, so a
+// broken field can't quietly save as empty.
+export function readJson(formData: FormData, name: string): unknown {
+  try {
+    return JSON.parse(readText(formData, name));
+  } catch {
+    return null;
+  }
+}
+
 // The editor posts its document as JSON. Parse it, then check it against the schema.
 export function readBody(formData: FormData): { ok: true; body: RichText } | { ok: false; error: string } {
   try {

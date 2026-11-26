@@ -109,6 +109,50 @@ const CART_FIELDS = /* GraphQL */ `
   }
 `;
 
+// The pieces of the homepage stacks. An id that no longer names a published product comes back as null.
+export const STACK_PRODUCTS_QUERY = /* GraphQL */ `
+  query StackProducts($ids: [ID!]!) {
+    nodes(ids: $ids) {
+      ... on Product {
+        ...ProductCard
+        options {
+          name
+        }
+        variants(first: 100) {
+          nodes {
+            id
+            title
+            availableForSale
+            price {
+              amount
+              currencyCode
+            }
+          }
+        }
+      }
+    }
+  }
+  ${PRODUCT_CARD}
+`;
+
+// What the admin picks stack pieces from.
+export const PRODUCT_CHOICES_QUERY = /* GraphQL */ `
+  query ProductChoices {
+    products(first: 250, sortKey: TITLE) {
+      nodes {
+        id
+        title
+        featuredImage {
+          url
+          altText
+          width
+          height
+        }
+      }
+    }
+  }
+`;
+
 export const COLLECTIONS_QUERY = /* GraphQL */ `
   query Collections($first: Int!) {
     collections(first: $first) {

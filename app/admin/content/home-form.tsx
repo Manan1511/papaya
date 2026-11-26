@@ -4,9 +4,11 @@ import { useActionState } from "react";
 import { EntryActions, EntryMessage } from "../../../components/admin/entry-actions";
 import { Field, fieldClass, Panel } from "../../../components/admin/ui";
 import { ReelsField } from "../../../components/admin/reels-field";
+import { StacksField } from "../../../components/admin/stacks-field";
 import { VideoField } from "../../../components/admin/video-field";
 import { Input } from "../../../components/ui/input";
 import type { HomeContent } from "../../../lib/cms/model";
+import type { ProductChoice } from "../../../lib/shopify/schemas";
 import { type HomeFormState, saveHome } from "./actions";
 
 const initialState: HomeFormState = {};
@@ -14,9 +16,11 @@ const initialState: HomeFormState = {};
 export function HomeForm({
   entry,
   initial,
+  products,
 }: {
   entry: { id: string; updatedAt: string; live: boolean };
   initial: HomeContent;
+  products: ProductChoice[];
 }) {
   const [state, action, pending] = useActionState(saveHome, initialState);
   const updatedAt = state.updatedAt ?? entry.updatedAt;
@@ -56,6 +60,16 @@ export function HomeForm({
             className={fieldClass}
           />
         </Field>
+      </Panel>
+
+      <Panel title="The Papaya Stack">
+        <Field label="Title">
+          <Input name="stacksTitle" defaultValue={initial.stacksTitle} maxLength={120} />
+        </Field>
+        <Field label="Text">
+          <textarea name="stacksBody" rows={2} defaultValue={initial.stacksBody} maxLength={300} className={fieldClass} />
+        </Field>
+        <StacksField initial={initial.stacks} products={products} />
       </Panel>
 
       <Panel title="Reels">

@@ -17,21 +17,23 @@ export async function fetchCart(id: string): Promise<schemas.Cart | null> {
   return data.cart;
 }
 
-export async function createCart(merchandiseId: string, quantity: number): Promise<CartResult> {
+export type NewLine = { merchandiseId: string; quantity: number };
+
+export async function createCart(lines: NewLine[]): Promise<CartResult> {
   const data = await storefront(
     documents.CART_CREATE_MUTATION,
     schemas.cartCreateResponse,
-    { input: { lines: [{ merchandiseId, quantity }] } },
+    { input: { lines } },
     NO_CACHE,
   );
   return toResult(data.cartCreate);
 }
 
-export async function addLine(cartId: string, merchandiseId: string, quantity: number): Promise<CartResult> {
+export async function addLines(cartId: string, lines: NewLine[]): Promise<CartResult> {
   const data = await storefront(
     documents.CART_LINES_ADD_MUTATION,
     schemas.cartLinesAddResponse,
-    { cartId, lines: [{ merchandiseId, quantity }] },
+    { cartId, lines },
     NO_CACHE,
   );
   return toResult(data.cartLinesAdd);
