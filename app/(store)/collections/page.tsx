@@ -1,5 +1,5 @@
-import Image from "next/image";
 import Link from "next/link";
+import { FittedPhoto } from "../../../components/store/fitted-photo";
 import { Container } from "../../../components/ui/container";
 import { Grid } from "../../../components/ui/grid";
 import { getCollections } from "../../../lib/shopify/catalog";
@@ -19,15 +19,13 @@ export default async function CollectionsPage() {
             href={`/collections/${collection.handle}`}
             className="group col-span-2 flex flex-col gap-3 md:col-span-4 lg:col-span-4"
           >
-            <div className="relative overflow-hidden rounded-lg bg-surface-container">
+            <div className="flex flex-1 flex-col overflow-hidden rounded-lg bg-surface-container">
               {collection.image && (
-                <Image
-                  src={collection.image.url}
+                <FittedPhoto
+                  photo={collection.image}
                   alt={collection.image.altText ?? collection.title}
-                  width={collection.image.width ?? 800}
-                  height={collection.image.height ?? 1000}
                   sizes="(min-width: 1024px) 33vw, 50vw"
-                  className="h-auto w-full transition-transform duration-500 group-hover:scale-105"
+                  className="transition-transform duration-500 group-hover:scale-105"
                 />
               )}
             </div>

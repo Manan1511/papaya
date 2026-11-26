@@ -1,9 +1,9 @@
-import Image from "next/image";
 import Link from "next/link";
 import { formatPrice } from "../../lib/format";
 import type { ProductSummary } from "../../lib/shopify/schemas";
 import { Chip } from "../ui/chip";
 import { Icon } from "../ui/icon";
+import { FittedPhoto } from "./fitted-photo";
 
 // Sold out wins over the tags, so a shopper never sees "New" on something they can't buy.
 function badgeFor(product: ProductSummary): string | null {
@@ -21,30 +21,28 @@ export function ProductCard({ product }: { product: ProductSummary }) {
   const showCompare = Number(compareAt.amount) > Number(price.amount);
   const image = product.featuredImage;
   const badge = badgeFor(product);
+  const chip = badge && <Chip tone="primary" className="absolute right-3 top-3">{badge}</Chip>;
 
   return (
     <Link
       href={`/products/${product.handle}`}
       className="group flex h-full flex-col overflow-hidden rounded-lg border-[1.5px] border-tertiary bg-surface-container-lowest transition-transform duration-300 ease-emphasized motion-safe:hover:-translate-y-1"
     >
-      <div className="relative overflow-hidden">
-        {image ? (
-          <Image
-            src={image.url}
-            alt={image.altText ?? product.title}
-            width={image.width ?? 800}
-            height={image.height ?? 1000}
-            sizes="(min-width: 1024px) 25vw, (min-width: 768px) 33vw, 50vw"
-            className="h-auto w-full mix-blend-multiply"
-          />
-        ) : (
-          <div className="flex aspect-[4/5] w-full items-center justify-center bg-tertiary-fixed-dim/20 text-outline">
-            <Icon name="diamond" className="text-[48px]" />
-          </div>
-        )}
-        {badge && <Chip tone="primary" className="absolute right-3 top-3">{badge}</Chip>}
-      </div>
-      <div className="flex flex-1 flex-col gap-2 border-t-[1.5px] border-tertiary p-4">
+      {image ? (
+        <FittedPhoto
+          photo={image}
+          alt={image.altText ?? product.title}
+          sizes="(min-width: 1024px) 25vw, (min-width: 768px) 33vw, 50vw"
+        >
+          {chip}
+        </FittedPhoto>
+      ) : (
+        <div className="relative flex aspect-[4/5] w-full flex-1 items-center justify-center bg-tertiary-fixed-dim/20 text-outline">
+          <Icon name="diamond" className="text-[48px]" />
+          {chip}
+        </div>
+      )}
+      <div className="flex flex-col gap-2 border-t-[1.5px] border-tertiary p-4">
         <h3 className="line-clamp-2 min-h-[3.5rem] font-headline text-body-lg font-bold text-on-surface transition-colors duration-200 group-hover:text-primary">
           {product.title}
         </h3>
