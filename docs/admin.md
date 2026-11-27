@@ -23,6 +23,12 @@ Until `ADMIN_PASSWORD_HASH` is set, sign-in is off and the admin stays closed.
 
 `npm run seed:cms` adds the placeholder pages and posts from `docs/seed` as live content. Entries that already exist are skipped, so it's safe to run again. Replace the placeholder text before launch.
 
+## Homepage layout
+
+From the top: the category bar, the hero, The Papaya Stack, the reels, the collection tiles and the closing tiles.
+
+The category bar needs no setup in the admin. It shows Shop All, then every Shopify collection that has products. Each collection gets a drawing picked from words in its name (necklace, earring, bracelet, ring, anklet, long, minimal or everyday). Any other collection shows its Shopify photo.
+
 ## The Papaya Stack
 
 Styled pictures on the homepage, in a carousel, that a shopper can buy as a set. In the admin, open Content and find The Papaya Stack.

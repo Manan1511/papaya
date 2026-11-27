@@ -1,3 +1,4 @@
+import { CategoryBar } from "../../components/store/category-bar";
 import { CollectionTile } from "../../components/store/collection-tile";
 import { HeroHeadline } from "../../components/store/hero-headline";
 import { HeroVideo } from "../../components/store/hero-video";
@@ -13,7 +14,7 @@ import { Grid } from "../../components/ui/grid";
 import { Icon } from "../../components/ui/icon";
 import { homeDefaults } from "../../lib/content/landing";
 import { getHomeContent } from "../../lib/cms/home";
-import { ALL_PRODUCTS_HANDLE, getCollectionPage, getHomeCollections, getStackProducts } from "../../lib/shopify/catalog";
+import { ALL_PRODUCTS_HANDLE, getCollectionPage, getShoppableCollections, getStackProducts } from "../../lib/shopify/catalog";
 import { stackPieces } from "../../lib/shopify/stack";
 
 // Tiles per row: two on a phone, with an odd one out given the first full row; two on a tablet; up to
@@ -24,12 +25,14 @@ function tileSpan(index: number, count: number): string {
 }
 
 export default async function Home() {
-  const [{ content, preview }, collections, bestSelling] = await Promise.all([
+  const [{ content, preview }, shoppable, bestSelling] = await Promise.all([
     getHomeContent(),
-    getHomeCollections(),
+    getShoppableCollections(),
     getCollectionPage({ handle: ALL_PRODUCTS_HANDLE, sort: "best", filters: [] }),
   ]);
   const [bestSeller] = bestSelling?.products.nodes ?? [];
+  // The category bar lists every collection. The tiles further down show the first six.
+  const collections = shoppable.slice(0, 6);
   // A stack shows only while at least one of its pieces is in the shop. If they can't be read, the
   // section is left out and the rest of the page still shows.
   const stackProducts = await getStackProducts(content.stacks.flatMap((stack) => stack.productIds)).catch(() => []);
@@ -42,13 +45,14 @@ export default async function Home() {
   return (
     <>
       {preview && <PreviewBanner path="/" />}
+      <CategoryBar collections={shoppable} />
       <section className="relative isolate overflow-hidden">
         <div aria-hidden="true" className="beach-dots absolute inset-0 -z-10" />
         {/* The white wave sweeps from the upper left to the lower right over the dots. */}
         <svg aria-hidden="true" viewBox="0 0 100 100" preserveAspectRatio="none" className="absolute inset-0 -z-10 size-full">
           <path d="M0 6C40 6 70 30 100 31V70C92 78 45 95 0 99Z" className="fill-surface" />
         </svg>
-        <Container className="grid min-h-[38rem] items-center gap-10 pb-section-gap pt-32 md:grid-cols-2">
+        <Container className="grid min-h-[38rem] items-center gap-10 pb-section-gap pt-10 md:grid-cols-2 md:pt-16">
           <div className="flex flex-col justify-center gap-6">
             {/* On a phone the headline runs across the dots, so each letter gets a white outline (stroke
                 painted under the fill) to stay readable on any colour. */}
@@ -64,29 +68,17 @@ export default async function Home() {
               </ButtonLink>
             </div>
           </div>
-          {content.heroVideo && <HeroVideo src={content.heroVideo} />}
+          {content.heroVideo && (
+            <div className="max-md:order-first">
+              <HeroVideo src={content.heroVideo} />
+            </div>
+          )}
         </Container>
         <div aria-hidden="true" className="stripe-band h-9 md:h-10" />
       </section>
 
-      {collections.length > 0 && (
-        <Container className="space-y-10 py-section-gap">
-          <header className="space-y-3 text-center">
-            <h2 className="font-headline text-headline-lg text-primary">{content.collectionsTitle}</h2>
-            <p className="mx-auto max-w-md font-body text-body-md text-on-surface-variant">{content.collectionsBody}</p>
-          </header>
-          <Grid>
-            {collections.map((collection, index) => (
-              <div key={collection.id} className={tileSpan(index, collections.length)}>
-                <CollectionTile collection={collection} />
-              </div>
-            ))}
-          </Grid>
-        </Container>
-      )}
-
       {stacks.length > 0 && (
-        <section id="stacks" className="scroll-mt-24 pb-section-gap">
+        <section id="stacks" className="scroll-mt-24 pt-section-gap">
           <Container className="space-y-10">
             <header className="space-y-3 text-center">
               <h2 className="font-headline text-headline-lg uppercase text-primary">
@@ -106,7 +98,7 @@ export default async function Home() {
       )}
 
       {(content.reels.length > 0 || content.reelsPlaceholders) && (
-      <section className="space-y-10 pb-section-gap">
+      <section className="space-y-10 pt-section-gap">
         <Container>
           <header className="space-y-3 text-center">
             <AccentHeading className="font-headline text-headline-lg text-tertiary">{reelsTitle}</AccentHeading>
@@ -117,7 +109,23 @@ export default async function Home() {
       </section>
       )}
 
-      <Container className="pb-section-gap">
+      {collections.length > 0 && (
+        <Container className="space-y-10 py-section-gap">
+          <header className="space-y-3 text-center">
+            <h2 className="font-headline text-headline-lg text-primary">{content.collectionsTitle}</h2>
+            <p className="mx-auto max-w-md font-body text-body-md text-on-surface-variant">{content.collectionsBody}</p>
+          </header>
+          <Grid>
+            {collections.map((collection, index) => (
+              <div key={collection.id} className={tileSpan(index, collections.length)}>
+                <CollectionTile collection={collection} />
+              </div>
+            ))}
+          </Grid>
+        </Container>
+      )}
+
+      <Container className={collections.length > 0 ? "pb-section-gap" : "py-section-gap"}>
         <Grid>
           <div className="col-span-4 flex flex-col justify-between gap-6 rounded-lg border-[1.5px] border-tertiary bg-secondary-fixed p-8 shadow-hard-secondary md:col-span-8 lg:col-span-6">
             <div className="space-y-3">

@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { getCollections } from "../../lib/shopify/catalog";
+import { getShoppableCollections } from "../../lib/shopify/catalog";
 import { Container } from "../ui/container";
 import { Icon } from "../ui/icon";
 
@@ -41,11 +41,10 @@ export async function SiteFooter({ socials = [] }: { socials?: SocialLink[] }) {
   const year = new Date().getFullYear();
   // The Shop column lists every collection that has products, so a new one appears without a code change.
   // The footer still renders if the catalog can't be read.
-  const collections = await getCollections().catch(() => []);
+  const collections = await getShoppableCollections().catch(() => []);
   const shopLinks = [
     { href: "/shop", label: "All products" },
     ...collections
-      .filter((collection) => collection.hasProducts && collection.handle !== "frontpage")
       .slice(0, 8)
       .map((collection) => ({ href: `/collections/${encodeURIComponent(collection.handle)}`, label: collection.title })),
   ];
