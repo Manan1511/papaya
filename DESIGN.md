@@ -3,6 +3,7 @@ name: Papaya Retro Beach Club
 description: A striped, sunny beach-club storefront: white ground, chili maroon and sky stripes, navy lines and text.
 colors:
   primary: "#7a111d"
+  blush: "#fbdfe0"
   primary-container: "#f08a1a"
   on-primary: "#ffffff"
   on-primary-container: "#3d1f00"

@@ -8,6 +8,8 @@ const config = {
     extend: {
       colors: {
         primary: "#7a111d",
+        // A pastel of the chili red, for the band behind the homepage categories.
+        blush: "#fbdfe0",
         "primary-container": "#f08a1a",
         "on-primary": "#ffffff",
         "on-primary-container": "#3d1f00",

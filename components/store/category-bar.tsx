@@ -14,9 +14,7 @@ function WavyEdge() {
     <svg aria-hidden="true" className="pointer-events-none absolute inset-x-0 top-[calc(100%-1px)] h-[17px] w-full">
       <defs>
         <pattern id="category-wave" width="56" height="17" patternUnits="userSpaceOnUse">
-          {/* White under the tint, so the colour matches the band and nothing behind shows through. */}
-          <path d={WAVE_FILL} className="fill-surface" />
-          <path d={WAVE_FILL} className="fill-primary-fixed/40" />
+          <path d={WAVE_FILL} className="fill-blush" />
           <path d={WAVE_LINE} className="fill-none stroke-tertiary" strokeWidth="1.5" />
         </pattern>
       </defs>
@@ -41,7 +39,7 @@ export function CategoryBar({ collections }: { collections: CollectionSummary[] 
 
   return (
     <nav aria-label="Shop by category" className="relative z-10 bg-surface">
-      <ul className="flex snap-x bg-primary-fixed/40 scroll-px-3 gap-1 overflow-x-auto overscroll-x-contain px-3 py-4 [justify-content:safe_center] [scrollbar-width:none] md:gap-6 [&::-webkit-scrollbar]:hidden">
+      <ul className="flex snap-x bg-blush scroll-px-3 gap-1 overflow-x-auto overscroll-x-contain px-3 py-4 [justify-content:safe_center] [scrollbar-width:none] md:gap-6 [&::-webkit-scrollbar]:hidden">
         {items.map((item) => (
           <li key={item.href} className="w-[5.25rem] shrink-0 snap-start md:w-28">
             <Link href={item.href} className="group flex flex-col items-center gap-2 text-center">
